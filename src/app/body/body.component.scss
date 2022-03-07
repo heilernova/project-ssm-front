@@ -1,0 +1,35 @@
+:host{
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8px 5px;
+    background-color: var(--color-header);
+    color: var(--color-header-text);
+}
+nav{
+    background-color: var(--color-nav);
+    color: var(--color-nav-text);
+    display: flex;
+    justify-content: left;
+    column-gap: 10px;
+    padding: 2px 10px;
+    ul{
+        list-style: none;
+        padding: 0;
+        li{
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+footer{
+    background-color: var(--color-footer);
+    color: var(--color-footer-text);
+    display: grid;
+}
