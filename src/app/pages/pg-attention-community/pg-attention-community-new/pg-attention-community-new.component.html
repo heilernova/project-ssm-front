@@ -1,0 +1,127 @@
+<div style="max-width: 800px; padding: 10px 0;">
+    <h2>Registro de asistencia al usuario</h2>
+    <h3>Información del usuario</h3>
+    <!-- Formulario de información del usuario -->
+    <form [formGroup]="formUser" class="form">
+        <div class="document">
+            <!-- Número de documento -->
+            <mat-form-field class="number">
+                <mat-label>Número de documento</mat-label>
+                <input matInput autocomplete="off" maxlength="15" formControlName="dni">
+            </mat-form-field>
+
+            <!-- Botón consulta de informacin -->
+            <button type="button" mat-button [hidden]="formUser.disabled" color="primary"
+            (click)="validDNI()"
+            >Consulta documento</button>
+            <!-- <button type="button" mat-button [disabled]="formUser.invalid" color="primary">Consulta documento</button> -->
+        </div>
+
+        <!-- Tipo de documento -->
+        <mat-form-field class="type">
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select formControlName="typeDNI">
+                <mat-option value="CC">Cédula de ciudadanía</mat-option>
+                <mat-option value="TI">Tarjeta de identidad</mat-option>
+                <mat-option value="RC">Registro civil</mat-option>
+                <mat-option value="CE">Cédula de extranjería</mat-option>
+                <mat-option value="PEP">PEP</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <div class="full-name">
+            <!-- Nombre -->
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput autocomplete="off" maxlength="20"
+                formControlName="name">
+            </mat-form-field>
+            <!-- Apellido -->
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput autocomplete="off" maxlength="20"
+                formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <!-- Sexo -->
+            <mat-form-field class="sex">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sex">
+                    <mat-option value="1">M</mat-option>
+                    <mat-option value="0">F</mat-option>
+                    <mat-option value="null">Sin definir</mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+            <!-- Teléfono movil -->
+            <mat-form-field class="cellphone">
+                <mat-label>Teléfono movil</mat-label>
+                <input matInput autocomplete="off" maxlength="10"
+                formControlName="cellphone">
+            </mat-form-field>
+        </div>
+    
+        <!-- Correo electrónico -->
+        <mat-form-field class="email">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput autocomplete="off" maxlength="150"
+            formControlName="email">
+        </mat-form-field>    
+    
+        <!-- EPS -->
+        <mat-form-field style="width: 100%;">
+            <mat-label>EPS</mat-label>
+            <mat-select formControlName="eps">
+                <mat-option *ngFor="let eps of listEPS" [value]="eps.id">{{eps.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <!-- Régimen de salid -->
+        <mat-form-field>
+            <mat-label>Regimen de salud</mat-label>
+            <mat-select formControlName="regime">
+                <mat-option value="0">Subsidiado</mat-option>
+                <mat-option value="1">Contibutivo</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <h3>Solitud</h3>
+    <form [formGroup]="formRequest" class="form" >
+        <!-- Servicio solicitado -->
+        <mat-form-field style="width: 100%;">
+            <mat-label>Servicio solicitado</mat-label>
+            <mat-select formControlName="service">
+                <mat-option *ngFor="let serv of listServices" [value]="serv.id">{{serv.description}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <section class="example-section">
+            <mat-checkbox formControlName="sisben">Sisben</mat-checkbox>
+            <mat-checkbox formControlName="olderAdult">Adulto mayor</mat-checkbox>
+            <mat-checkbox formControlName="disabled">Discapacitado</mat-checkbox>
+            <mat-checkbox formControlName="pregnant">Mujer gestante</mat-checkbox>
+            <mat-checkbox formControlName="womenHeadHousehold">Mujer cabeza de familia</mat-checkbox>
+            <mat-checkbox formControlName="afrodescendent">Afrodecendiente</mat-checkbox>
+            <mat-checkbox formControlName="lgtbi">LGTBI</mat-checkbox>
+            <mat-checkbox formControlName="victim">Victima</mat-checkbox>
+            <mat-checkbox formControlName="displaced">Desplazado</mat-checkbox>
+            <mat-checkbox formControlName="demobilized">Desmovilizado</mat-checkbox>
+            <mat-checkbox formControlName="reinserted">Reinsertado</mat-checkbox>
+            <mat-checkbox formControlName="palenRaizan">Palen raizal</mat-checkbox>
+            <mat-checkbox formControlName="roomGintano">Room gitano</mat-checkbox>
+            <mat-checkbox formControlName="nnaNunaccompaniedAdult">NNA sin acompañamiento</mat-checkbox>
+          </section>
+
+        <!-- Acompañamiento realizado-->
+        <mat-form-field style="width: 100%;" appearance="fill">
+            <mat-label>Acompañamiento realizado</mat-label>
+            <textarea matInput maxlength="200" rows="5" formControlName="accompaniment"></textarea>
+        </mat-form-field>
+    </form>
+
+    <button [disabled]="formUser.invalid || formRequest.invalid" mat-raised-button color="primary" style="width: 250px;"
+    (click)="sendForm()">Guardar rtegistro</button>
+</div>

@@ -5,15 +5,22 @@
 </header>
 <!-- Barra de navegación -->
 <nav class="nav">
-    <ul>
-        <li>
-            Atención a la comunidad
+    <ul class="nav nav-tabs">
+        <li class="nav-item" >
+            <a class="nav-link" routerLink="atencion-a-la-comunidad" routerLinkActive="active">
+                Atención a la comunidad
+            </a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" routerLink="configuraciones" routerLinkActive="active">
+                Configuraciones
+            </a>
         </li>
     </ul>
 </nav>
-<!-- Contiide de la página -->
+<!-- Contenido de la página -->
 <div>
-
+    <router-outlet></router-outlet>
 </div>
 <footer>
     <div>

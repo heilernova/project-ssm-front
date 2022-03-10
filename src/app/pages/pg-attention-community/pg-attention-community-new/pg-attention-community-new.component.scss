@@ -1,0 +1,9 @@
+.example-section{
+    display: flex;
+    column-gap: 25px;
+    flex-wrap: wrap;
+    mat-checkbox{
+        margin: 3px 0;
+    }
+    margin: 7px 0;
+}

@@ -1,0 +1,26 @@
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    height: 100%;
+}
+
+footer{
+    position: absolute;
+    bottom: 5px;
+    color: gainsboro;
+    font-weight: 500;
+    font-size: 130%;
+}
+form{
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    .form-controls{
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,1 +1,19 @@
-<p>login works!</p>
+<form [formGroup]="form" (ngSubmit)="sendForm()">
+    <h1>Incio de sesión</h1>
+    <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input matInput autocomplete="off" formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput autocomplete="off" formControlName="password">
+    </mat-form-field>
+
+    <div class="form-controls">
+        <button mat-button [disabled]="form.invalid">Enviar</button>
+    </div>
+</form>
+<footer>
+    Aplicación desarrollada por: Heiler Nova 
+</footer>

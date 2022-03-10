@@ -34,6 +34,100 @@ $project-dp-ssj-shared-report-theme: mat.define-light-theme((
 @include mat.all-component-themes($project-dp-ssj-shared-report-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Libre+Baskerville&family=Nunito:wght@200&family=Roboto+Condensed:wght@300&family=Roboto+Mono:wght@300&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Libre+Baskerville&family=Nunito:wght@200&family=Roboto+Condensed:wght@300&family=Roboto+Mono:wght@300&display=swap');
+
+:root{
+  --color-primary: rgb(19, 156, 235);
+  
+  --color-header: rgb(10, 140, 201);
+  --color-header-text: white;
+
+  --color-footer: rgba(196, 196, 196, 0.89);
+  --color-footer-text: rgb(80, 80, 80);
+  
+}
+
+html, body { height: 100%; min-height: 100vh; font-family: 'Roboto Mono', monospace;}
+body { margin: 0; 
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  // font-family: 'Roboto Mono', monospace;
+  // font-family: 'Hind', sans-serif;
+  // font-family: 'Libre Baskerville', serif;
+  // font-family: 'Nunito', sans-serif;
+  // font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Mono', monospace;
+  // font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.page{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  .page-nav{
+    display: flex;
+    flex-direction: column;
+    ul{
+      list-style: none;
+      padding: 0;
+      padding-left: 5px;
+      li{
+        padding: 5px 10px;
+        margin: 2px 0;
+        width: 130px;
+        cursor: pointer;
+        color: gray;
+        &:hover{
+          color: black;
+        }
+        &.active{
+          color: black;
+          transform: translate(10px) scale(1.1);
+          font-weight: 500;
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+}
+
+
+.form{
+  font-family: 'Roboto Mono', monospace;
+  .flex{
+    display: flex;
+    column-gap: 15px;
+  }
+  .document{
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    .number{
+      width: 160px;
+    }
+    .type{
+      width: 150px;
+    }
+  }
+
+  .full-name{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    input{
+      text-transform: capitalize;
+    }
+  }
+
+  .sex{
+    width: 60px;
+  }
+  .email{
+    width: 100%;
+    input{
+      text-transform: lowercase;
+    }
+  }
+}
