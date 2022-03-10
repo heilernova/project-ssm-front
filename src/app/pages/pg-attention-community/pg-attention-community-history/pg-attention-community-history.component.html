@@ -1,1 +1,55 @@
 <h2>Historial de atención al usuarios</h2>
+<div>
+    Panel de control
+</div>
+<div>
+    <mat-accordion >
+        <mat-expansion-panel *ngFor="let req of listRequests">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="date">
+                        {{req.date | date: 'dd/MMM/yyyy hh:mm aa'}}
+                    </div>
+                    <div class="name">
+                        {{req.name}}
+                    </div>
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{req.service}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div >
+                <div>
+                    {{req.accompaniment}}
+                </div>
+                <div class="comentarios">
+                    <div class="title">
+                        Observaciones
+                    </div>
+                    <div class="list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 150px;">Fecha</th>
+                                    <th>Observación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let obs of req.observations">
+                                    <td>{{obs.content}}</td>
+                                    <td>{{obs.content}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <button mat-button>Agregar comentario</button>
+                    <button mat-button>Ver mas</button>
+                    <button mat-button>Cerrar caso</button>
+                    <button mat-button>Eliminar caso</button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -8,6 +8,7 @@ import { BodyModule } from './body/body.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/api.interceptor';
+import { NovaModule, NvApiInterceptor } from 'ng-nova';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,12 @@ import { ApiInterceptor } from './services/api.interceptor';
     BrowserAnimationsModule,
     BodyModule,
     LoginModule,
-    HttpClientModule
+    HttpClientModule,
+    NovaModule
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true}
+    {provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass: NvApiInterceptor, multi:true},
   ],
   bootstrap: [AppComponent]
 })

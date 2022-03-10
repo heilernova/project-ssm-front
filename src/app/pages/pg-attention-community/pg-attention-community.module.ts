@@ -7,7 +7,9 @@ import { PgAttentionCommunityNewModule } from './pg-attention-community-new/pg-a
 import { PgAttentionCommunityHistoryComponent } from './pg-attention-community-history/pg-attention-community-history.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AttentionCommunityInterceptor } from './services/attention-community.interceptor';
-
+import { MatExpansionModule } from '@angular/material/expansion'
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,10 @@ import { AttentionCommunityInterceptor } from './services/attention-community.in
     CommonModule,
     PgAttentionCommunityRoutingModule,
     PgAttentionCommunityNewModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: AttentionCommunityInterceptor, multi:true }

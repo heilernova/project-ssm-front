@@ -26,4 +26,8 @@ export class RequestService {
   onRegister(data:any):Observable<any>{
     return this.http.post('attention-community', data);
   }
+
+  onGetHistory():Observable<any>{
+    return this.http.get('attention-community');
+  }
 }

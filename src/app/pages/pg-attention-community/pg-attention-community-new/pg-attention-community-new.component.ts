@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NvMessageBoxService } from 'ng-nova';
 import { RequestService } from '../services/request.service';
 
 @Component({
@@ -16,11 +17,12 @@ export class PgAttentionCommunityNewComponent implements OnInit {
   listEPS:any[] = [];
   
   constructor(
-    private _resquest:RequestService
+    private _resquest:RequestService,
+    private _message:NvMessageBoxService
   ) { 
     this.formUser = new FormGroup({
       dni: new FormControl('', [Validators.required, Validators.pattern('[0-9]+')]),
-      typeDNI: new FormControl('', Validators.required),
+      dniType: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       sex: new FormControl('', Validators.required),
@@ -115,12 +117,15 @@ export class PgAttentionCommunityNewComponent implements OnInit {
   sendForm(){
     console.log(this.formRequest.value);
     console.log(this.formUser.value);
+    // this._message.show("Registro exirtoso")
 
-    this._resquest.onRegister({persin: this.formUser.value, request: this.formRequest.value}).subscribe({
+    this._resquest.onRegister({person: this.formUser.value, request: this.formRequest.value}).subscribe({
       next: data => {
-        alert("Registro exitoso");
-      },error: ()=>{
-        alert('No se pudo realizar el registro');
+        console.log(data);
+        this._message.show("Registro exirtoso")
+      },error: e=>{
+        // this._message.show("Erro")
+        console.log(e);
       }
     })
   }

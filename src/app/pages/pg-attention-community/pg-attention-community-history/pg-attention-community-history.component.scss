@@ -1,0 +1,18 @@
+mat-expansion-panel{
+    mat-panel-title{
+        text-transform: capitalize;
+        display: flex;
+        column-gap: 25px;
+        .date{
+            font-family: "Cascadia Code";
+        }
+    }
+}
+
+.comentarios{
+    // background-color: rebeccapurple;
+    min-height: 200px;
+    .title{
+        font-weight: 500;
+    }
+}
