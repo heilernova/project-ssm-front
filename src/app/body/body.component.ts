@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-body',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _user:LoginService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  isLoggout():boolean{
+    return this._user.isLoggout();
   }
 
 }

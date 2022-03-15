@@ -1,14 +1,23 @@
 <header>
     <div>LOGO</div>
     <!-- <div>Registro de actividades</div> -->
-    <div>LOGIN</div>
+    <ng-container *ngIf="isLoggout(); else user">
+        <div>
+            <mat-icon>person</mat-icon>
+        </div>
+    </ng-container>
+    <ng-template #user>
+        <div>
+            <mat-icon>login</mat-icon>
+        </div>
+    </ng-template>
 </header>
 <!-- Barra de navegación -->
 <nav class="nav">
     <ul class="nav nav-tabs">
         <li class="nav-item" >
-            <a class="nav-link" routerLink="atencion-a-la-comunidad" routerLinkActive="active">
-                Atención a la comunidad
+            <a class="nav-link" routerLink="servicio-de-atencion-al-ciudadano" routerLinkActive="active">
+                Servicio de Atención al Ciudadano
             </a>
         </li>
         <li class="nav-item" >
