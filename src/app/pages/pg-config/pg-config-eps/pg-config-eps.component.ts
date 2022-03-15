@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DlgEpsInfoComponent } from './dlg-eps-info/dlg-eps-info.component';
 import { EpsService } from './services/eps.service';
 
 @Component({
@@ -11,7 +13,8 @@ export class PgConfigEpsComponent implements OnInit {
   listEPS:any[] = [];
 
   constructor(
-    private _eps:EpsService
+    private _eps:EpsService,
+    private _matDialog:MatDialog
   ) {
     this.loadEPS();
   }
@@ -27,6 +30,18 @@ export class PgConfigEpsComponent implements OnInit {
 
       }
     })
+  }
+
+  addEPS(){
+    this._matDialog.open(DlgEpsInfoComponent);
+
+  }
+
+  editEPS(eps:any){
+    this._matDialog.open(DlgEpsInfoComponent,{ data:eps });
+  }
+  showEPS(){
+    this._matDialog.open(DlgEpsInfoComponent);
   }
 
 }

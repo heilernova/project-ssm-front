@@ -29,7 +29,8 @@ export class PgAttentionCommunityNewComponent implements OnInit {
       cellphone: new FormControl('', Validators.required),
       email: new FormControl(''),
       eps: new FormControl('', Validators.required),
-      regime: new FormControl('', Validators.required)
+      regime: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required)
     });
     
     this.formRequest = new FormGroup({

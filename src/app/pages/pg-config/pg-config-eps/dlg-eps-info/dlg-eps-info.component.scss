@@ -1,0 +1,10 @@
+mat-dialog-content{
+    display: flex;
+    flex-direction: column;
+    input{
+        text-transform: uppercase;
+    }
+    mat-slide-toggle{
+        margin: 10px 0;
+    }
+}
