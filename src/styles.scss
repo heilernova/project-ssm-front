@@ -113,6 +113,9 @@ body { margin: 0;
     display: flex;
     column-gap: 15px;
   }
+  .flex-wrap{
+    flex-wrap: wrap;
+  }
   .document{
     display: flex;
     column-gap: 15px;

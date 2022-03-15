@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '', component:BodyComponent,
     children: [
-      { path: 'atencion-a-la-comunidad', loadChildren:()=>import('./pages/pg-attention-community/pg-attention-community.module').then(m=>m.PgAttentionCommunityModule) },
+      { path: 'servicio-de-atencion-al-ciudadano', loadChildren:()=>import('./pages/pg-attention-community/pg-attention-community.module').then(m=>m.PgAttentionCommunityModule) },
       { path: 'configuraciones', loadChildren:()=>import('./pages/pg-config/pg-config.module').then(m=>m.PgConfigModule) }
     ]
   },
