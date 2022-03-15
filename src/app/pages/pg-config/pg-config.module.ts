@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PgConfigComponent } from './pg-config.component';
 import { PgConfigRoutingModule } from './pg-config-routing.module';
 import { PgConfigEpsModule } from './pg-config-eps/pg-config-eps.module';
+import { PgConfigServicesModule } from './pg-config-services/pg-config-services.module';
 
 
 
@@ -13,7 +14,8 @@ import { PgConfigEpsModule } from './pg-config-eps/pg-config-eps.module';
   imports: [
     CommonModule,
     PgConfigRoutingModule,
-    PgConfigEpsModule
+    PgConfigEpsModule,
+    PgConfigServicesModule
   ]
 })
 export class PgConfigModule { }
