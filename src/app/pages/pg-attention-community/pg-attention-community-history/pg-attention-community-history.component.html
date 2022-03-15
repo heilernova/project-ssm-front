@@ -24,20 +24,20 @@
                 </div>
                 <div class="comentarios">
                     <div class="title">
-                        Observaciones
+                        Regitro de observaciones
                     </div>
                     <div class="list">
                         <table>
                             <thead>
                                 <tr>
-                                    <th style="width: 150px;">Fecha</th>
+                                    <th class="date">Fecha</th>
                                     <th>Observación</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let obs of req.observations">
-                                    <td>{{obs.content}}</td>
-                                    <td>{{obs.content}}</td>
+                                    <td class="date">{{obs.date | date: 'dd/MMM/yyyy hh:mm aa'}}</td>
+                                    <td class="content">{{obs.content}}</td>
                                 </tr>
                             </tbody>
                         </table>

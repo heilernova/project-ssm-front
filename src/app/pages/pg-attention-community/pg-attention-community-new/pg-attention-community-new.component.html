@@ -1,5 +1,5 @@
 <div style="max-width: 800px; padding: 10px 0;">
-    <h2>Registro de asistencia al usuario</h2>
+    <h2>Registro diario SAC</h2>
     <h3>Información del usuario</h3>
     <!-- Formulario de información del usuario -->
     <form [formGroup]="formUser" class="form">
@@ -29,37 +29,39 @@
             </mat-select>
         </mat-form-field>
     
-        <div class="full-name">
-            <!-- Nombre -->
-            <mat-form-field>
-                <mat-label>Nombre</mat-label>
-                <input matInput autocomplete="off" maxlength="20"
-                formControlName="name">
-            </mat-form-field>
-            <!-- Apellido -->
-            <mat-form-field>
-                <mat-label>Apellido</mat-label>
-                <input matInput autocomplete="off" maxlength="20"
-                formControlName="lastName">
-            </mat-form-field>
-        </div>
-        <div class="flex">
-            <!-- Sexo -->
-            <mat-form-field class="sex">
-                <mat-label>Sexo</mat-label>
-                <mat-select formControlName="sex">
-                    <mat-option value="1">M</mat-option>
-                    <mat-option value="0">F</mat-option>
-                    <mat-option value="null">Sin definir</mat-option>
-                </mat-select>
-            </mat-form-field>
-    
-            <!-- Teléfono movil -->
-            <mat-form-field class="cellphone">
-                <mat-label>Teléfono movil</mat-label>
-                <input matInput autocomplete="off" maxlength="10"
-                formControlName="cellphone">
-            </mat-form-field>
+        <div class="flex flex-wrap">
+            <div class="full-name">
+                <!-- Nombre -->
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput autocomplete="off" maxlength="20"
+                    formControlName="name">
+                </mat-form-field>
+                <!-- Apellido -->
+                <mat-form-field>
+                    <mat-label>Apellido</mat-label>
+                    <input matInput autocomplete="off" maxlength="20"
+                    formControlName="lastName">
+                </mat-form-field>
+            </div>
+            <div class="flex">
+                <!-- Sexo -->
+                <mat-form-field class="sex">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select formControlName="sex">
+                        <mat-option value="1">M</mat-option>
+                        <mat-option value="0">F</mat-option>
+                        <mat-option value="null">Sin definir</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+                <!-- Teléfono movil -->
+                <mat-form-field class="cellphone">
+                    <mat-label>Teléfono movil</mat-label>
+                    <input matInput autocomplete="off" maxlength="10"
+                    formControlName="cellphone">
+                </mat-form-field>
+            </div>
         </div>
     
         <!-- Correo electrónico -->
@@ -69,31 +71,34 @@
             formControlName="email">
         </mat-form-field>    
     
-        <!-- EPS -->
-        <mat-form-field style="width: 100%;">
-            <mat-label>EPS</mat-label>
-            <mat-select formControlName="eps">
-                <mat-option *ngFor="let eps of listEPS" [value]="eps.id">{{eps.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    
-        <!-- Régimen de salid -->
-        <mat-form-field>
-            <mat-label>Regimen de salud</mat-label>
-            <mat-select formControlName="regime">
-                <mat-option value="0">Subsidiado</mat-option>
-                <mat-option value="1">Contibutivo</mat-option>
-            </mat-select>
-        </mat-form-field>
-
         <!-- Direccions -->
         <mat-form-field style="width: 100%;">
             <mat-label>Dirección</mat-label>
             <input matInput autocomplete="off" maxlength="150" formControlName="address">
-        </mat-form-field>    
+        </mat-form-field>  
+
+        <div class="salud">
+            <!-- EPS -->
+            <mat-form-field style="width: 100%;" >
+                <mat-label>EPS</mat-label>
+                <mat-select formControlName="eps">
+                    <mat-option *ngFor="let eps of listEPS" [value]="eps.id">{{eps.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <!-- Régimen de salud -->
+            <mat-form-field>
+                <mat-label>Regimen de salud</mat-label>
+                <mat-select formControlName="regime">
+                    <mat-option value="0">Subsidiado</mat-option>
+                    <mat-option value="1">Contibutivo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
     </form>
 
-    <h3>Solitud</h3>
+    <h3>Atención</h3>
     <form [formGroup]="formRequest" class="form" >
         <!-- Servicio solicitado -->
         <mat-form-field style="width: 100%;">
@@ -108,7 +113,7 @@
             <mat-checkbox formControlName="sisben">Sisben</mat-checkbox>
             <mat-checkbox formControlName="olderAdult">Adulto mayor</mat-checkbox>
             <mat-checkbox formControlName="disabled">Discapacitado</mat-checkbox>
-            <mat-checkbox formControlName="pregnant">Mujer gestante</mat-checkbox>
+            <mat-checkbox formControlName="pregnant">Gestante</mat-checkbox>
             <mat-checkbox formControlName="womenHeadHousehold">Mujer cabeza de familia</mat-checkbox>
             <mat-checkbox formControlName="afrodescendent">Afrodecendiente</mat-checkbox>
             <mat-checkbox formControlName="lgtbi">LGTBI</mat-checkbox>
@@ -128,6 +133,8 @@
         </mat-form-field>
     </form>
 
-    <button [disabled]="formUser.invalid || formRequest.invalid" mat-raised-button color="primary" style="width: 250px;"
-    (click)="sendForm()">Guardar rtegistro</button>
+    <div class="actions">
+        <button [disabled]="formUser.invalid || formRequest.invalid" mat-raised-button color="primary" style="width: 250px;"
+        (click)="sendForm()">Guardar registro</button>
+    </div>
 </div>

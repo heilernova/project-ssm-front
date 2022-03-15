@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300&display=swap');
+
 mat-expansion-panel{
     mat-panel-title{
         text-transform: capitalize;
@@ -14,5 +17,36 @@ mat-expansion-panel{
     min-height: 200px;
     .title{
         font-weight: 500;
+    }
+    .list{
+        table{
+            width: 100%;
+
+            border-collapse: separate;
+            border-spacing: 10;
+            border: 1px solid rgba(94, 93, 93, 0.842);
+            border-radius: 5px;
+            -moz-border-radius: 20px;
+            padding: 2px;
+
+            thead{
+                .date{
+                    width: 160px;
+                }
+            }
+            tbody{
+                font-family: 'Noto Sans Mono', monospace;
+                font-weight: 500;
+                tr{
+                    .date{
+                        min-width: 170px;
+                    }
+                    .content{
+                        width: 100%;
+                        padding: 0 4px;
+                    }
+                }
+            }
+        }
     }
 }

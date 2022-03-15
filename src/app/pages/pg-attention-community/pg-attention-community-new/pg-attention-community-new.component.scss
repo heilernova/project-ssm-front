@@ -7,3 +7,13 @@
     }
     margin: 7px 0;
 }
+.salud{
+    display: flex;
+    // flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+.actions{
+    display: flex;
+    justify-content: right;
+}
