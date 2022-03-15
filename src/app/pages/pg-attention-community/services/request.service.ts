@@ -23,6 +23,9 @@ export class RequestService {
     return this.http.get('eps');
   }
 
+  /**
+   * Registra un  sol
+   */
   onRegister(data:any):Observable<any>{
     return this.http.post('attention-community', data);
   }

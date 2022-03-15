@@ -115,18 +115,16 @@ export class PgAttentionCommunityNewComponent implements OnInit {
     }
   }
 
+  /**
+   * Enviamo la información para registarse en la base de datos.
+   */
   sendForm(){
-    console.log(this.formRequest.value);
-    console.log(this.formUser.value);
-    // this._message.show("Registro exirtoso")
 
     this._resquest.onRegister({person: this.formUser.value, request: this.formRequest.value}).subscribe({
       next: data => {
-        console.log(data);
         this._message.show("Registro exirtoso")
       },error: e=>{
-        // this._message.show("Erro")
-        console.log(e);
+        this._message.alert("No se pudo realizar el registro.");
       }
     })
   }
