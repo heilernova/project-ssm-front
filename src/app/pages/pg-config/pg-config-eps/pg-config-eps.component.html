@@ -9,7 +9,7 @@
 <ul>
     <li *ngFor="let eps of listEPS">
         <div class="name">{{eps.name}}</div>
-        <div class="status">{{eps.status ? 'Desactivada' : 'activada'}}</div>
+        <div class="status">{{eps.disable ? 'Desactivada' : 'Activada'}}</div>
         <div class="actions">
             <button mat-icon-button (click)="editEPS(eps)"><mat-icon>edit</mat-icon></button>
             <button mat-icon-button><mat-icon>delete</mat-icon></button>
