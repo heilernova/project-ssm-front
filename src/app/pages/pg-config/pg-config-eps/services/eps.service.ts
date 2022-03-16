@@ -18,4 +18,8 @@ export class EpsService {
   onRegisterEPS(name:string):Observable<any>{
     return this._http.post('eps', name);
   }
+
+  onUpdateEPS(id:number, data:{name:string, disable:boolean}):Observable<boolean>{
+    return this._http.put<boolean>(`eps/${id}`, data);
+  }
 }

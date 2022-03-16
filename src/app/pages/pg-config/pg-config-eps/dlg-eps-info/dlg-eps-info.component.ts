@@ -39,7 +39,16 @@ export class DlgEpsInfoComponent implements OnInit {
 
   sendForm(){
     if (this.data){
-      // Actulizamos la informacion
+      // Actulizamos la informacion}
+      let inf = this.form.value;
+      console.log(inf);
+      this._eps.onUpdateEPS(this.data.id, inf).subscribe({
+        next: result =>{
+          this.data.name = inf.name;
+          this.data.disable = inf.disable;
+          this._matDialogRef.close(true);
+        }
+      })
     }else{
       // Registramos la información
       this._eps.onRegisterEPS(JSON.stringify(this.form.value.name)).subscribe({
