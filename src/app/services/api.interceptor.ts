@@ -41,8 +41,14 @@ export class ApiInterceptor implements HttpInterceptor {
               }
               event = event.clone({body: body.data});
             }else{
-              throw new HttpErrorResponse({error: body.message, url: event.url ?? '', status: event.status});
+              
+              this._message.error(body.message.content, body.message.title);
+
+              throw "Mensaje de la api";
+              // throw new HttpErrorResponse({error: body.message, url: event.url ?? '', status: event.status});
             }
+          }else{
+            if (event.body == null) throw "Api NULL";
           }
         }
 
@@ -51,6 +57,7 @@ export class ApiInterceptor implements HttpInterceptor {
         
         let text:string = "Error inesperado";
         let messageApi = this.getMessage(e.error);
+        console.log("SI")
 
         if (messageApi){
           if (messageApi.content.length > 0){
