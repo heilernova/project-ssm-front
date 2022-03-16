@@ -94,6 +94,14 @@
                     <mat-option value="1">Contibutivo</mat-option>
                 </mat-select>
             </mat-form-field>
+            <!-- Régimen de salud -->
+            <mat-form-field>
+                <mat-label>Sisben</mat-label>
+                <mat-select formControlName="sisben">
+                    <mat-option value="1">Si</mat-option>
+                    <mat-option value="0">No</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
     </form>
@@ -110,7 +118,6 @@
 
 
         <section class="example-section">
-            <mat-checkbox formControlName="sisben">Sisben</mat-checkbox>
             <mat-checkbox formControlName="olderAdult">Adulto mayor</mat-checkbox>
             <mat-checkbox formControlName="disabled">Discapacitado</mat-checkbox>
             <mat-checkbox formControlName="pregnant">Gestante</mat-checkbox>

@@ -28,15 +28,15 @@ export class PgAttentionCommunityNewComponent implements OnInit {
       sex: new FormControl('', Validators.required),
       cellphone: new FormControl('', Validators.required),
       email: new FormControl(''),
+      address: new FormControl('', Validators.required),
       eps: new FormControl('', Validators.required),
       regime: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required)
+      sisben: new FormControl('', Validators.required)
     });
     
     this.formRequest = new FormGroup({
       service: new FormControl('', Validators.required),
       accompaniment: new FormControl('', Validators.required),
-      sisben: new FormControl(false),
       olderAdult: new FormControl(false),
       disabled: new FormControl(false),
       pregnant: new FormControl(false),
@@ -79,7 +79,7 @@ export class PgAttentionCommunityNewComponent implements OnInit {
       
       this._resquest.onValidDNI(dni).subscribe({
         next: data => {
-          console.log(data);
+
           this.formUser.get('name')?.setValue(data.person.name);
           this.formUser.get('lastName')?.setValue(data.person.lastName);
           this.formUser.get('sex')?.setValue(data.person.sex.toString());
@@ -87,10 +87,11 @@ export class PgAttentionCommunityNewComponent implements OnInit {
           this.formUser.get('cellphone')?.setValue(data.person.cellphone);
           this.formUser.get('regime')?.setValue(data.person.regime.toString());
           this.formUser.get('eps')?.setValue(data.person.eps);
+          this.formUser.get('sisben')?.setValue(data.person.sisben);
           this.formUser.enable();
 
-          this.formRequest.get('sisben')?.setValue(data.person.sisben);
           if (data.request){
+            
             this.formRequest.get('olderAdult')?.setValue(data.request.olderAdult);
             this.formRequest.get('disabled')?.setValue(data.request.disabled);
             this.formRequest.get('pregnant')?.setValue(data.request.pregnant);
@@ -108,8 +109,9 @@ export class PgAttentionCommunityNewComponent implements OnInit {
         },error:e=>{
           this.formUser.reset();
           this.formRequest.reset();
-
           this.formUser.get('dni')?.setValue(dni);
+          this._message.alert("Usuario nueva por favor ingresa la información solicitada.");
+          this.formUser.enable();
         }
       });
     }

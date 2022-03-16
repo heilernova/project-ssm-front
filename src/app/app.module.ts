@@ -25,7 +25,7 @@ import { NovaModule, NvApiInterceptor } from 'ng-nova';
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass: NvApiInterceptor, multi:true},
+    // {provide:HTTP_INTERCEPTORS, useClass: NvApiInterceptor, multi:true},
   ],
   bootstrap: [AppComponent]
 })
