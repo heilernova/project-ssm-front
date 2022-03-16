@@ -11,6 +11,17 @@ export class LoginService {
     private _http:HttpClient
   ) { }
 
+  getToken():string
+  {
+    let token = localStorage.getItem("ssm-token")
+    if (token){
+      let d = JSON.parse(token);
+      return d.token;
+    }else{
+      return "";
+    }
+  }
+
   isLoggout():boolean{
     return localStorage.getItem('ssm-token') ? true : false;
   }

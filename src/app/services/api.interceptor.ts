@@ -5,17 +5,22 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpResponse,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpHeaders
 } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NvMessageBoxService } from 'ng-nova';
+import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
 
   constructor(
-    private _message:NvMessageBoxService
+    private _message:NvMessageBoxService,
+    private _login:LoginService,
+    private _router:Router
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -27,8 +32,12 @@ export class ApiInterceptor implements HttpInterceptor {
         url = `${environment.urlAPI}/${url}`;
       }
     }
+
+    let headers = new HttpHeaders({
+      "ssm-access-token" : this._login.getToken()
+    })
     
-    let requestClone:HttpRequest<unknown> = request.clone({url});
+    let requestClone:HttpRequest<unknown> = request.clone({url, headers});
     return next.handle(requestClone).pipe(
       map((event:HttpEvent<any>)=>{
 
@@ -55,25 +64,22 @@ export class ApiInterceptor implements HttpInterceptor {
         return event;
       }),catchError((e:HttpErrorResponse)=>{
         
-        let text:string = "Error inesperado";
-        let messageApi = this.getMessage(e.error);
-        console.log("SI")
-
-        if (messageApi){
-          if (messageApi.content.length > 0){
-            // Aquí el codigo par al manejo del mesaje del servidror.
-            this._message.error(messageApi.content, messageApi.title);
-          }
-        }else{
-          if (e.status >= 500){
-            if (typeof e.error == 'object'){
-              text = e.message;
-              this._message.error(text, "Error con la petición HTTP");
-              
-            }else if (typeof e.error == "string"){
-              text = e.error;
-              this._message.errorServer(text, "Error con la petición HTTP");
+        if (e.status == 401){
+          this._message.alert("Por favor inicie sesión nuevamente", "Credenciales invalidas",{ disableClose:true }).afterClosed().subscribe(
+            res=>{
+              this._router.navigate(['/login']);
             }
+          );
+        }
+        if (e.status >= 500){
+          let text:string = "Error inesperado";
+          if (typeof e.error == 'object'){
+            text = e.message;
+            this._message.error(text, "Error con la petición HTTP");
+            
+          }else if (typeof e.error == "string"){
+            text = e.error;
+            this._message.errorServer(text, "Error con la petición HTTP");
           }
         }
         
