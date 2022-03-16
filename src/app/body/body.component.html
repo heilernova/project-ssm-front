@@ -2,9 +2,13 @@
     <div>LOGO</div>
     <!-- <div>Registro de actividades</div> -->
     <ng-container *ngIf="isLoggout(); else user">
-        <div>
-            <mat-icon>person</mat-icon>
-        </div>
+        <button mat-button>
+            <mat-icon [matMenuTriggerFor]="menu">person</mat-icon>
+        </button>
+        <mat-menu #menu>
+            <!-- <menu mat-menu-item>Profile</menu> -->
+            <menu mat-menu-item (click)="cleseSession()">Cerrar sesión</menu>
+        </mat-menu>
     </ng-container>
     <ng-template #user>
         <div>

@@ -22,4 +22,8 @@ export class LoginService {
   onAuthenticate(data:{username:string, password:string}):Observable<any>{
     return this._http.post('auth', data);
   }
+
+  logout(){
+    localStorage.removeItem('ssm-token');
+  }
 }

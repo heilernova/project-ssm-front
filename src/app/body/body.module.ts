@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BodyComponent } from './body.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 
@@ -13,7 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     AppRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule
   ]
 })
 export class BodyModule { }
