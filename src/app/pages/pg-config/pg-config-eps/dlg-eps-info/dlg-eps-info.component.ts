@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NvMessageBoxService } from 'ng-nova';
+import { EpsService } from '../services/eps.service';
 
 @Component({
   selector: 'app-dlg-eps-info',
@@ -13,6 +15,8 @@ export class DlgEpsInfoComponent implements OnInit {
   form:FormGroup;
   constructor(
     private _matDialogRef:MatDialogRef<DlgEpsInfoComponent>,
+    private _eps:EpsService,
+    private _message:NvMessageBoxService,
     @Inject(MAT_DIALOG_DATA) private data?:any
   ) { 
     this.form = new FormGroup({
@@ -34,7 +38,17 @@ export class DlgEpsInfoComponent implements OnInit {
   }
 
   sendForm(){
-    console.log(this.form.value);
+    if (this.data){
+      // Actulizamos la informacion
+    }else{
+      // Registramos la información
+      this._eps.onRegisterEPS(JSON.stringify(this.form.value.name)).subscribe({
+        next: data =>{
+          console.log(data);
+          this._matDialogRef.close(data);
+        }
+      });
+    }
   }
 
 }

@@ -33,7 +33,13 @@ export class PgConfigEpsComponent implements OnInit {
   }
 
   addEPS(){
-    this._matDialog.open(DlgEpsInfoComponent);
+    this._matDialog.open(DlgEpsInfoComponent).afterClosed().subscribe(
+      res =>{
+        if (res){
+          this.listEPS.push(res);
+        }
+      }
+    );
 
   }
 

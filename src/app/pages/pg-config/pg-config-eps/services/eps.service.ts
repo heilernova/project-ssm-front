@@ -14,4 +14,8 @@ export class EpsService {
   onGetEPS():Observable<any[]>{
     return this._http.get<any[]>('eps');
   }
+
+  onRegisterEPS(name:string):Observable<any>{
+    return this._http.post('eps', name);
+  }
 }
