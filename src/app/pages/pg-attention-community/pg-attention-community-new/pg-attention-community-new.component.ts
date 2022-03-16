@@ -78,8 +78,7 @@ export class PgAttentionCommunityNewComponent implements OnInit {
     if (dni.length > 0){
       
       this._resquest.onValidDNI(dni).subscribe({
-        next: data => {
-
+        next: data => {        
           this.formUser.get('name')?.setValue(data.person.name);
           this.formUser.get('lastName')?.setValue(data.person.lastName);
           this.formUser.get('sex')?.setValue(data.person.sex.toString());
@@ -105,7 +104,7 @@ export class PgAttentionCommunityNewComponent implements OnInit {
             this.formRequest.get('palenRaizan')?.setValue(data.request.palenRaizan);
             this.formRequest.get('roomGintano')?.setValue(data.request.roomGintano);
             this.formRequest.get('nnaNunaccompaniedAdult')?.setValue(data.request.nnaNunaccompaniedAdult);
-          }
+          }          
         },error:e=>{
           this.formUser.reset();
           this.formRequest.reset();

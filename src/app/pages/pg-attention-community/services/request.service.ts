@@ -20,7 +20,7 @@ export class RequestService {
   }
 
   onGetEPS():Observable<any>{
-    return this.http.get('eps');
+    return this.http.get('eps/active');
   }
 
   /**
