@@ -1,0 +1,66 @@
+<main>
+    <h2>Restado de la petición</h2>
+    <div class="info-client">
+        <div>
+            <div class="item">
+                <div class="title">Documento:</div>
+                <div class="text">{{info.dni}}</div>
+            </div>
+            <div class="item">
+                <div class="title">Nombre:</div>
+                <div class="text" style="text-transform: capitalize;">{{info.name}}</div>
+            </div>
+        </div>
+        <div class="contact">
+            <div class="item">
+                <div class="title">Teléfono:</div>
+                <div class="text">{{info.cellphone | cellphone}}</div>
+            </div>
+            <div class="item">
+                <div class="title">Correo:</div>
+                <div class="text">{{info.email}}</div>
+            </div>
+            <div class="item">
+                <div class="title">Dirección:</div>
+                <div class="text" style="text-transform: capitalize;">{{info.address}}</div>
+            </div>
+           
+        </div>
+    </div>
+    <div>
+        <div class="item">
+            <div class="title" style="width: 120px;">Servicio solicitado:</div>
+            <div class="text">{{info.service}}</div>
+        </div>
+        <div>
+            <div class="text-accom">{{info.accompaniment}}</div>
+        </div>
+    </div>
+    <mat-dialog-content>
+        <table mat-table [dataSource]="dataSource">
+            
+            <ng-container matColumnDef="date">
+                <th class="date" mat-header-cell *matHeaderCellDef> Fecha </th>
+                <td class="date" mat-cell *matCellDef="let element"> {{element.date | date:'dd/MMM/yyyy hh:mm aaa'}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="content">
+                <th class="content" mat-header-cell *matHeaderCellDef> Observación </th>
+                <td class="content" mat-cell *matCellDef="let element"> 
+                    <div class="text-comment">{{element.content}} </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['date','content']; sticky: true" class="thead"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['date','content'];"></tr>
+        </table>
+        <!-- <mat-paginator [pageSizeOptions]="[5,10,15]"
+        showFirstLastButtons=""></mat-paginator> -->
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button>Actualizar</button>
+        <button mat-button (click)="addComment()">Agregar comentario</button>
+        <button mat-button (click)="closeCase()">Cerrar caso</button>
+        <button mat-button [mat-dialog-close]="false">Cerrar</button>
+    </mat-dialog-actions>
+</main>

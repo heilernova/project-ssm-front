@@ -1,0 +1,11 @@
+<h2>Nuevo comentario</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="outline" style="width: 400px;">
+        <mat-label>Observación</mat-label>
+        <textarea matInput autocomplete="off" rows="5" [(ngModel)]="comment"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cerrar</button>
+    <button mat-button [disabled]="comment == ''" (click)="send()">Guardar</button>
+</mat-dialog-actions>
