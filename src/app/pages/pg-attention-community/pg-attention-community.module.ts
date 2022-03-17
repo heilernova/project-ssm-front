@@ -10,7 +10,8 @@ import { AttentionCommunityInterceptor } from './services/attention-community.in
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     PgAttentionCommunityComponent,
@@ -23,7 +24,9 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatExpansionModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: AttentionCommunityInterceptor, multi:true }

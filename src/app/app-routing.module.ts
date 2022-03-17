@@ -9,6 +9,7 @@ const routes: Routes = [
     path: '', component:BodyComponent,
     canActivate:[AuthenticateGuard],
     children: [
+      { path: '', redirectTo:'servicio-de-atencion-al-ciudadano', pathMatch:'full'},
       { path: 'servicio-de-atencion-al-ciudadano', loadChildren:()=>import('./pages/pg-attention-community/pg-attention-community.module').then(m=>m.PgAttentionCommunityModule) },
       { path: 'configuraciones', loadChildren:()=>import('./pages/pg-config/pg-config.module').then(m=>m.PgConfigModule) }
     ]

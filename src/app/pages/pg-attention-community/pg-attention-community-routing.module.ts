@@ -8,8 +8,9 @@ const routes: Routes = [
   {
     path: '', component: PgAttentionCommunityComponent,
     children: [
-      {path: 'nuevo-registro', component: PgAttentionCommunityNewComponent},
-      {path: 'historial', component: PgAttentionCommunityHistoryComponent},
+      { path: '', redirectTo: 'historial', pathMatch: 'full' },
+      { path: 'nuevo-registro', component: PgAttentionCommunityNewComponent },
+      { path: 'historial', component: PgAttentionCommunityHistoryComponent },
     ]
   }
 ];

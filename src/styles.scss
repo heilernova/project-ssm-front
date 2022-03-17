@@ -66,6 +66,8 @@ body { margin: 0;
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 10px;
+  height: 100%;
+  // background-color: red;
   .page-nav{
     display: flex;
     flex-direction: column;
@@ -103,6 +105,10 @@ body { margin: 0;
         }
       }
     }
+  }
+
+  .page-content{
+    position: relative;
   }
 }
 
