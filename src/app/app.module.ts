@@ -9,6 +9,7 @@ import { LoginModule } from './login/login.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/api.interceptor';
 import { NovaModule, NvApiInterceptor } from 'ng-nova';
+import { CellphonePipe } from './pipes/cellphone.pipe';
 
 @NgModule({
   declarations: [

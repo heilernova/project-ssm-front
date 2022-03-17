@@ -12,10 +12,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { RequestInfoComponent } from './pg-attention-community-history/request-info/request-info.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DlgRequestCommentComponent } from './pg-attention-community-history/dlg-request-comment/dlg-request-comment.component';
+import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 @NgModule({
   declarations: [
     PgAttentionCommunityComponent,
-    PgAttentionCommunityHistoryComponent
+    PgAttentionCommunityHistoryComponent,
+    RequestInfoComponent,
+    DlgRequestCommentComponent,
+    // CellphonePipe
   ],
   imports: [
     CommonModule,
@@ -26,7 +36,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatInputModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    FormsModule,
+    MatPaginatorModule,
+    PipesModule
   ],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: AttentionCommunityInterceptor, multi:true }

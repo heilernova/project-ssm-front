@@ -27,11 +27,11 @@ export class PgAttentionCommunityNewComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       sex: new FormControl('', Validators.required),
       cellphone: new FormControl('', Validators.required),
-      email: new FormControl(''),
+      email: new FormControl(null),
       address: new FormControl('', Validators.required),
       eps: new FormControl('', Validators.required),
       regime: new FormControl('', Validators.required),
-      sisben: new FormControl('', Validators.required)
+      sisben: new FormControl(null, Validators.required)
     });
     
     this.formRequest = new FormGroup({
@@ -121,6 +121,7 @@ export class PgAttentionCommunityNewComponent implements OnInit {
    */
   sendForm(){
 
+    // console.log(this.formUser.value);
     this._resquest.onRegister({person: this.formUser.value, request: this.formRequest.value}).subscribe({
       next: data => {
         this._message.show("Registro exirtoso")

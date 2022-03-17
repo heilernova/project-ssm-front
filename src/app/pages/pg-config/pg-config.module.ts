@@ -4,6 +4,8 @@ import { PgConfigComponent } from './pg-config.component';
 import { PgConfigRoutingModule } from './pg-config-routing.module';
 import { PgConfigEpsModule } from './pg-config-eps/pg-config-eps.module';
 import { PgConfigServicesModule } from './pg-config-services/pg-config-services.module';
+import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 
@@ -15,7 +17,8 @@ import { PgConfigServicesModule } from './pg-config-services/pg-config-services.
     CommonModule,
     PgConfigRoutingModule,
     PgConfigEpsModule,
-    PgConfigServicesModule
+    PgConfigServicesModule,
+    PipesModule
   ]
 })
 export class PgConfigModule { }
