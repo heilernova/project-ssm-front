@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { CtnCaseActivesModule } from './ctn-case-actives/ctn-case-actives.module';
 @NgModule({
   declarations: [
     PgAttentionCommunityComponent,
@@ -40,7 +41,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     MatDialogModule,
     FormsModule,
     MatPaginatorModule,
-    PipesModule
+    PipesModule,
+    CtnCaseActivesModule
   ],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: AttentionCommunityInterceptor, multi:true }
