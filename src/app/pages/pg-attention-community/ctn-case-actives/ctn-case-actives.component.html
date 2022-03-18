@@ -1,4 +1,58 @@
-<h2>Casos activos</h2>
-<div>
+<main>
+    <h2>Casos activos</h2>
+    <div class="controles">
+        <mat-form-field appearance="standard">
+            <mat-label>Buscar ( Documneto o nombre )</mat-label>
+            <input matInput autocomplete="off" (keyup)="applyFilter($event)" class="capitalize">
+        </mat-form-field>
+        <div class="botones">
+                <button mat-stroked-button>Agregar <mat-icon>post_add</mat-icon></button>
+                <button mat-stroked-button (click)="updateList()">Actualizar lista <mat-icon>update</mat-icon> </button>
+                <button mat-stroked-button>Filtrar <mat-icon>filter_alt</mat-icon> </button>
+        </div>
+    </div>
+    <div class="resultados">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- Columa de fecha -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha </th>
+                <td mat-cell *matCellDef="let element">
+                    <div>{{element.date | date: 'dd/MMM/yyyy hh:mm aa'}}</div>
+                </td>
+            </ng-container>
     
-</div>
+            <!-- Columna de Número de documento -->
+            <ng-container matColumnDef="dni">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
+                <td mat-cell *matCellDef="let element">
+                    <div>{{element.dni}}</div>
+                </td>
+            </ng-container>
+            <!-- Columna del nombre -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let element">
+                    <div>{{element.name}}</div>
+                </td>
+            </ng-container>
+    
+            <!-- Columna de botones de acción -->
+            <ng-container  matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                    <div>
+                        <button mat-icon-button><mat-icon>visibility</mat-icon></button>
+                        <button mat-icon-button><mat-icon>delete</mat-icon></button>
+                    </div>
+                </td>
+            </ng-container>
+    
+
+    
+            <tr mat-header-row *matHeaderRowDef="displayColums" class="example-first-footer-row"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColums;"></tr>
+
+        </table>
+    </div>
+</main>
