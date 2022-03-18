@@ -1,0 +1,118 @@
+
+<h2>Caso No. {{caseData.id.toString().padStart(6, '0')}} </h2>
+<section class="info-client section">
+    <div class="section-title">Información del usuario</div>
+    <div>
+        <table>
+            <tr>
+                <td>Documento:</td>
+                <td>{{caseData.dni}}</td>
+            </tr>
+            <tr>
+                <td>Nombre:</td>
+                <td class="capitalize" colspan="3">{{caseData.name}}</td>
+            </tr>
+            <tr>
+                <td>edad:</td>
+                <td class="capitalize">{{caseData.years}}</td>
+                <td>Sisben:</td>
+                <td class="capitalize">{{caseData.sisben == 1 ? 'Si' : 'No'}}</td>
+            </tr>
+            <tr>
+                <td>EPS:</td>
+                <td class="capitalize">{{caseData.eps}}</td>
+                <td>Regimen:</td>
+                <td class="capitalize">{{caseData.regime == 1 ? 'Contributivo' : 'Subsidiado' }}</td>
+            </tr>
+                
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>Teléfono:</td>
+                <td>{{caseData.cellphone | cellphone}}</td>
+            </tr>
+            <tr>
+                <td>Correo:</td>
+                <td>{{caseData.email}}</td>
+            </tr>
+            <tr>
+                <td>Dirección:</td>
+                <td class="capitalize">{{caseData.address}}</td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section>
+    <div class="section-title">Solictud realizada</div>
+    <div class="service">
+        <div>Sevicio solictado</div>
+        <div>
+            {{caseData.service}}
+        </div>
+    </div>
+    <div class="accompaniment">
+        <div>Acompañamiento realizado</div>
+        <div>
+            {{caseData.accompaniment}}
+        </div>
+    </div>
+</section>
+<section>
+    <div class="section-title">Registro de observaciones</div>
+    <ng-container *ngIf="caseData.observations.length > 0; else contentEmpy">
+        <table class="table-observations" mat-table [dataSource]="dataObservations">
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="date capitalize">
+                        {{element.date | date: 'EEE dd/MMM/yyy hh:mm aaa'}}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="content">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="content" >
+                        {{element.content}}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="menu">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element">
+                    <div>
+                        <button mat-icon-button [matMenuTriggerFor]="menuObservations">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="['date', 'content', 'menu']"></tr>
+            <tr  mat-row *matRowDef="let row; columns: ['date', 'content','menu'];"></tr>
+        </table>
+    </ng-container>
+    <ng-template #contentEmpy>
+        <div class="content-empy">
+            Sin observaciones
+        </div>
+    </ng-template>
+    <mat-menu #menuObservations xPosition="before">
+        <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+        </button>
+    </mat-menu>
+</section>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="addObservation()">Agregar observación</button>
+    <button mat-stroked-button>Cerrar caso</button>
+    <button mat-stroked-button [mat-dialog-close]="false">Salir</button>
+</mat-dialog-actions>
+

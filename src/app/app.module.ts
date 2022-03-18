@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +8,11 @@ import { BodyModule } from './body/body.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/api.interceptor';
-import { NovaModule, NvApiInterceptor } from 'ng-nova';
-import { CellphonePipe } from './pipes/cellphone.pipe';
+import { NovaModule } from 'ng-nova';
+
+import es  from '@angular/common/locales/es-CO';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(es)
 
 @NgModule({
   declarations: [
@@ -25,8 +28,8 @@ import { CellphonePipe } from './pipes/cellphone.pipe';
     NovaModule
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true},
-    // {provide:HTTP_INTERCEPTORS, useClass: NvApiInterceptor, multi:true},
+    { provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true },
+    { provide: LOCALE_ID, useValue:'es_CO' }
   ],
   bootstrap: [AppComponent]
 })

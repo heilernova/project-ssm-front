@@ -157,3 +157,43 @@ body { margin: 0;
 .capitalize{
   text-transform: capitalize;
 }
+
+.dlg-case-info{
+  .mat-dialog-container{
+    background-color: rebeccapurple;
+    width: 100%;
+  }
+  // max-width: 700px;
+}
+
+.cdk-overlay-container{
+
+  .cdk-global-overlay-wrapper:last-child{
+    // background-color: red;
+    &:focus-within{
+        .mat-dialog-container{
+            animation-name: show;
+            animation-duration: 0.2s;
+        }
+    }
+  }
+  .mat-dialog-container{
+    border-radius: 8px;
+  }
+  // .mat-dialog-container:first-child{
+  //   border-radius: 8px;
+  //   background-color: rebeccapurple;
+  // }
+
+}
+@keyframes show{
+  0%{
+      transform: scale(1);
+  }
+  50%{
+      transform: scale(1.02);
+  }
+  100%{
+      transform: scale(1);
+  }
+}

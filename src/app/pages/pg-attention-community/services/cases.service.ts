@@ -42,4 +42,8 @@ export class CasesService {
   onRegisterCase(id:number):Observable<any>{
     return this.http.delete(`attention-community/cases/${id}`);
   }
+
+  onRegisterObservation(idCase:number, content:string):Observable<any>{
+    return this.http.post(`attention-community/cases/${idCase}/observations`, JSON.stringify(content));
+  }
 }

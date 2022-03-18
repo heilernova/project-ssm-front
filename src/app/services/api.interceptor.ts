@@ -53,7 +53,7 @@ export class ApiInterceptor implements HttpInterceptor {
               
               this._message.error(body.message.content, body.message.title);
 
-              throw "Mensaje de la api";
+              throw "Mensaje de la api " + url;
               // throw new HttpErrorResponse({error: body.message, url: event.url ?? '', status: event.status});
             }
           }else{

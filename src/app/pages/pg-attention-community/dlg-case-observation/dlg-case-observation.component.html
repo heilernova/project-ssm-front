@@ -1,0 +1,10 @@
+<h2>Agregar comentario</h2>
+
+<mat-form-field style="width: 100%" appearance="outline">
+    <mat-label>Observación</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="content"></textarea>
+</mat-form-field>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="close()">Cancelar</button>
+    <button mat-stroked-button [disabled]="content == ''" (click)="send()">Guardar</button>
+</mat-dialog-actions>

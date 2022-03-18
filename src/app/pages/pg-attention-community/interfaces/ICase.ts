@@ -4,7 +4,7 @@ export interface ICase{
     dni:string,
     name:string,
     birthDate:string,
-    edad:number,
+    years:number,
     cellphone:string,
     email:string,
     address:string,
