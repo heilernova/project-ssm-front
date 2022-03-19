@@ -1,1 +1,14 @@
-<p>ctn-sac works!</p>
+<p>Servico de atencuion a la comunidad</p>
+
+<section>
+    <div>Servcios prestados</div>
+    <button mat-stroked-button (click)="addService()">Agregar</button>
+    <div>
+        <ul>
+            <li *ngFor="let item of listServices">
+                {{item.description}}
+                <button mat-icon-button (click)="updateService(item)"><mat-icon>edit</mat-icon></button>
+            </li>
+        </ul>
+    </div>
+</section>

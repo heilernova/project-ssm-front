@@ -1,0 +1,99 @@
+<h1>Regitro de usuario</h1>
+<div>
+    <div class="document">
+        <!-- Número de documento -->
+        <mat-form-field class="number">
+            <mat-label>Número de documento</mat-label>
+            <input matInput autocomplete="off" maxlength="15" formControlName="dni">
+        </mat-form-field>
+
+    </div>
+
+    <!-- Tipo de documento -->
+    <mat-form-field class="type">
+        <mat-label>Tipo de documento</mat-label>
+        <mat-select formControlName="dniType">
+            <mat-option value="CC">Cédula de ciudadanía</mat-option>
+            <mat-option value="TI">Tarjeta de identidad</mat-option>
+            <mat-option value="RC">Registro civil</mat-option>
+            <mat-option value="CE">Cédula de extranjería</mat-option>
+            <mat-option value="PEP">PEP</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="flex flex-wrap">
+        <div class="full-name">
+            <!-- Nombre -->
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput autocomplete="off" maxlength="20"
+                formControlName="name">
+            </mat-form-field>
+            <!-- Apellido -->
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput autocomplete="off" maxlength="20"
+                formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <!-- Sexo -->
+            <mat-form-field class="sex">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sex">
+                    <mat-option value="M">M</mat-option>
+                    <mat-option value="F">F</mat-option>
+                    <mat-option value="null">Sin definir</mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+            <!-- Teléfono movil -->
+            <mat-form-field class="cellphone">
+                <mat-label>Teléfono movil</mat-label>
+                <input matInput autocomplete="off" maxlength="10"
+                formControlName="cellphone">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- Correo electrónico -->
+    <mat-form-field class="email">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput autocomplete="off" maxlength="150"
+        formControlName="email">
+    </mat-form-field>    
+
+    <!-- Direccions -->
+    <mat-form-field style="width: 100%;">
+        <mat-label>Dirección</mat-label>
+        <input matInput autocomplete="off" maxlength="150" formControlName="address">
+    </mat-form-field>  
+
+    <div class="salud">
+        <!-- EPS -->
+        <mat-form-field style="width: 100%;" >
+            <mat-label>EPS</mat-label>
+            <mat-select formControlName="eps">
+                <mat-option *ngFor="let eps of listEPS" [value]="eps.id">{{eps.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <!-- Régimen de salud -->
+        <mat-form-field>
+            <mat-label>Regimen de salud</mat-label>
+            <mat-select formControlName="regime">
+                <mat-option value="0">Subsidiado</mat-option>
+                <mat-option value="1">Contibutivo</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- Régimen de salud -->
+        <mat-form-field>
+            <mat-label>Sisben</mat-label>
+            <mat-select formControlName="sisben">
+                <mat-option value="1">Si</mat-option>
+                <mat-option value="0">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>

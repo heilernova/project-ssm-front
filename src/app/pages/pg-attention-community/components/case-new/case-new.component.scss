@@ -1,0 +1,42 @@
+.example-section{
+    display: flex;
+    column-gap: 25px;
+    flex-wrap: wrap;
+    mat-checkbox{
+        margin: 3px 0;
+    }
+    margin: 7px 0;
+}
+
+.info-client{
+    .consult{
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 10px;
+
+        .flex{
+            display: flex;
+            column-gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .item{
+            display: flex;
+            column-gap: 10px;
+            div:first-child{
+                color: gray;
+                
+            }
+            div:last-child{
+                font-weight: 500;
+            }
+        }
+    }
+}

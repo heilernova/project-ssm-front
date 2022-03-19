@@ -2,8 +2,28 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pg-attention-community',
-  templateUrl: './pg-attention-community.component.html',
-  styleUrls: ['./pg-attention-community.component.scss']
+  template: `
+  <div class="page">
+  <nav class="page-nav">
+      <ul>
+          <li routerLink="casos-activos" routerLinkActive="active">
+              Casos activos
+          </li>
+          <li routerLink="historial" routerLinkActive="active">
+              Historial
+          </li>
+          <li routerLink="estadisticas" routerLinkActive="active">
+              estadisticas
+          </li>
+          <!-- <li>
+              Seguridad
+          </li> -->
+      </ul>
+  </nav>
+  <div class="page-content">
+      <router-outlet></router-outlet>
+  </div>
+</div>`
 })
 export class PgAttentionCommunityComponent implements OnInit {
 

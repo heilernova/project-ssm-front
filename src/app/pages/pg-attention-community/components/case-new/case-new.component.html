@@ -1,0 +1,84 @@
+<h2>Nuevo caso</h2>
+<section class="info-client">
+    <mat-form-field appearance="standard">
+        <mat-label>Número de documento</mat-label>
+        <input matInput autocomplete="off" [(ngModel)]="dni">
+        <button matSuffix mat-icon-button (click)="validDocument()"><mat-icon >search</mat-icon></button>
+    </mat-form-field>
+    <div class="content">
+        <div class="item">
+            <div>Tipo de documento:</div>
+            <div>{{client?.dniType}}</div>
+        </div>
+        <div class="flex">
+            
+            <div class="item">
+                <div>Nombre:</div>
+                <div class="capitalize">{{client?.name}}</div>
+            </div>
+
+            <div class="item">
+                <div>Apellido:</div>
+                <div class="capitalize">{{client?.lastName}}</div>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="item">
+                <div>sex:</div>
+                <div>{{client?.sex}}</div>
+            </div>
+            <div class="item">
+                <div>Edad:</div>
+                <div>{{client?.years}}</div>
+            </div>
+            <div class="item">
+                <div>Teléfono:</div>
+                <div>{{client?.cellphone  | cellphone}}</div>
+            </div>
+            <div class="item">
+                <div>Correo:</div>
+                <div>{{client?.email}}</div>
+            </div>
+        </div>
+        <div class="item">
+            <div>Direccion:</div>
+            <div class="capitalize">{{client?.address}}</div>
+        </div>
+    </div>
+</section>
+<section [formGroup]="formReq">
+        <!-- Servicio solicitado -->
+    <mat-form-field style="width: 100%;">
+        <mat-label>Servicio solicitado</mat-label>
+        <mat-select formControlName="service">
+            <mat-option *ngFor="let serv of servicesList" [value]="serv.id">{{serv.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <section class="example-section">
+        <mat-checkbox formControlName="olderAdult">Adulto mayor</mat-checkbox>
+        <mat-checkbox formControlName="disabled">Discapacitado</mat-checkbox>
+        <mat-checkbox formControlName="pregnant">Gestante</mat-checkbox>
+        <mat-checkbox formControlName="womenHeadHousehold">Mujer cabeza de familia</mat-checkbox>
+        <mat-checkbox formControlName="afrodescendent">Afrodecendiente</mat-checkbox>
+        <mat-checkbox formControlName="lgtbi">LGTBI</mat-checkbox>
+        <mat-checkbox formControlName="victim">Victima</mat-checkbox>
+        <mat-checkbox formControlName="displaced">Desplazado</mat-checkbox>
+        <mat-checkbox formControlName="demobilized">Desmovilizado</mat-checkbox>
+        <mat-checkbox formControlName="reinserted">Reinsertado</mat-checkbox>
+        <mat-checkbox formControlName="palenRaizan">Palen raizal</mat-checkbox>
+        <mat-checkbox formControlName="roomGintano">Room gitano</mat-checkbox>
+        <mat-checkbox formControlName="nnaNunaccompaniedAdult">NNA sin acompañamiento</mat-checkbox>
+    </section>
+
+    <div>
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Acompañamiento realizado</mat-label>
+            <textarea matInput rows="5"></textarea>
+        </mat-form-field>
+    </div>
+</section>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button>Cancelar registro</button>
+    <button mat-stroked-button>Guardar registro</button>
+</mat-dialog-actions>

@@ -12,6 +12,7 @@ import { NovaModule } from 'ng-nova';
 
 import es  from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
 registerLocaleData(es)
 
 @NgModule({
@@ -25,7 +26,8 @@ registerLocaleData(es)
     BodyModule,
     LoginModule,
     HttpClientModule,
-    NovaModule
+    NovaModule,
+    MatSelectModule
   ],
   providers: [
     { provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true },
