@@ -6,6 +6,8 @@ import { PgConfigEpsModule } from './pg-config-eps/pg-config-eps.module';
 import { PgConfigServicesModule } from './pg-config-services/pg-config-services.module';
 import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { CtnProfileModule } from './ctn-profile/ctn-profile.module';
+import { CtnEpsModule } from './ctn-eps/ctn-eps.module';
 
 
 
@@ -18,7 +20,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     PgConfigRoutingModule,
     PgConfigEpsModule,
     PgConfigServicesModule,
-    PipesModule
+    PipesModule,
+    CtnProfileModule,
+    CtnEpsModule
   ]
 })
 export class PgConfigModule { }

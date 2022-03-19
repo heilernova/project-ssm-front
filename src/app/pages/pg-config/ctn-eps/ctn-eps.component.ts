@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DlgEpsInfoComponent } from '../ctn-eps/dlg-eps-info/dlg-eps-info.component';
-import { EpsService } from '../ctn-eps/services/eps.service';
+import { DlgEpsInfoComponent } from './dlg-eps-info/dlg-eps-info.component';
+import { EpsService } from './services/eps.service';
 
 @Component({
-  selector: 'app-pg-config-eps',
-  templateUrl: './pg-config-eps.component.html',
-  styleUrls: ['./pg-config-eps.component.scss']
+  selector: 'app-ctn-eps',
+  templateUrl: './ctn-eps.component.html',
+  styleUrls: ['./ctn-eps.component.scss']
 })
-export class PgConfigEpsComponent implements OnInit {
+export class CtnEpsComponent implements OnInit {
 
   listEPS:any[] = [];
 
@@ -49,5 +49,4 @@ export class PgConfigEpsComponent implements OnInit {
   showEPS(){
     this._matDialog.open(DlgEpsInfoComponent);
   }
-
 }

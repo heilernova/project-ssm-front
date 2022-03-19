@@ -1,0 +1,28 @@
+table{
+    tr{
+        td:first-child{
+            color: gray;
+        }
+        td:nth-child(2){
+            font-weight: 500;
+        }
+        td:nth-child(3) button{
+            font-size: 5px;
+            height: 30px;
+            width: 30px;
+            // border: 1px solid red;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            mat-icon{
+                margin: 0;
+                // border: 1px solid black;
+                font-size: 18px;
+            }
+        }
+        td{
+            padding: 3px 3px;
+        }
+    }
+}
