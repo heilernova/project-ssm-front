@@ -1,0 +1,47 @@
+main{
+    max-width: 900px;
+}
+
+.panel-controls{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 15px;
+    .buttons{
+        display: flex;
+        column-gap: 10px;
+    }
+    align-items: center;
+}
+
+.tabla-result{
+    table{
+        width: 100%;
+        .date{
+            div{
+                width: 200px;
+                min-width: max-content;
+            }
+            // background-color: red;
+        }
+        
+        .dni{
+            div{
+                width: 100px;
+            }
+        }
+
+        .name{
+            text-transform: capitalize;
+            width: 100%;
+        }
+        
+        .controls{
+            div{
+                display: flex;
+                min-width: max-content;
+                column-gap: 10px;
+                align-items: center;
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
-export interface ICasePerson{
-    dni:string;
-    dniType:string,
+export interface IPersonGet{
+    dni:string,
     date:string,
     name:string,
     lastName:string,
@@ -9,10 +8,8 @@ export interface ICasePerson{
     years:number|null,
     cellphone:string,
     email:string,
+    address:string,
     eps:number,
-    epsName:number,
     sisben:number,
-    regime:number,
-    lastRequest:any,
-    address:string
+    regime:number
 }

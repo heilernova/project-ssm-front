@@ -5,6 +5,7 @@ import { PgAttentionCommunityRoutingModule } from './pg-attention-community-rout
 import { PgAttentionCommunityComponent } from './pg-attention-community.component';
 import { CasesActiveModule } from './components/cases-active/cases-active.module';
 import { CaseNewModule } from './components/case-new/case-new.module';
+import { CaseInfoModule } from './components/case-info/case-info.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CaseNewModule } from './components/case-new/case-new.module';
     CommonModule,
     PgAttentionCommunityRoutingModule,
     CasesActiveModule,
-    CaseNewModule
+    CaseNewModule,
+    CaseInfoModule
   ]
 })
 export class PgAttentionCommunityModule { }

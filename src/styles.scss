@@ -171,10 +171,12 @@ body { margin: 0;
   .cdk-global-overlay-wrapper:last-child{
     // background-color: red;
     &:focus-within{
+      .hn-panel{
         .mat-dialog-container{
             animation-name: show;
             animation-duration: 0.2s;
         }
+      }
     }
   }
   .mat-dialog-container{
@@ -196,4 +198,8 @@ body { margin: 0;
   100%{
       transform: scale(1);
   }
+}
+
+.btn-icon-delete{
+  color: rgba(255, 0, 0, 0.849);
 }

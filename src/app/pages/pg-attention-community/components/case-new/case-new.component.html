@@ -1,8 +1,9 @@
 <h2>Nuevo caso</h2>
-<section class="info-client">
+<section class="info info-client">
+    <div class="title">Datos de usuario</div>
     <mat-form-field appearance="standard">
         <mat-label>Número de documento</mat-label>
-        <input matInput autocomplete="off" [(ngModel)]="dni">
+        <input matInput autocomplete="off" [(ngModel)]="dni" (keyup)="clearClient()">
         <button matSuffix mat-icon-button (click)="validDocument()"><mat-icon >search</mat-icon></button>
     </mat-form-field>
     <div class="content">
@@ -44,10 +45,25 @@
             <div>Direccion:</div>
             <div class="capitalize">{{client?.address}}</div>
         </div>
+        <div class="flex">
+            <div class="item">
+                <div>EPS:</div>
+                <div>{{client?.epsName}}</div>
+            </div>
+            <div class="item">
+                <div>Sisben:</div>
+                <div>{{client?.sisben == 1 ? 'Si' : 'No'}}</div>
+            </div>
+            <div class="item">
+                <div>Regimen:</div>
+                <div>{{client?.regime == 1 ? 'Contributivo' : 'Subsidiado'}}</div>
+            </div>
+        </div>
     </div>
 </section>
-<section [formGroup]="formReq">
-        <!-- Servicio solicitado -->
+<section [formGroup]="formReq" class="info info-req">
+    <div class="title">Solicitud del usuario</div>
+    <!-- Servicio solicitado -->
     <mat-form-field style="width: 100%;">
         <mat-label>Servicio solicitado</mat-label>
         <mat-select formControlName="service">
@@ -74,11 +90,12 @@
     <div>
         <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Acompañamiento realizado</mat-label>
-            <textarea matInput rows="5"></textarea>
+            <textarea matInput rows="5" formControlName="accompaniment"></textarea>
         </mat-form-field>
     </div>
 </section>
 <mat-dialog-actions align="end">
-    <button mat-stroked-button>Cancelar registro</button>
-    <button mat-stroked-button>Guardar registro</button>
+    <button mat-stroked-button [mat-dialog-close]="false">Cancelar registro</button>
+    <button mat-stroked-button (click)="sendForm()"
+    [disabled]="formReq.invalid || formReq.disabled">Guardar registro</button>
 </mat-dialog-actions>

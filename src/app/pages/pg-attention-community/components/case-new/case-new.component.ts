@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { NvMessageBoxService } from 'ng-nova';
+import { ApiCasesService } from 'src/app/api/cases/api-cases.service';
 import { DlgPersonService } from 'src/app/components/dlg-person/dlg-person.service';
 import { ICasePerson } from '../../interfaces/ICasePerson';
 import { CasesService } from '../../services/cases.service';
@@ -18,7 +21,10 @@ export class CaseNewComponent implements OnInit {
   formReq:FormGroup;
   constructor(
     private _cases:CasesService,
-    private _person:DlgPersonService
+    private _apiCases:ApiCasesService,
+    private _person:DlgPersonService,
+    private _matDialogRef:MatDialogRef<CaseNewComponent>,
+    private _messabeBox:NvMessageBoxService
   ) { 
 
     this.formReq = new FormGroup({
@@ -45,19 +51,48 @@ export class CaseNewComponent implements OnInit {
     this._cases.onGetServices().subscribe({
       next: data =>{
         this.servicesList = data;
-        
       }
     })
+  }
+
+  clearClient(){
+    this.client = undefined;
+    this.formReq.disable();
   }
 
   validDocument(){
     this._cases.onGetPerson(this.dni).subscribe({
       next: data => {
-        console.log(data);
         this.client = data;
         this.formReq.enable();
       },error: ()=>{
-        this._person.show();
+        this.client = undefined;
+        this.formReq.disable();
+        this._person.show(this.dni).afterClosed().subscribe(
+          res => {
+            if (res){
+              this.client = res;
+              this.formReq.enable();
+            }
+          }
+        );
+      }
+    })
+  }
+
+
+  sendForm(){
+    let dataForm = this.formReq.value;
+    dataForm.dni = this.client?.dni;
+    dataForm.eps = this.client?.eps;
+    dataForm.sisben = this.client?.sisben;
+    dataForm.regime = this.client?.regime;
+
+    this._apiCases.insert(dataForm).subscribe({
+      next: data => {
+        this._matDialogRef.close(data);
+      },error:()=>{
+        this._messabeBox.error("Error con el registro");
       }
     })
   }

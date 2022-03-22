@@ -1,0 +1,56 @@
+<section class="section">
+    <h2>Número de caso: {{caseInfo.id.toString().padStart(6, '0')}}</h2>
+</section>
+<section class="section">
+    <!-- Información de usuario -->
+    <div class="grip-2">
+        <div class="colum-gap-3px">
+            <app-case-info-item [lable]="caseInfo.dniType" class="test">{{caseInfo.dni}}</app-case-info-item>
+            <app-case-info-item lable="Nombre" class="capitalize">{{caseInfo.name}}</app-case-info-item>
+            <div class="flex">
+                <app-case-info-item lable="Edad" class="capitalize">{{caseInfo.years}}</app-case-info-item>
+            </div>
+            <div class="flex">
+                <app-case-info-item lable="Sisben">{{caseInfo.siben == 1 ? 'Si': 'No'}}</app-case-info-item>
+                <app-case-info-item lable="Regimen">{{caseInfo.regime == 1 ? 'Contributivo' : 'Subsidiado'}}</app-case-info-item>
+                <app-case-info-item lable="EPS">{{caseInfo.eps}}</app-case-info-item>
+            </div>
+        </div>
+        <div>
+            <app-case-info-item width="80px" lable="Teléfono">{{caseInfo.cellphone | cellphone}}</app-case-info-item> 
+            <app-case-info-item width="80px" lable="Correo">{{caseInfo.email}}</app-case-info-item> 
+            <app-case-info-item width="80px" lable="Dirección">{{caseInfo.address}}</app-case-info-item> 
+
+        </div>
+    </div>
+    <div class="service">
+        <app-case-info-item lable="Servicio solicitado">{{caseInfo.service}}</app-case-info-item>
+        <div class="acc">
+            <div class="title">Acompañamiento realizado</div>
+            <div class="text">
+                {{caseInfo.accompaniment}}
+            </div>
+        </div>
+    </div>
+</section>
+<mat-dialog-content>
+    <div class="section">
+        <div class="title">Observaciónes</div>
+        <ul>
+            <li *ngFor="let obs of caseInfo.observations">
+                <div class="date">{{obs.date | date: 'EEE dd/MMM/yyyy hh:mm aaa'}}</div>
+                <div class="content"><p>{{obs.content}}</p></div>
+                <div class="actions">
+                    <button mat-icon-button><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button class="btn-icon-delete"><mat-icon>delete</mat-icon></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions class="section" align="end">
+    <button mat-stroked-button>Editar datos de usuario</button>
+    <button mat-stroked-button>Agregar observación</button>
+    <button mat-stroked-button>Cerrar caso</button>
+    <button mat-stroked-button [mat-dialog-close]="false">Salir</button>
+</mat-dialog-actions>

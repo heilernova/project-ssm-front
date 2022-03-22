@@ -8,12 +8,23 @@
     margin: 7px 0;
 }
 
+.info{
+    .title{
+        font-weight: 500;
+        font-size: 120%;
+        margin-bottom: 10px;
+    }
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 0 1px 1px rgba(172, 172, 172, 0.719);
+}
+
 .info-client{
+
     .consult{
         display: flex;
         align-items: center;
         column-gap: 20px;
-
     }
     .content{
         display: flex;
@@ -39,4 +50,7 @@
             }
         }
     }
+}
+.info-req{
+    margin-top: 20px;
 }
