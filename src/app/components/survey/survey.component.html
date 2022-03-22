@@ -1,0 +1,181 @@
+<main>
+    <section>
+        <div class="title">
+            Infomación del encuestado
+        </div>
+        <div style="display: flex; align-items: center; column-gap: 10px;">
+            <mat-form-field appearance="standard">
+                <mat-label>Documento</mat-label>
+                <input type="text" matInput autocomplete="off" [(ngModel)]="dni" (keyup)="userName = ''">
+                <button matSuffix mat-icon-button  (click)="validDocument()"><mat-icon>search</mat-icon></button>
+            </mat-form-field>
+            <div class="item">
+                <div>Nombre:</div>
+                <div>{{userName}}</div>
+            </div>
+        </div>
+    </section>
+    <section>
+    
+        <div class="surveys">
+            <mat-tab-group mat-align-tabs="start">
+                <mat-tab label="EPS">
+    
+                    <div class="content" [formGroup]="form">
+                        <mat-form-field>
+                            <mat-label>IPS</mat-label>
+                            <mat-select formControlName="eps">
+                                <mat-option *ngFor="let eps of listEPS" [value]="eps.id">{{eps.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        
+                        <!-- 1 -->
+                        <div class="nota">
+                            Califique la gestión de la entidad (EAPB) en escala de uno a cindo donde: 1 es muy malo y 5 es excelente
+                        </div>
+                        <div class="item-ask">
+                            <div class="ask">Adecuación de la EAPB</div>
+                            <div class="response">
+                                <mat-radio-group formControlName="ask1">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">
+                                        {{score}}
+                                    </mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(1)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="item-ask">
+                            <div class="ask">¿Cúales de la siguientes personas lo recibió?</div>
+                            <div class="response">
+                                <mat-radio-group formControlName="ask2">
+                                    <mat-radio-button value="1">Vigilante</mat-radio-button>
+                                    <mat-radio-button value="2">Promotor</mat-radio-button>
+                                    <mat-radio-button value="3">Recepcionista</mat-radio-button>
+                                    <mat-radio-button value="4">Aprendiz sena</mat-radio-button>
+                                    <mat-radio-button value="5">Otro</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(2)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">¿El trato de la persona que lo recibió fue amable y oportuno?</div>
+                            <div class="response">
+                                <mat-radio-group formControlName="ask2">
+                                    <mat-radio-button value="1">Si</mat-radio-button>
+                                    <mat-radio-button value="0">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de difución, canales de atención, catación de usuarios y alianzas.</div>
+                            <div class="response">
+                                <mat-radio-group formControlName="ask3">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(3)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de afiliación, reporte de nacimientos, novedades, portabilidad, movildad, traslado</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask4">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(4)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de direccionamiento y demanda inducida (P y p)</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask5">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(5)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de atención para la prestanción de servicios en la red</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask6">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(6)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de atención para la prestanción de servicios en la red</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask7">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(7)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de autorizaciónes</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask8">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(8)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        
+                        <div class="item-ask">
+                            <div class="ask">Procesos de referencia a tro departamento</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask9">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(9)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="item-ask">
+                            <div class="ask">Procesos de quejas, reclamos y solución de inverción</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask10">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(10)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="item-ask">
+                            <div class="ask">Como califica la gestión del promotor y el asesor de servicios</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask11">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(11)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="item-ask">
+                            <div class="ask">Relaciones interpersonales</div>
+                            <div class="response">
+                                <mat-radio-group  formControlName="ask12">
+                                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                                    <button mat-icon-button class="tbn-clear" (click)="claerResponse(12)"> <mat-icon>clear</mat-icon></button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                </mat-tab>
+              
+                <mat-tab label="IPS" disabled="">Content 2</mat-tab>
+                <!-- <mat-tab label="Third">Content 3</mat-tab> -->
+              </mat-tab-group>
+        </div>
+    </section>
+    <section style="display: flex; justify-content: center;">
+        <button mat-stroked-button color="primary">Guardar encuesta</button>
+    </section>
+    
+</main>

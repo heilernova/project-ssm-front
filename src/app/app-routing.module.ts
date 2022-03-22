@@ -14,7 +14,8 @@ const routes: Routes = [
       { path: 'configuraciones', loadChildren:()=>import('./pages/pg-config/pg-config.module').then(m=>m.PgConfigModule) }
     ]
   },
-  { path:'login', component:LoginComponent}
+  { path:'login', component:LoginComponent},
+  { path: 'encuesta-de-satisfaccion', loadChildren:()=>import('./pages/pg-serveys/pg-serveys.module').then(m=>m.PgServeysModule)}
 ];
 
 @NgModule({
