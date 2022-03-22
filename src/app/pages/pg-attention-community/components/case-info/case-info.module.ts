@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CaseInfoItemComponent } from './case-info-item/case-info-item.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { MatIconModule } from '@angular/material/icon';
+import { DlgTextBoxModule } from 'src/app/components/dlg-text-box/dlg-text-box.module';
+import { DlgParagraphBoxModule } from 'src/app/components/dlg-paragraph-box/dlg-paragraph-box.module';
 
 
 
@@ -19,7 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatButtonModule,
     PipesModule,
-    MatIconModule
+    MatIconModule,
+    DlgTextBoxModule,
+    DlgParagraphBoxModule
   ]
 })
 export class CaseInfoModule { }

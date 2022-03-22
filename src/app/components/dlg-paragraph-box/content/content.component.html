@@ -1,0 +1,9 @@
+<h2>{{title}}</h2>
+<mat-form-field class="text-box" appearance="outline" style="width: 100%;">
+    <mat-label></mat-label>
+    <textarea matInput autocomplete="off" [(ngModel)]="text"></textarea>
+</mat-form-field>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Cancaler</button>
+    <button mat-stroked-button [disabled]="text == ''" (click)="send()">Guardar</button>
+</mat-dialog-actions>

@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NvMessageBoxService } from 'ng-nova';
-import { ApiCasesService } from 'src/app/api/cases/api-cases.service';
 import { ApiEpsService } from 'src/app/api/eps/api-eps.service';
 import { ApiPersonsService } from 'src/app/api/persons/api-persons.service';
 import { CasesService } from 'src/app/pages/pg-attention-community/services/cases.service';
@@ -21,6 +20,7 @@ export class DlgPersonContentComponent implements OnInit {
     private _messageBox:NvMessageBoxService,
     private _apiEps:ApiEpsService,
     private _apiPersons:ApiPersonsService,
+    private _fb:FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data:{dni:string, insert:boolean}
   ) { 
     this.formUser = new FormGroup({
@@ -47,7 +47,25 @@ export class DlgPersonContentComponent implements OnInit {
     })
 
     if (!this.data.insert){
-      this.formUser.get('dni')?.disable();
+      this.formUser.disable();
+      this.formUser.get('dni')?.setValue(this.data.dni);
+      this._apiPersons.get(this.data.dni).subscribe({
+        next: data =>{
+          
+          this.formUser.get('dniType')?.setValue(data.dniType);
+          this.formUser.get('name')?.setValue(data.name);
+          this.formUser.get('lastName')?.setValue(data.lastName);
+          this.formUser.get('sex')?.setValue(data.sex);
+          // this.formUser.get('birthDate')?.setValue(data.birthDate);
+          this.formUser.get('cellphone')?.setValue(data.cellphone);
+          this.formUser.get('email')?.setValue(data.email);
+          this.formUser.get('address')?.setValue(data.address);
+          this.formUser.get('eps')?.setValue(data.eps);
+          this.formUser.get('regime')?.setValue(data.regime);
+          this.formUser.get('sisben')?.setValue(data.sisben);
+          this.formUser.enable();
+        }
+      })
     }
   }
 
@@ -84,13 +102,23 @@ export class DlgPersonContentComponent implements OnInit {
       data.sex = null;
     }
 
-    this._cases.onInsertPerson(data).subscribe({
-      next: data =>{
-        this._matDialogRef.close(data);
-      },error: ()=>{
-        this._messageBox.alert("No se pudo realizar el registro", "");
-      }
-    })
+    if (this.data.insert){      
+      this._cases.onInsertPerson(data).subscribe({
+        next: data =>{
+          this._matDialogRef.close(data);
+        },error: ()=>{
+          this._messageBox.alert("No se pudo realizar el registro", "");
+        }
+      })
+    }else{
+      this._apiPersons.update(this.data.dni, data).subscribe({
+        next: data => {
+          this._matDialogRef.close(data);
+        },error: ()=>{
+
+        }
+      })
+    }
   }
 
 }

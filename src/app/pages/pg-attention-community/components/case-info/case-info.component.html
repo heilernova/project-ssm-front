@@ -41,16 +41,16 @@
                 <div class="date">{{obs.date | date: 'EEE dd/MMM/yyyy hh:mm aaa'}}</div>
                 <div class="content"><p>{{obs.content}}</p></div>
                 <div class="actions">
-                    <button mat-icon-button><mat-icon>edit</mat-icon></button>
-                    <button mat-icon-button class="btn-icon-delete"><mat-icon>delete</mat-icon></button>
+                    <button [disabled]="stop" mat-icon-button (click)="editObservation(obs)"><mat-icon>edit</mat-icon></button>
+                    <button [disabled]="stop" mat-icon-button (click)="deleteObservation(obs)" class="btn-icon-delete"><mat-icon>delete</mat-icon></button>
                 </div>
             </li>
         </ul>
     </div>
 </mat-dialog-content>
 <mat-dialog-actions class="section" align="end">
-    <button mat-stroked-button>Editar datos de usuario</button>
-    <button mat-stroked-button>Agregar observación</button>
-    <button mat-stroked-button>Cerrar caso</button>
-    <button mat-stroked-button [mat-dialog-close]="false">Salir</button>
+    <button [disabled]="stop" mat-stroked-button (click)="editUser()">Editar datos de usuario</button>
+    <button [disabled]="stop" mat-stroked-button (click)="addObservation()">Agregar observación</button>
+    <button [disabled]="stop" mat-stroked-button>Cerrar caso</button>
+    <button [disabled]="stop" mat-stroked-button [mat-dialog-close]="false">Salir</button>
 </mat-dialog-actions>

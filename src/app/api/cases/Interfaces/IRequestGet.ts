@@ -1,0 +1,25 @@
+export interface IRequestGet{
+    id:number;
+    date:string;
+    status:boolean;
+    user:number;
+    dni:string;
+    service:number;
+    accompaniment:string;
+    eps:number;
+    sisben:number;
+    regime:number;
+    olderAdult:boolean;
+    disable:boolean;
+    pregnant:boolean;
+    womenHeadHousehold:boolean;
+    afrodescendent:boolean;
+    lgtbi:boolean;
+    victim:boolean;
+    displaced:boolean;
+    demovilized:boolean;
+    reinserted:boolean;
+    planRaizal:boolean;
+    roomGitano:boolean;
+    nnaNunAccompanimentdAdult:boolean
+}

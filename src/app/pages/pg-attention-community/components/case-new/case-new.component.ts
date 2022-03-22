@@ -3,9 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NvMessageBoxService } from 'ng-nova';
 import { ApiCasesService } from 'src/app/api/cases/api-cases.service';
+import { ICaseUserGet } from 'src/app/api/cases/Interfaces/ICaseUserGet';
 import { DlgPersonService } from 'src/app/components/dlg-person/dlg-person.service';
-import { ICasePerson } from '../../interfaces/ICasePerson';
 import { CasesService } from '../../services/cases.service';
+import { CaseUser } from '../models/case-user';
 
 @Component({
   selector: 'app-case-new',
@@ -15,7 +16,7 @@ import { CasesService } from '../../services/cases.service';
 export class CaseNewComponent implements OnInit {
   servicesList:{id:number, description:string}[] = []
 
-  client:ICasePerson|undefined = undefined;
+  client:CaseUser = new CaseUser();
 
   dni:string = '';
   formReq:FormGroup;
@@ -40,7 +41,7 @@ export class CaseNewComponent implements OnInit {
       displaced: new FormControl(false),
       demobilized: new FormControl(false),
       reinserted: new FormControl(false),
-      palenRaizan: new FormControl(false),
+      palenRaizal: new FormControl(false),
       roomGintano: new FormControl(false),
       nnaNunaccompaniedAdult: new FormControl(false)
     });
@@ -56,22 +57,23 @@ export class CaseNewComponent implements OnInit {
   }
 
   clearClient(){
-    this.client = undefined;
+    this.client.clear();
     this.formReq.disable();
   }
 
   validDocument(){
-    this._cases.onGetPerson(this.dni).subscribe({
+    this._apiCases.getPerson(this.dni).subscribe({
       next: data => {
-        this.client = data;
+        console.log(data);
+        this.client.setCaseUser(data);
         this.formReq.enable();
       },error: ()=>{
-        this.client = undefined;
+        this.client.clear();
         this.formReq.disable();
         this._person.show(this.dni).afterClosed().subscribe(
           res => {
             if (res){
-              this.client = res;
+              this.client.setInfoPerson(res);
               this.formReq.enable();
             }
           }

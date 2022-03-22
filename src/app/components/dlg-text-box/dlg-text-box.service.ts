@@ -12,6 +12,6 @@ export class DlgTextBoxService {
   ) { }
 
   show(title:string, text:string = ''):MatDialogRef<DlgTextBoxContentComponent, undefined|false|string>{
-    return this._matDialog.open(DlgTextBoxContentComponent, {data:{title, text}});
+    return this._matDialog.open(DlgTextBoxContentComponent, {data:{title, text}, width: '400px'});
   }
 }
