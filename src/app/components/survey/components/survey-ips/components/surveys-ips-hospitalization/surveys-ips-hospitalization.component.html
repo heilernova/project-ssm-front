@@ -1,0 +1,13 @@
+<p>surveys-ips-hospitalization works!</p>
+
+<div class="questions">
+    <ol>
+        <li class="question" *ngFor="let ques of questions">
+            <div class="text">{{ques.question}}</div>
+
+            <mat-radio-group>
+                <mat-radio-button *ngFor="let item of ques.response" [value]="item.code">{{item.text}}</mat-radio-button>
+            </mat-radio-group>
+        </li>
+    </ol>
+</div>

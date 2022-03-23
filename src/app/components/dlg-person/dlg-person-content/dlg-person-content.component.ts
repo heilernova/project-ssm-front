@@ -35,7 +35,8 @@ export class DlgPersonContentComponent implements OnInit {
       address: new FormControl('', Validators.required),
       eps: new FormControl('', Validators.required),
       regime: new FormControl('', Validators.required),
-      sisben: new FormControl(null, Validators.required)
+      sisben: new FormControl(null, Validators.required),
+      population: new FormControl(null, Validators.required)
     });
 
     this.formUser.get('dni')?.setValue(this.data.dni);

@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SurveyComponent } from './survey.component';
+import { SurveyEpsComponent } from './survey-eps.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
-import { SurveyEpsModule } from './components/survey-eps/survey-eps.module';
-import { SurveyIpsModule } from './components/survey-ips/survey-ips.module';
-import { PipesModule } from 'src/app/pipes/pipes.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DlgPersonModule } from 'src/app/components/dlg-person/dlg-person.module';
+
+
 
 @NgModule({
   declarations: [
-    SurveyComponent
+    SurveyEpsComponent
   ],
   imports: [
     CommonModule,
@@ -21,13 +22,13 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     MatTabsModule,
     MatInputModule,
     MatSelectModule,
-    FormsModule,
-    SurveyEpsModule,
-    SurveyIpsModule,
+    MatRadioModule,
     MatIconModule,
-    PipesModule
+    ReactiveFormsModule,
+    DlgPersonModule,
+    FormsModule
   ],exports: [
-    SurveyComponent
+    SurveyEpsComponent
   ]
 })
-export class SurveyModule { }
+export class SurveyEpsModule { }

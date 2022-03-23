@@ -2,7 +2,7 @@
 <div [formGroup]="formUser">
     <mat-dialog-content>
         
-            <div class="flex">
+            <div class="flex" >
                 <!-- Número de documento -->
                 <mat-form-field class="number" appearance="standard">
                     <mat-label>Número de documento</mat-label>
@@ -80,9 +80,28 @@
             <mat-form-field style="width: 100%;" appearance="standard">
                 <mat-label >Dirección</mat-label>
                 <input class="capitalize" matInput autocomplete="off" maxlength="150" formControlName="address">
-            </mat-form-field>  
+            </mat-form-field>
+            
+            <!-- Población y sisben -->
+            <div class="flex">
+                <mat-form-field appearance="standard" style="width: 150px;">
+                    <mat-label>Población</mat-label>
+                    <mat-select formControlName="population">
+                        <mat-option value="U">Urbana</mat-option>
+                        <mat-option value="R">Rutal</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                 <!-- Cuenta con sisben-->
+                 <mat-form-field appearance="standard" style="width: 70px;">
+                    <mat-label>Sisben</mat-label>
+                    <mat-select formControlName="sisben">
+                        <mat-option value="1">Si</mat-option>
+                        <mat-option value="0">No</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         
-            <div class="flex" style="margin-bottom: 5px; justify-content: space-between;">
+            <div class="flex" style="margin-bottom: 5px;">
                 <!-- EPS -->
                 <mat-form-field appearance="standard">
                     <mat-label>EPS</mat-label>
@@ -99,14 +118,7 @@
                         <mat-option value="1">Contibutivo</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <!-- Régimen de salud -->
-                <mat-form-field appearance="standard" style="width: 70px;">
-                    <mat-label>Sisben</mat-label>
-                    <mat-select formControlName="sisben">
-                        <mat-option value="1">Si</mat-option>
-                        <mat-option value="0">No</mat-option>
-                    </mat-select>
-                </mat-form-field>
+               
             </div>
     </mat-dialog-content>
     <mat-dialog-actions>

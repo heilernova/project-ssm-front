@@ -1,0 +1,71 @@
+<p>
+    Para nosotros es importantante conocer la oponión y las necesidades de los representandes de los usuarios del muni..
+</p>
+<mat-form-field appearance="standard" style="width: 100%;">
+    <mat-label>EPS a calificar</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let eps of epsList" [value]="eps.id">{{eps.name}}</mat-option>
+    </mat-select>
+</mat-form-field>
+<div class="questions">
+    <ol>
+
+        
+        <li class="question">
+            <div class="text">
+                ¿Cuáles de las siguientes personas lo recibió?
+            </div>
+            <div class="response">
+                <mat-radio-group>
+                    <mat-radio-button value="VIGILANTE">Vigilante</mat-radio-button>
+                    <mat-radio-button value="PROMOTOR">Promotor</mat-radio-button>
+                    <mat-radio-button value="RECEPCIONISTA">Recepcionista</mat-radio-button>
+                    <mat-radio-button value="OTRO">Otro</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </li>
+
+        <li class="question">
+            <div class="text">
+                ¿La atención de la persona que lo recibió fue amable y oportuna?
+            </div>
+            <div class="response">
+                <mat-radio-group>
+                    <mat-radio-button value="1">Si</mat-radio-button>
+                    <mat-radio-button value="0">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </li>
+
+        <div class="note">
+            Califique la gestión de la entidad <strong>(EAPB)</strong> en escala de uno a cinco donde: 1 es muy malo, y 5 es excelente.
+        </div>
+
+        <li class="question" *ngFor="let quest of questions1">
+            <div class="text">
+                {{quest.question}}
+            </div>
+            <div class="response">
+                <mat-radio-group>
+                    <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <ng-container  *ngIf="quest.subquestions;">
+                <ol class="subquestion">
+                    <li *ngFor="let sub of quest.subquestions">
+                        <div class="text">{{sub}}</div>
+                        <div class="response">
+                            <mat-radio-group>
+                                <mat-radio-button *ngFor="let score of scores" [value]="score">{{score}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </li>
+                </ol>
+            </ng-container>
+        </li>
+
+
+
+
+    </ol>
+</div>

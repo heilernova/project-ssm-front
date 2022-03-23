@@ -1,0 +1,27 @@
+
+<mat-form-field style="width: 100%;">
+    <mat-label>Selecione la IPS</mat-label>
+    <mat-select>
+        <!-- <mat-option></mat-option> -->
+    </mat-select>
+</mat-form-field>
+
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Hospitalización">
+        <!-- Enceesta de la EPS -->
+        <app-surveys-ips-hospitalization></app-surveys-ips-hospitalization>
+    </mat-tab>
+  
+    <mat-tab label="Laboratorio">
+       <app-surveys-ips-form [questions]="questionsLaboratory" [title]="'Hola munoid'"></app-surveys-ips-form>
+    </mat-tab> 
+    <mat-tab label="Farmacia">
+        <app-surveys-ips-form [questions]="questionsPharmacy" [title]="'Hola munoid'"></app-surveys-ips-form>
+    </mat-tab>
+    <mat-tab label="Medicina y odontología">
+        <app-surveys-ips-form [questions]="questionsMedicineDentistry" [title]="'Hola munoid'"></app-surveys-ips-form>
+    </mat-tab>
+    <mat-tab label="Evaliación a la IPS">
+        <app-surveys-ips-form [questions]="questionsEvaluationIPS" [title]="'Hola munoid'"></app-surveys-ips-form>
+    </mat-tab>
+</mat-tab-group>
