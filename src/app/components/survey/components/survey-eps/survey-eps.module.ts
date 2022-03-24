@@ -20,15 +20,13 @@ import { SurveysFormQuestionsModule } from '../surveys-form-questions/surveys-fo
   imports: [
     CommonModule,
     MatButtonModule,
-    MatTabsModule,
     MatInputModule,
     MatSelectModule,
-    MatRadioModule,
     MatIconModule,
-    ReactiveFormsModule,
     DlgPersonModule,
     FormsModule,
-    SurveysFormQuestionsModule
+    SurveysFormQuestionsModule,
+    ReactiveFormsModule
   ],exports: [
     SurveyEpsComponent
   ]

@@ -1,6 +1,6 @@
-import { RES_BUENO_MALO_REGUAR, RES_SI_NO } from "../../interfaces/questions";
+import { IQuestion, RES_BUENO_MALO_REGUAR, RES_SI_NO } from "../../interfaces/questions";
 
-export const HOSPITALIZATIONS:{question:string, response:{code:string|number, text:string}[]}[] = [
+export const HOSPITALIZATIONS:IQuestion[] = [
     { 
       question: "¿Su ingreso al Hospital  fue por?",
       response: [
@@ -34,9 +34,9 @@ export const HOSPITALIZATIONS:{question:string, response:{code:string|number, te
       question: 'Al registrarse le solicitaron la siguiente información',
       response: [
         { code:'Documento de identificación', text: 'Documento de identificación'},
-        { code:'Autorización', text: 'Autorización'},
-        { code:'Otro', text: 'Otro'}
-      ]
+        { code:'Autorización', text: 'Autorización'}
+      ],
+      responseOptionOther: true
     },
     {
       question: 'Califique la comodidad de la habitación',

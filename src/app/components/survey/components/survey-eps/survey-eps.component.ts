@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiEpsService } from 'src/app/api/eps/api-eps.service';
 import { IQuestion } from '../interfaces/questions';
 import { QUES_EPS } from '../questions/eps';
@@ -9,41 +10,32 @@ import { QUES_EPS } from '../questions/eps';
   styleUrls: ['./survey-eps.component.scss']
 })
 export class SurveyEpsComponent implements OnInit {
+  eps = new FormControl('', Validators.required);
+  @Input() salve:boolean = false;
+  @Input() form:FormGroup =  new FormGroup({});
+
+  @Output() formData =  new EventEmitter<any>();
 
   epsList:{id:number, name:string}[] = [];
-  questions1:{question:string, subquestions?:string[]}[] = questions;
   scores:number[] = [1,2,3,4,5];
 
-  questions:IQuestion[] = QUES_EPS
+  questions:IQuestion[] = QUES_EPS;
+
 
   constructor(
-    private _apiEPS:ApiEpsService
+    private _apiSurveys:ApiEpsService
   ) { 
     // Cargamos las eps
-    this._apiEPS.getAll().subscribe({next: data=>{ this.epsList = data; }});
+    this._apiSurveys.getAll().subscribe({next: data => { this.epsList = data}});
+    
   }
 
   ngOnInit(): void {
   }
 
+  send(formData:any){
+  
+    this.formData.emit(formData);
+  }
+
 }
-
-
-
-const questions:{question:string, subquestions?:string[]}[] = [
-  { question:'Adecuación de la sede de la EAPB'},
-  { question:'Procesos de difusión, canales de atención y capacitación de usuarios y alianzas.'},
-  { question:'Procesos de afiliación, reportes de nacimientos, novedades, portabilidad, movilidad y traslado'},
-  { question:'Proceso de direccionamiento y demanda inducida   (P y P)'},
-  { question:'Proceso de atención para la prestación de servicios en la red'},
-  { question:'Procesos de autorizaciones'},
-  { question:'Proceso de referencia a otro departamento'},
-  { question:'Proceso de quejas, reclamos y solución de inconveniente'},
-  { question:'Como califica la gestión del promotor y el asesor de servicios',
-    subquestions: [
-      'Relaciones interpersonales',
-      'Gestión frente a la comunidad'
-    ]
-  },
-  { question:'La gestión que realiza la EAPB en beneficio a los usuarios es'}
-]

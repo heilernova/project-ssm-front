@@ -14,7 +14,7 @@ export const PHARMACY_QUESTIONS:IQuestion[] = [
         response: [
             {code:1, text: 'Inmediato'},
             {code:2, text: 'A las 24 horas'},
-            {code:3, text: 'Más de 24 horas'}
+            {code:3, text: 'Más de 48 horas'}
         ]
     },
     {

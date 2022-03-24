@@ -25,3 +25,21 @@ main{
 
     
 }
+.tab-content{
+    padding-top: 20px;
+}
+
+.tab-lock{
+    // background-color: red;
+    display: none;
+    position: relative;
+    .panel{
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(126, 117, 117, 0.582);
+    }
+}

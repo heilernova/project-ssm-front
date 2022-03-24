@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiEpsService } from 'src/app/api/eps/api-eps.service';
 import { ApiPersonsService } from 'src/app/api/persons/api-persons.service';
+import { IPersonGet } from 'src/app/api/persons/interfaces/IPersonGet';
 import { ApiSurveysService } from 'src/app/api/surveys/api-surveys.service';
 import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
 import { DlgPersonService } from '../dlg-person/dlg-person.service';
@@ -15,15 +16,17 @@ export class SurveyComponent implements OnInit {
 
   scores:string[] = ['1', '2', '3', '4', '5'];
   dni:string = '';
-  formEPS:FormGroup;
-  listEPS:any[] = [];
+
+  client:IPersonGet|undefined = undefined; 
+
   listSurveyors:{id:number, name:string}[] = [];
-
-  ask2Other = new FormControl('');
-
   userName:string = "";
   userCellphone:string = "";
   userAddress:string = "";
+
+  surveys:IServerValid = {
+    eps	: { answered: false, salve: false, form: new FormGroup({})}
+  }
 
   constructor(
     private _apiEPS:ApiEpsService,
@@ -32,53 +35,32 @@ export class SurveyComponent implements OnInit {
     private _apiSurveys:ApiSurveysService,
    
   ) {
-    this.formEPS = new FormGroup({
-      eps: new FormControl(null,Validators.required),
-      ask1: new FormControl(null, Validators.required),
-      ask2: new FormControl(null, Validators.required),
-      ask3: new FormControl(null, Validators.required),
-      ask4: new FormControl(null, Validators.required),
-      ask5: new FormControl(null, Validators.required),
-      ask6: new FormControl(null, Validators.required),
-      ask7: new FormControl(null, Validators.required),
-      ask8: new FormControl(null, Validators.required),
-      ask9: new FormControl(null, Validators.required),
-      ask10: new FormControl(null, Validators.required),
-      ask11: new FormControl(null, Validators.required),
-      ask12: new FormControl(null, Validators.required),
-      ask13: new FormControl(null, Validators.required)
-    })
-    this._apiEPS.getAll().subscribe({
-      next: data =>{
-        this.listEPS = data;
-      }
-    })
-
-    this._apiSurveys.getSurveyors().subscribe({
-      next: data =>{
-        this.listSurveyors = data;
-      }
-    })
+    this._apiSurveys.getSurveyors().subscribe({next: data=>{ this.listSurveyors = data;}})
   }
 
   ngOnInit(): void {
   }
 
-  claerResponse(id:number){
-    this.formEPS.get(`ask${id}`)?.setValue(null);
-  }
+
   validDocument(){
     if (this.dni != ""){
 
       this._apiPersons.get(this.dni).subscribe({
         next: data => {
+
+          // Si el cliente exite
           this.userName = `${data.name} ${data.lastName}`;
-          // this.userCellphone = data.cellphone ;
           this.userCellphone = new CellphonePipe().transform(data.cellphone);
           this.userAddress = data.address;
+
+          this.client = data;
         },error: ()=>{
+
+          // Si no existe lo regitramos.
           this._person.show(this.dni).afterClosed().subscribe(res=>{
             if (res){
+
+              this.client = res;
               this.userName = `${res.name} ${res.lastName}`;
             }
           })
@@ -87,30 +69,34 @@ export class SurveyComponent implements OnInit {
     }
   }
 
+  disableSurveys():boolean{
+    return this.client == undefined;
+  }
+
   clearUser(){
+    this.client = undefined;
     this.userCellphone = "";
     this.userAddress = "";
     this.userName = "";
   }
 
   send(){
-    let data:{user:string, surveyor:number, surveys:{ eps?:any}} = {
-      user: this.dni,
-      surveyor: 1,
-      surveys:{
-        eps: null
-      }
-    };
-
-    if (this.formEPS.valid){
-      let result = this.formEPS.value;
-      if (result.ask2 == '4'){ 
-        result.ask2 = this.ask2Other.value
-      }
-      data.surveys.eps = result;
-    }
-
-
-    console.log(data);
+    console.log();
   }
+  sendEPS(data:any){
+    console.log(data);
+    this.surveys.eps.salve = true;
+    this.surveys.eps.form.disable();
+    // this._apiSurveys.postEPS(data).subscribe({
+    //   next: data =>{
+    //     this.surveys.eps.answered = true;
+    //     this.surveys.eps.salve = true;
+    //   }
+    // })
+  }
+}
+
+
+interface IServerValid{
+  eps:{answered: boolean;salve: boolean, form:FormGroup}
 }

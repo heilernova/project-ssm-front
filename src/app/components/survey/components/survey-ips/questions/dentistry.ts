@@ -2,7 +2,7 @@ import { IQuestion, RES_BUENO_MALO_REGUAR, RES_SI_NO } from "../../interfaces/qu
 
 export const DENTISTRY:IQuestion[] = [
     {
-        question: 'Cuando usted solicita una cita médica, le asignan la cita para',
+        question: 'Cuando usted solicita una cita, le asignan la cita para',
         response: [
             {code: 1, text: 'El mismo dia'},
             {code: 2, text: 'Un día despues'},

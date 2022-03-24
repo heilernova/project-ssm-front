@@ -6,8 +6,7 @@ export const QUES_EPS:IQuestion[] = [
         response: [
             {code: 'VIGILANTE', text:'Vigilante'},
             {code: 'PROMOTOR', text:'Promotor'},
-            {code: 'RECEPCIONISTA', text:'Recepcionista'},
-            {code: 'OTRO', text: 'otro'},
+            {code: 'RECEPCIONISTA', text:'Recepcionista'}
         ],
         responseOptionOther:true
     },

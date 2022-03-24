@@ -1,0 +1,28 @@
+::ng-deep{
+    .tab{
+        .mat-tab-header{
+            display: none;
+        }
+        .mat-tab-labels{
+            display: none;
+        }
+        .mat-tab-label-container{
+            display: none;
+        }
+        .mat-tab-label-container{
+            .mat-tab-labels{
+                display: none;
+            }
+        }
+        
+    }
+}
+.nav{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    h2{
+        margin: 0;
+        font-weight: 500;
+    }
+}

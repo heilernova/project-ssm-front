@@ -8,10 +8,25 @@ import { Observable } from 'rxjs';
 export class ApiSurveysService {
 
   constructor(
-    private http:HttpClient
+    private _http:HttpClient
   ) { }
 
   getSurveyors():Observable<{id:number, name:string}[]>{
-    return this.http.get<{id:number, name:string}[]>('surveys/surveyors');
+    return this._http.get<{id:number, name:string}[]>('surveys/surveyors');
+  }
+
+  // insert()
+
+
+  getEPS():Observable<{id:number, name:string}[]>{
+    return this._http.get<{id:number, name:string}[]>(`surveys/eps`);
+  }
+
+  getIPS():Observable<{id:number, name:string}[]>{
+    return this._http.get<{id:number, name:string}[]>(`surveys/ips`);
+  }
+
+  postEPS(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/eps', JSON.stringify(data));
   }
 }
