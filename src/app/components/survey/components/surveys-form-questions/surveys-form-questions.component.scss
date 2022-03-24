@@ -1,25 +1,31 @@
-// main{
-//     // position: relative;
-//     // .salve{
-//     //     position: absolute;
-//     //     left: 0;
-//     //     right: 0;
-//     //     top: 0;
-//     //     bottom: 0;
-//     //     background-color: rgba(190, 187, 187, 0.582);
-//     //     div{
-//     //         margin-top: 10px;
-//     //         margin-left: auto;
-//     //         margin-right: auto;
-//     //         font-weight: 140px;
-//     //         font-weight: 800;
-//     //         color: black;
-//     //         font-size: 200%;
-//     //         text-align: center;
+main{
+    position: relative;
+    .salve{
+        margin: 5px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(175, 166, 166, 0.4);
+        border-radius: 6px;
+        box-shadow: 0 0 5px 5px rgba(175, 166, 166, 0.4);
+        div{
+            margin-top: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            font-stretch: ultra-condensed;
+            font-weight: 140px;
+            font-weight: 800;
+            color: rgb(26, 61, 214);
+            font-size: 300%;
+            text-align: center;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
             
-//     //     }
-//     // }
-// }
+        }
+    }
+}
 
 
 .form-questions{
