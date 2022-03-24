@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatRadioGroup } from '@angular/material/radio';
 import { NvMessageBoxService } from 'ng-nova';
@@ -12,9 +12,13 @@ import { IQuestion } from '../interfaces/questions';
 export class SurveysFormQuestionsComponent implements OnInit, AfterViewInit {
   @Input() questions:IQuestion[] = [];
   @Input() introductionText:string = '';
+  @Input() salve:boolean = false; 
+  @Input() form:FormGroup = new FormGroup({});
+  @Input() formControls:{name:string, control:FormControl}[] = [];
+  @Output() formData = new EventEmitter<any>()
 
-  @ViewChild('tempoInput') tempoInput!:HTMLInputElement
-  form:FormGroup;
+  @ViewChild('tempoInput') tempoInput!:HTMLInputElement;
+  
 
 
   inputRadio = new FormControl(null);
@@ -23,7 +27,7 @@ export class SurveysFormQuestionsComponent implements OnInit, AfterViewInit {
   constructor(
     private _messabe:NvMessageBoxService
   ) {
-    this.form = new FormGroup({});
+
   }
   ngAfterViewInit(): void {
   }
@@ -48,6 +52,10 @@ export class SurveysFormQuestionsComponent implements OnInit, AfterViewInit {
       }
     });
 
+    this.formControls.forEach(control=>{
+      this.form.addControl(control.name, control.control);
+    })
+
   }
 
   addControlOther(control:string){
@@ -59,18 +67,25 @@ export class SurveysFormQuestionsComponent implements OnInit, AfterViewInit {
   }
 
 
-  formControlValid(name:string):boolean|undefined{
-    return this.form.get(name)?.valid;
+  formControlValidIcon(name:string):string{
+    if (this.form.disabled){
+      return 'block';
+    }else{
+      let fc = this.form.get(name)?.valid;
+      return fc ? 'check' : 'close';
+    }
+  }
+  formControlValidClass(name:string):string{
+    if (this.form.disabled){
+      return 'b';
+    }else{
+      let fc = this.form.get(name)?.valid;
+      return fc ? 's' : 'n';
+    }
   }
 
   send(){
-    console.log(this.form.value);
-    // console.log(this.inputRadio.valid);
-    // if (this.form.valid){
-
-    // }else{
-    //   this._messabe.alert('Faltan preguntas por responder');
-    // }
+    this.formData.emit(this.form.value);
   }
 
 }

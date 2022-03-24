@@ -1,10 +1,10 @@
 <div style="display: flex; column-gap: 10px; row-gap: 3px; flex-wrap: wrap; align-items: center;">
-    <mat-radio-button *ngFor="let item of options" [value]="item.code" (click)="emit(item.code)">{{item.text}}</mat-radio-button>
-    <mat-radio-button value="OTRO" #other (click)="clickOther()" style="display: flex; align-items: center;">
+    <mat-radio-button *ngFor="let item of options" [value]="item.code" (click)="emit(item.code)" [disabled]="disable">{{item.text}}</mat-radio-button>
+    <mat-radio-button value="OTRO" #other (click)="clickOther()" style="display: flex; align-items: center;" [disabled]="disable">
         <span>Otro</span>
         <span [hidden]="!other.checked">
             , ¿Cual?:
-            <input  type="text" (keyup)="change()" [(ngModel)]="inputText">
+            <input  type="text" (keyup)="change()" [(ngModel)]="inputText" [disabled]="disable">
         </span>
     </mat-radio-button>
 </div>

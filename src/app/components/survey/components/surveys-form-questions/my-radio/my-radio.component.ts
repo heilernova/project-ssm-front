@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class MyRadioComponent implements OnInit {
   @Input() options:{code:string|number,text:string}[] = [];
+  @Input() disable:boolean = false;
   @Output() emitValue = new EventEmitter<string|number>();
 
 

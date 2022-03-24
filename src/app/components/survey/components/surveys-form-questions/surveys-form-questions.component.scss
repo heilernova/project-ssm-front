@@ -1,4 +1,29 @@
+// main{
+//     // position: relative;
+//     // .salve{
+//     //     position: absolute;
+//     //     left: 0;
+//     //     right: 0;
+//     //     top: 0;
+//     //     bottom: 0;
+//     //     background-color: rgba(190, 187, 187, 0.582);
+//     //     div{
+//     //         margin-top: 10px;
+//     //         margin-left: auto;
+//     //         margin-right: auto;
+//     //         font-weight: 140px;
+//     //         font-weight: 800;
+//     //         color: black;
+//     //         font-size: 200%;
+//     //         text-align: center;
+            
+//     //     }
+//     // }
+// }
+
+
 .form-questions{
+
     .questions-list{
         display: flex;
         flex-direction: column;
@@ -45,11 +70,14 @@
                 font-weight: 700;
                 // font-size: 110px;
                 }
-                .si{
+                .s{
                     color: green;
                 }
-                .no{
+                .n{
                     color: red;
+                }
+                .b{
+                    color: gray;
                 }
             }
         }
