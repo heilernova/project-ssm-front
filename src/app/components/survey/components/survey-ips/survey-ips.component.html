@@ -9,7 +9,7 @@
 <mat-tab-group mat-align-tabs="start">
     <mat-tab label="Hospitalización">
         <!-- Enceesta de la EPS -->
-        <app-surveys-ips-hospitalization></app-surveys-ips-hospitalization>
+        <app-surveys-ips-form [questions]="questionsHostitalizatin" [title]="'Hola munoid'"></app-surveys-ips-form>
     </mat-tab>
   
     <mat-tab label="Laboratorio">
@@ -18,10 +18,13 @@
     <mat-tab label="Farmacia">
         <app-surveys-ips-form [questions]="questionsPharmacy" [title]="'Hola munoid'"></app-surveys-ips-form>
     </mat-tab>
-    <mat-tab label="Medicina y odontología">
-        <app-surveys-ips-form [questions]="questionsMedicineDentistry" [title]="'Hola munoid'"></app-surveys-ips-form>
+    <mat-tab label="Medicina">
+        <app-surveys-ips-form [questions]="questionsMedicine" [title]="'Hola munoid'"></app-surveys-ips-form>
     </mat-tab>
-    <mat-tab label="Evaliación a la IPS">
+    <mat-tab label="Odontología">
+        <app-surveys-ips-form [questions]="questionsDentistry" [title]="'Hola munoid'"></app-surveys-ips-form>
+    </mat-tab>
+    <mat-tab label="Evaluación a la IPS">
         <app-surveys-ips-form [questions]="questionsEvaluationIPS" [title]="'Hola munoid'"></app-surveys-ips-form>
     </mat-tab>
 </mat-tab-group>

@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DlgPersonModule } from 'src/app/components/dlg-person/dlg-person.module';
+import { SurveysFormQuestionsModule } from '../surveys-form-questions/surveys-form-questions.module';
 
 
 
@@ -26,7 +27,8 @@ import { DlgPersonModule } from 'src/app/components/dlg-person/dlg-person.module
     MatIconModule,
     ReactiveFormsModule,
     DlgPersonModule,
-    FormsModule
+    FormsModule,
+    SurveysFormQuestionsModule
   ],exports: [
     SurveyEpsComponent
   ]

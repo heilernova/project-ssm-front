@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiEpsService } from 'src/app/api/eps/api-eps.service';
+import { IQuestion } from '../interfaces/questions';
+import { QUES_EPS } from '../questions/eps';
 
 @Component({
   selector: 'app-survey-eps',
@@ -11,6 +13,9 @@ export class SurveyEpsComponent implements OnInit {
   epsList:{id:number, name:string}[] = [];
   questions1:{question:string, subquestions?:string[]}[] = questions;
   scores:number[] = [1,2,3,4,5];
+
+  questions:IQuestion[] = QUES_EPS
+
   constructor(
     private _apiEPS:ApiEpsService
   ) { 

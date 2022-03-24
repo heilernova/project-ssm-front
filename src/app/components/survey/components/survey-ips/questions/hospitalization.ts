@@ -1,6 +1,6 @@
 import { RES_BUENO_MALO_REGUAR, RES_SI_NO } from "../../interfaces/questions";
 
-export const QUESTIONS:{question:string, response:{code:string|number, text:string}[]}[] = [
+export const HOSPITALIZATIONS:{question:string, response:{code:string|number, text:string}[]}[] = [
     { 
       question: "¿Su ingreso al Hospital  fue por?",
       response: [

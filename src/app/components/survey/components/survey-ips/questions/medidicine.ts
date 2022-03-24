@@ -1,13 +1,6 @@
 import { IQuestion, RES_BUENO_MALO_REGUAR, RES_SI_NO } from "../../interfaces/questions";
 
-export const MEDICINE_DENTISTRY:IQuestion[] = [
-    {
-        question: 'Indique en cual servicio fue atendido',
-        response: [
-            {code: 1, text: 'Medician general'},
-            {code: 2, text: 'Odontología'}
-        ]
-    },
+export const MEDICINE:IQuestion[] = [
     {
         question: 'Cuando usted solicita una cita médica, le asignan la cita para',
         response: [

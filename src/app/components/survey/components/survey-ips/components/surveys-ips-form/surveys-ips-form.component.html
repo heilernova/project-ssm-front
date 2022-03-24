@@ -1,11 +1,22 @@
-<div class="questions">
+<form class="questions" [formGroup]="form" (ngSubmit)="send()">
     <ol>
-        <li class="question" *ngFor="let ques of questions">
-            <div class="text">{{ques.question}}</div>
-            <mat-radio-group>
-                <mat-radio-button *ngFor="let item of ques.response" [value]="item.code">{{item.text}}</mat-radio-button>
-            </mat-radio-group>
+        <li class="question" *ngFor="let ques of questions; let i = index">
+            <div class="index">
+                <div>
+                    {{(i + 1).toString().padStart(2, '0')}}
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">{{ques.question}}</div>
+                <mat-radio-group [formControlName]="ques.formControlName ?? ''">
+                    <mat-radio-button *ngFor="let item of ques.response;" [value]="item.code" >{{item.text}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="valid">
+                <mat-icon [ngClass]="formControlValid(ques.formControlName ?? '') ? 'checkk' : 'close'">{{formControlValid(ques.formControlName ?? '') ? 'check' : 'close'}}</mat-icon>
+            </div>
         </li>
     </ol>
-</div>
+    <button [disabled]="form.invalid" mat-stroked-button color="primary">Guardar encuesta</button>
+</form>
 

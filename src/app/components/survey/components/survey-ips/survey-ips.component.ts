@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EVALUATION_IPS } from './questions/evaluation-ips';
+import { HOSPITALIZATIONS } from './questions/hospitalization';
 import { LABORATORY } from './questions/laboratory';
-import { MEDICINE_DENTISTRY } from './questions/medidicine-dentistry';
+import { DENTISTRY } from './questions/dentistry';
 import { PHARMACY_QUESTIONS } from './questions/pharmacy';
+import { MEDICINE } from './questions/medidicine';
 
 @Component({
   selector: 'app-survey-ips',
@@ -11,8 +13,10 @@ import { PHARMACY_QUESTIONS } from './questions/pharmacy';
 })
 export class SurveyIpsComponent implements OnInit {
 
+  questionsHostitalizatin = HOSPITALIZATIONS
   questionsPharmacy = PHARMACY_QUESTIONS;
-  questionsMedicineDentistry = MEDICINE_DENTISTRY;
+  questionsDentistry = DENTISTRY;
+  questionsMedicine = MEDICINE
   questionsEvaluationIPS = EVALUATION_IPS;
   questionsLaboratory = LABORATORY
 
