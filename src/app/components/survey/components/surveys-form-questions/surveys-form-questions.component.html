@@ -8,12 +8,17 @@
             </div>
             <div class="content">
                 <div class="text">{{ques.question}}</div>
-                <mat-radio-group [formControlName]="ques.formControlName ?? ''">
-                    <mat-radio-button *ngFor="let item of ques.response;" [value]="item.code">
-                        {{item.text}}
-                        <input [hidden]="hiddenOther(ques.formControlName ?? '')" *ngIf="item.code == 'OTRO'"  type="text" placeholder="¿Cual?" (keyup)="changeOtherControl(ques.formControlName ?? '', $event)">
-                    </mat-radio-button>
-                </mat-radio-group>
+                <ng-container *ngIf="!ques.responseOptionOther; else others">
+                    <mat-radio-group [formControlName]="ques.formControlName ?? ''">
+                        <mat-radio-button *ngFor="let item of ques.response;" [value]="item.code">{{item.text}}</mat-radio-button>
+                    </mat-radio-group>
+                </ng-container>
+
+                <ng-template #others>
+                    <app-my-radio [options]="ques.response" (emitValue)="setValue(ques.formControlName ?? '', $event)"></app-my-radio>
+                </ng-template>
+            
+                <!-- Sub encuentas -->
                 <ng-container class="sub-questions" *ngIf="ques.subquestions">
                     <ol class="questions-list">
                         <li class="question" *ngFor="let subq of ques.subquestions; let i = index">
@@ -38,6 +43,11 @@
             </div>
         </li>
     </ol>
-    <button mat-stroked-button color="primary">Guardar encuesta</button>
+    <div class="actions">
+        <button [disabled]="form.invalid" mat-stroked-button color="primary">Guardar encuesta</button>
+        <div class="note-error"  [ngClass]="form.valid ? 'hidden' :''">
+            Falta campos por diligenciar
+        </div>
+    </div>
 </form>
 

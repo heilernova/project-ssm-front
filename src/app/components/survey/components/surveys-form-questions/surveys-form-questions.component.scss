@@ -35,6 +35,7 @@
                     display: flex;
                     flex-wrap: wrap;
                     column-gap: 15px;
+                    row-gap: 3px;
                 }
             }
             .valid{
@@ -51,6 +52,22 @@
                     color: red;
                 }
             }
+        }
+    }
+    .actions{
+        padding: 5px;
+        button{
+            width: 100%;
+        }
+        .note-error{
+            color: red;
+            font-weight: 500;
+            font-size: 120%;
+            text-align: center;
+            padding: 10px;
+        }
+        .hidden{
+            color: white
         }
     }
 }
