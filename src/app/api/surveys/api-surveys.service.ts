@@ -14,6 +14,9 @@ export class ApiSurveysService {
   getSurveyors():Observable<{id:number, name:string}[]>{
     return this._http.get<{id:number, name:string}[]>('surveys/surveyors');
   }
+  getPollsters():Observable<{id:number, name:string}[]>{
+    return this._http.get<{id:number, name:string}[]>('surveys/surveyors');
+  }
 
   // insert()
 

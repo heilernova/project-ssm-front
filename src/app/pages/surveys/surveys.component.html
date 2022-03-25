@@ -1,0 +1,71 @@
+<div [ngClass]="loading ? 'loading' : 'loading-hidden'">
+    <div>
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+</div>
+<section class="pollster">
+    <div class="title">Encuestador:</div>
+    <div class="select-pollster" style="width: 100%; max-width: 300px; margin-right: 30px;">
+        <mat-select [formControl]="inputPollster" style="width: 100%; ">
+            <mat-option *ngFor="let pollster of pollsters" [value]="pollster.id">{{pollster.name}}</mat-option>
+        </mat-select>
+    </div>
+    <div class="valid">
+        <mat-icon [ngClass]="getValidClass(inputPollster)">{{getValidIcon(inputPollster)}}</mat-icon>
+    </div>
+</section>
+<section class="user">
+    <div class="title">Dato del usuario</div>
+
+    <div class="content data-user">
+        <mat-form-field appearance="standard" style="width: 130px;">
+            <mat-label>Documento</mat-label>
+            <input matInput autocomplete="off" [formControl]="dni" (keyup)="dniKeyUp($event)">
+            <button matSuffix mat-icon-button (click)="searchDocument()"><mat-icon>search</mat-icon></button>
+        </mat-form-field>
+        
+        <!-- Nombre del usuario -->
+        <mat-form-field appearance="standard" style="width: 250px;">
+            <mat-label>Nombre y apellido</mat-label>
+            <input matInput autocomplete="off" class="capitalize" [value]="userDataView.name" readonly [disabled]="dni.disabled">
+        </mat-form-field>
+        
+        <!-- Teléfono de contacto -->
+        <mat-form-field appearance="standard" style="width: 105px;">
+            <mat-label>Teléfono</mat-label>
+            <input matInput autocomplete="off" class="capitalize" [value]="userDataView.cellphone" readonly [disabled]="dni.disabled">
+        </mat-form-field>
+        <!-- Teléfono de contacto -->
+        <mat-form-field appearance="standard" style="width: 100%; max-width: 300px;">
+            <mat-label>Dirección</mat-label>
+            <input matInput autocomplete="off" class="capitalize" [value]="userDataView.address" readonly [disabled]="dni.disabled">
+        </mat-form-field>
+    </div>
+
+    <div class="valid">
+        <mat-icon [ngClass]="getValidClass(inputDocument)">{{getValidIcon(inputDocument)}}</mat-icon>
+    </div>
+</section>
+<section class="surveys">
+    <!-- <div class="title">Encuestas</div> -->
+    <div class="panel-surveys">
+        <button mat-stroked-button [mat-menu-trigger-for]="menu"><mat-icon>menu</mat-icon></button>
+        <h2>
+            {{surveySelect.text}}
+        </h2>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let item of surveysMenu" >
+                <span><mat-icon>{{item.icon}}</mat-icon></span>
+                <span>{{item.text}}</span>
+            </button>
+        </mat-menu>
+    </div>
+    <div class="content">
+        <!-- Encuesta de la EPS -->
+        <!-- <div *ngFor="let survey of surveys">
+            <survey-data [surveyData]="survey"></survey-data> 
+            {{survey.name}}
+        </div> -->
+        <survey-data *ngFor="let survey of surveys" [surveyData]="survey"></survey-data>
+    </div>
+</section>

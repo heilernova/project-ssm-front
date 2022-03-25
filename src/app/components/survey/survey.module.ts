@@ -11,6 +11,7 @@ import { SurveyEpsModule } from './components/survey-eps/survey-eps.module';
 import { SurveyIpsModule } from './components/survey-ips/survey-ips.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SurveysFormQuestionsModule } from './components/surveys-form-questions/surveys-form-questions.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SurveysFormQuestionsModule } from './components/surveys-form-questions/
     SurveyIpsModule,
     MatIconModule,
     PipesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],exports: [
     SurveyComponent
   ]

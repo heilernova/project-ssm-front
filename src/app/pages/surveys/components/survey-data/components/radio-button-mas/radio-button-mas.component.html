@@ -1,0 +1,12 @@
+<mat-radio-group [formControl]="inputRadio" class="response-flex">
+    <mat-radio-button *ngFor="let option of options" [value]="option.code" (click)="setValue()">{{option.text}}</mat-radio-button>
+    <mat-radio-button value="0" >
+       <div style="display: flex; align-items: center; column-gap: 5px;" >
+            <span>Otro</span>
+            <span class="input-text-hn" [hidden]="hiddenInputText">
+                    <input type="text" [formControl]="inputText" >
+                    <div class="line-buttom"></div>
+            </span>
+       </div>
+    </mat-radio-button>
+</mat-radio-group>

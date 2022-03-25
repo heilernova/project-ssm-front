@@ -1,0 +1,98 @@
+.questions{
+    list-style: none;
+    margin: 0;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    li{
+        display: flex;
+        flex-direction: column;
+        
+        .box{
+            box-shadow: 0 0 1px 1px rgb(0, 149, 248);
+            border-radius: 5px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            .index{
+                background-color: var(--color-primary);
+                border-radius: 5px 0 0 5px;
+                div{
+                    margin: 4px 5px;
+                    color: white;
+                    font-weight: 450;
+                }
+            }
+            .content{
+                padding: 8px 5px;
+                display: flex; flex-direction: column;
+                row-gap: 5px;
+                .text{
+                    // background-color: rebeccapurple;
+                    font-size: 110%;
+                }
+                .response{
+                    .text{
+                        background-color: aliceblue;
+                        padding-bottom: 3px;
+                        position: relative;
+                        input{
+                            border: none;
+                            outline: none;
+                            min-width: 0;
+                            width: 100%;
+                        }
+                        input:focus + .line-bottom{
+                            height: 2px;
+                            width: 100%;
+                            background-color: var(--color-primary);
+                            transform: translateX(0%);
+                            // animation-name: showline;
+                            // animation-duration: 0.3s;
+                            transition: all 0.3s;
+                            // height: 2px;
+                            &::after{
+                                height: 2px;
+                                width: 100%;
+                                background-color: red;
+                                // transform: translateX(0%);
+                                // animation-name: showline;
+                                // animation-duration: 0.3s;
+                                // transition: all 0.3s;
+                            }
+                        }
+                        .line-bottom{
+                            position: absolute;
+                            height: 1px;
+                            bottom: 0;
+                            width: 100%;
+                            background-color: var(--color-primary);
+                        }
+                        @keyframes showline {
+                            0%{
+                                transform: translateX(0%);
+                            }
+                            50%{
+                                transform: translateX(50%);
+                            }
+                            100%{
+                                transform: translateX(100%);
+                            }
+                        }
+                    }
+
+                }
+            }
+            .valid{
+                padding: 5px;
+                mat-icon{
+                    font-weight: 650;
+                    // font-size: 25px;
+                }
+                &.s{ color: green;}
+                &.n{ color: red;}
+                &.b{ color: gray;}
+            }
+        }
+    }
+}

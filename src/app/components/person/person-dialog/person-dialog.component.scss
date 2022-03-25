@@ -1,0 +1,15 @@
+mat-dialog-content{
+    display: flex;
+    flex-direction: column;
+    mat-form-field{
+        height: 52px;
+    }
+    
+}
+.content-inputs{
+    margin: 20px 0;
+}
+.flex{
+    display: flex;
+    column-gap: 15px;
+}

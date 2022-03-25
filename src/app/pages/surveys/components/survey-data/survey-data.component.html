@@ -1,0 +1,45 @@
+<div class="introduction">
+
+</div>
+<ul class="questions">
+    <li *ngFor="let question of surveyData.questions; let i = index">
+        <div class="note"></div>
+        <div class="box">
+            <div class="index">
+                <div>{{(i + 1).toString().padStart(2, '0')}}</div>
+            </div>
+            <div class="content">
+                <div class="text">
+                    {{question.question}}
+                </div>
+                <div class="response">
+                    <div [ngSwitch]="question.type">
+                        <!-- Input text -->
+                        <div *ngSwitchCase="0" class="input-text-hn" >
+                            <input style="width: 100%;" [formControl]="question.formControl" placeholder="Respuesta"> 
+                            <div class="line-buttom"></div>
+                        </div>
+
+                        <!-- Radio button -->
+                        <div *ngSwitchCase="1">
+                            1
+                        </div>
+                        
+                        <!-- Radio button mas -->
+                        <div *ngSwitchCase="2">
+                            <survey-radio-button-mas [options]="question.options" [formControlQuestion]="question.formControl" [disable]="question.formControl.disabled"></survey-radio-button-mas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="valid" [ngClass]="surveyData.formGroup.disabled ? 'b' : (question.formControl.valid ?'s' :'n')">
+                <mat-icon>{{surveyData.formGroup.disabled ? 'lock' : (question.formControl.valid ?'check' :'close')}}</mat-icon>
+            </div>
+        </div>
+    </li>
+</ul>
+<div>
+    <button [disabled]="surveyData.formGroup.invalid" (click)="sendForm()">Guardar</button>
+    <button (click)="sendForm()">Guardar</button>
+</div>

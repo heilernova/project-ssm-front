@@ -1,4 +1,24 @@
+:host{
+    display: grid;
+    height: 100%;
+    grid-template-rows: auto 1fr auto;
+    // background-color: red;
+}
 header{
     background-color: var(--color-header);
-    padding: 5px;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 450;
+    font-size: large;
 }
+.page{
+    display: flex;
+    justify-content: center;
+}
+
+
+// footer{
+//     // background-color: rebeccapurple;
+// }
