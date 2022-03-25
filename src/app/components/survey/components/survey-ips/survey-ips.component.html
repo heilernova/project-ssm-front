@@ -1,11 +1,4 @@
 
-<mat-form-field style="width: 100%;" appearance="outline">
-    <mat-label>IPS a Evaluar</mat-label>
-    <mat-select>
-        <mat-option *ngFor="let ips of ipsList" [value]="ips.id">{{ips.name}}</mat-option>
-    </mat-select>
-</mat-form-field>
-
 <div class="nav">
     <button mat-stroked-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
@@ -21,23 +14,80 @@
 
 <mat-tab-group mat-align-tabs="start" class="tab" [selectedIndex]="tabValue">
     <mat-tab label="Evaluación a la IPS">
-        <app-surveys-form-questions [questions]="questionsEvaluationIPS"></app-surveys-form-questions>
+        <app-surveys-form-questions 
+        [questions]="questionsEvaluationIPS" 
+        [formControls]="[{name:'ips', control:inputIPS}]"
+        [salve]="formIPSSalve"
+        [form]="formIPS"
+        (formData)="formDataIPS.emit($event)">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Nombre de la IPS primaria</mat-label>
+                <input matInput autocomplete="off" [formControl]="inputIPS">
+            </mat-form-field>
+        </app-surveys-form-questions>
     </mat-tab>
     <mat-tab label="Hospitalización">
         <!-- Enceesta de la EPS -->
-        <app-surveys-form-questions [questions]="questionsHostitalizatin"></app-surveys-form-questions>
+        <app-surveys-form-questions 
+        [questions]="questionsHostitalizatin"
+        [form]="formHospitalization"
+        [salve]="formHospitalizationSalve"
+        (formData)="formDataHospitalization.emit($event)"></app-surveys-form-questions>
     </mat-tab>
   
     <mat-tab label="Laboratorio">
-       <app-surveys-form-questions [questions]="questionsLaboratory"></app-surveys-form-questions>
+        
+        <!-- Laboratorio -->
+       <app-surveys-form-questions 
+       [questions]="questionsLaboratory" 
+       [formControls]="[{name:'ips', control:inputLaboratory}]"
+       [form]="formLaboratory"
+       [salve]="formLaboratorySalve"
+       (formData)="formDataLaboratory.emit($event)"
+       >
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Nombre de la IPS</mat-label>
+            <input matInput autocomplete="off" [formControl]="inputLaboratory">
+        </mat-form-field>
+       </app-surveys-form-questions>
     </mat-tab> 
     <mat-tab label="Farmacia">
-        <app-surveys-form-questions [questions]="questionsPharmacy"></app-surveys-form-questions>
+        <app-surveys-form-questions 
+        [questions]="questionsPharmacy" 
+        [form]="formPharmacy"
+        [salve]="formPharmacySalve"
+        [formControls]="[{name:'ips', control:inputPharmacy}]"
+        (formData)="formDataPharmacy.emit($event)">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Nombre de la IPS</mat-label>
+                <input matInput autocomplete="off" [formControl]="inputPharmacy">
+            </mat-form-field>
+        </app-surveys-form-questions>
     </mat-tab>
     <mat-tab label="Medicina">
-        <app-surveys-form-questions [questions]="questionsMedicine"></app-surveys-form-questions>
+        <app-surveys-form-questions 
+        [questions]="questionsMedicine"
+        [form]="formMedicine"
+        [salve]="formMedicineSalve"
+        [formControls]="[{name:'ips', control:inputMedicine}]"
+        (formData)="formDataMedicine.emit($event)">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Nombre de la IPS</mat-label>
+                <input matInput autocomplete="off" [formControl]="inputMedicine">
+            </mat-form-field>
+        </app-surveys-form-questions>
     </mat-tab>
     <mat-tab label="Odontología">
-        <app-surveys-form-questions [questions]="questionsDentistry"></app-surveys-form-questions>
+        <app-surveys-form-questions 
+        [questions]="questionsDentistry"
+        [formControls]="[{name:'ips', control:inputOdontology}]"
+        [form]="formOdontology"
+        [salve]="formOdontologySalve"
+        (formData)="formDataOdontology.emit($event)">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Nombre de la IPS</mat-label>
+                <input matInput autocomplete="off" [formControl]="inputOdontology">
+            </mat-form-field>
+        </app-surveys-form-questions>
     </mat-tab>
 </mat-tab-group>

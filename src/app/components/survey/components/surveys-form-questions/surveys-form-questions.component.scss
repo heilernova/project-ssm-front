@@ -1,5 +1,6 @@
 main{
     position: relative;
+    padding-top: 10px;
     .salve{
         margin: 5px;
         position: absolute;
@@ -27,7 +28,6 @@ main{
     }
 }
 
-
 .form-questions{
 
     .questions-list{
@@ -36,7 +36,14 @@ main{
         row-gap: 8px;
         list-style: none;
         margin: 5px;
+        margin-top: 0;
         padding: 0;
+        .note{
+            color: gray;
+            font-style: oblique;
+            font-weight: 500;
+            margin-top: 10px;  
+        }
         .question{
             display: grid;
             grid-template-columns: auto 1fr auto;

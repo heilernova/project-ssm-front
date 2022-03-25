@@ -6,7 +6,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SurveyEpsModule } from './components/survey-eps/survey-eps.module';
 import { SurveyIpsModule } from './components/survey-ips/survey-ips.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
@@ -26,7 +26,8 @@ import { SurveysFormQuestionsModule } from './components/surveys-form-questions/
     SurveyEpsModule,
     SurveyIpsModule,
     MatIconModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule
   ],exports: [
     SurveyComponent
   ]

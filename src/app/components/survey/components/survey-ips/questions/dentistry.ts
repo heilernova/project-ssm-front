@@ -2,7 +2,7 @@ import { IQuestion, RES_BUENO_MALO_REGUAR, RES_SI_NO } from "../../interfaces/qu
 
 export const DENTISTRY:IQuestion[] = [
     {
-        question: 'Cuando usted solicita una cita, le asignan la cita para',
+        question: 'Cuando usted solicita una cita, se la asignan para',
         response: [
             {code: 1, text: 'El mismo dia'},
             {code: 2, text: 'Un día despues'},
@@ -39,7 +39,7 @@ export const DENTISTRY:IQuestion[] = [
         response: RES_BUENO_MALO_REGUAR
     },
     {
-        question: 'Califique su satisfacción en general con la atención recibida en el servicio de medicina general y odontología',
+        question: 'Califique su satisfacción en general con la atención recibida en el servicio de odontología',
         response: RES_BUENO_MALO_REGUAR
     },
 ]

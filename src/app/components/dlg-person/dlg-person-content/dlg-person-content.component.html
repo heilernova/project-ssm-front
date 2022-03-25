@@ -123,6 +123,6 @@
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-stroked-button (click)="close()">Cancelar</button>
-        <button mat-stroked-button (click)="send()">Guardar</button>
+        <button mat-stroked-button (click)="send()" [disabled]="formUser.invalid">Guardar</button>
     </mat-dialog-actions>
 </div>

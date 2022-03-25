@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NvMessageBoxService } from 'ng-nova';
 import { ApiEpsService } from 'src/app/api/eps/api-eps.service';
 import { ApiPersonsService } from 'src/app/api/persons/api-persons.service';
 import { IPersonGet } from 'src/app/api/persons/interfaces/IPersonGet';
@@ -24,15 +25,28 @@ export class SurveyComponent implements OnInit {
   userCellphone:string = "";
   userAddress:string = "";
 
+  inputDNI= new FormControl('', Validators.required);
+  inputUser = new FormControl('', Validators.required);
+
   surveys:IServerValid = {
-    eps	: { answered: false, salve: false, form: new FormGroup({})}
+    eps	: { answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})},
+    ips: {
+      primary:{ answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})},
+      hospitalization:{ answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})},
+      laboratory: { answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})},
+      pharmacy: { answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})},
+      medicine: { answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})},
+      odontology: { answered: false, salve: false, form: new FormGroup({dni: this.inputDNI, user:this.inputUser})}
+    }
   }
+
 
   constructor(
     private _apiEPS:ApiEpsService,
     private _apiPersons:ApiPersonsService,
     private _person:DlgPersonService,
     private _apiSurveys:ApiSurveysService,
+    private _message:NvMessageBoxService
    
   ) {
     this._apiSurveys.getSurveyors().subscribe({next: data=>{ this.listSurveyors = data;}})
@@ -54,6 +68,7 @@ export class SurveyComponent implements OnInit {
           this.userAddress = data.address;
 
           this.client = data;
+          this.inputDNI.setValue(data.dni);
         },error: ()=>{
 
           // Si no existe lo regitramos.
@@ -62,6 +77,8 @@ export class SurveyComponent implements OnInit {
 
               this.client = res;
               this.userName = `${res.name} ${res.lastName}`;
+              this.userCellphone = new CellphonePipe().transform(res.cellphone);
+              this.userAddress = res.address;
             }
           })
         }
@@ -78,25 +95,147 @@ export class SurveyComponent implements OnInit {
     this.userCellphone = "";
     this.userAddress = "";
     this.userName = "";
+    this.inputDNI.setValue('');
+  }
+
+  resetForms(){
+    let use = this.inputUser.value;
+
+    this.clearUser();
+  
+    this.surveys.eps.form.reset();
+    this.surveys.eps.form.enable()
+    this.surveys.eps.salve = false;
+
+    this.surveys.ips.primary.form.reset();
+    this.surveys.ips.primary.form.enable();
+    this.surveys.ips.primary.salve = false;
+    
+    this.surveys.ips.hospitalization.salve = false;
+    this.surveys.ips.hospitalization.form.reset();
+    this.surveys.ips.hospitalization.form.enable();
+    
+    this.surveys.ips.laboratory.salve = false;
+    this.surveys.ips.laboratory.form.reset();
+    this.surveys.ips.laboratory.form.enable();
+
+    this.surveys.ips.pharmacy.salve = false;
+    this.surveys.ips.pharmacy.form.reset();
+    this.surveys.ips.pharmacy.form.enable();
+
+    this.surveys.ips.medicine.salve = false;
+    this.surveys.ips.medicine.form.reset();
+    this.surveys.ips.medicine.form.enable();
+
+    this.surveys.ips.odontology.salve = false;
+    this.surveys.ips.odontology.form.reset();
+    this.surveys.ips.odontology.form.enable();
+
+    this.inputUser.setValue(use);
   }
 
   send(){
     console.log();
   }
+
+  enableInputsPrimarios(){
+    this.inputDNI.enable();
+        this.inputUser.enable();
+  }
+
   sendEPS(data:any){
     console.log(data);
-    this.surveys.eps.salve = true;
-    this.surveys.eps.form.disable();
-    // this._apiSurveys.postEPS(data).subscribe({
-    //   next: data =>{
-    //     this.surveys.eps.answered = true;
-    //     this.surveys.eps.salve = true;
-    //   }
-    // })
+
+    this._apiSurveys.salveEPS(data).subscribe({
+      next: ()=>{
+        this.surveys.eps.salve = true;
+        this.surveys.eps.form.disable();
+        this.enableInputsPrimarios()
+      }
+    })
+
+
+  }
+
+  sendIPS(data:any){
+    console.log(data);
+    this._apiSurveys.salveIPS(data).subscribe({
+      next: ()=>{
+        this.surveys.ips.primary.salve;
+        this.surveys.ips.primary.form.disable();
+        this.enableInputsPrimarios();
+      }
+    })
+  }
+
+  sendHospitalization(data:any){
+    console.log(data);
+    this._apiSurveys.salveIpsHospitalization(data).subscribe({
+      next: ()=>{
+
+        this.surveys.ips.hospitalization.salve = true;
+        this.surveys.ips.hospitalization.form.disable();
+        this.enableInputsPrimarios();
+      }
+    })
+  }
+
+  sendLaboratory(data:any){
+    console.log(data);
+
+    this._apiSurveys.salveIpsLaboratory(data).subscribe({
+      next: ()=>{
+        this.surveys.ips.laboratory.salve = true;
+        this.surveys.ips.laboratory.form.disable();
+        this.enableInputsPrimarios();
+      }
+    })
+  }
+
+  sendPharmacy(data:any){
+    console.log(data);
+    this._apiSurveys.salveIpsPharmacy(data).subscribe({
+      next: ()=>{
+        this.surveys.ips.pharmacy.salve = true;
+        this.surveys.ips.pharmacy.form.disable();
+        this.enableInputsPrimarios();
+      }
+    })
+  }
+
+  sendMedicine(data:any){
+    console.log(data);
+    this._apiSurveys.salveIpsMedicine(data).subscribe({
+      next: ()=>{
+        this.surveys.ips.medicine.salve = true;
+        this.surveys.ips.medicine.form.disable();
+        this.enableInputsPrimarios();
+      }
+    })
+  }
+
+  sendOdontology(data:any){
+    console.log(data);
+    this._apiSurveys.salveIpsOdontology(data).subscribe({
+      next: ()=>{
+        this.surveys.ips.odontology.salve = true;
+        this.surveys.ips.odontology.form.disable();
+        this.enableInputsPrimarios();
+      }
+    })
   }
 }
 
 
 interface IServerValid{
-  eps:{answered: boolean;salve: boolean, form:FormGroup}
+  eps:{answered: boolean;salve: boolean, form:FormGroup},
+  ips:{
+    primary:{answered: boolean;salve: boolean, form:FormGroup},
+    hospitalization:{answered: boolean;salve: boolean, form:FormGroup},
+    laboratory: {answered: boolean;salve: boolean, form:FormGroup},
+    pharmacy: {answered: boolean;salve: boolean, form:FormGroup},
+    medicine: {answered: boolean;salve: boolean, form:FormGroup},
+    odontology: {answered: boolean;salve: boolean, form:FormGroup}
+
+  }
 }

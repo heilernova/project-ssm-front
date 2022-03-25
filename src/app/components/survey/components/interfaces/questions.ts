@@ -13,15 +13,14 @@ export interface IQuestionResponse{
 }
 
 export const RES_BUENO_MALO_REGUAR:IQuestionResponse[] = [
-    {code: 1, text:'Bueno'},
+    {code: 3, text:'Bueno'},
     {code: 2, text:'Regular'},
-    {code: 3, text:'Malo'}
+    {code: 1, text:'Malo'}
 ];
 
 export const RES_SI_NO:IQuestionResponse[] = [
-    {code: 1, text:'Bueno'},
-    {code: 2, text:'Regular'},
-    {code: 3, text:'Malo'}
+    {code: 1, text:'Si'},
+    {code: 2, text:'No'}
 ];
 export const RES_SCORE:IQuestionResponse[] = [
     {code: 1, text:'1'},

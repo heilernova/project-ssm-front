@@ -1,63 +1,66 @@
 <main>
-    <div>
+    <div class="content-ng">
         <ng-content></ng-content>
     </div>
     <form class="form-questions" [formGroup]="form" (ngSubmit)="send()">
     
         <ol class="questions-list">
-            <li class="question" *ngFor="let ques of questions; let i = index">
-                <div class="index">
-                    <div>
-                        {{(i + 1).toString().padStart(2, '0')}}
+            <ng-container *ngFor="let ques of questions; let i = index">
+                <div class="note" *ngIf="ques.note">{{ques.note}}</div>
+                <li class="question">
+                    <div class="index">
+                        <div>
+                            {{(i + 1).toString().padStart(2, '0')}}
+                        </div>
                     </div>
-                </div>
-                <div class="content">
-                    <div class="text">{{ques.question}}</div>
-                    <ng-container *ngIf="!ques.responseOptionOther; else others">
-                        <mat-radio-group [formControlName]="ques.formControlName ?? ''">
-                            <mat-radio-button *ngFor="let item of ques.response;" [value]="item.code">{{item.text}}</mat-radio-button>
-                        </mat-radio-group>
-                    </ng-container>
-    
-                    <ng-template #others>
-                        <app-my-radio [options]="ques.response" (emitValue)="setValue(ques.formControlName ?? '', $event)" [disable]="form.disabled"></app-my-radio>
-                    </ng-template>
+                    <div class="content">
+                        <div class="text">{{ques.question}}</div>
+                        <ng-container *ngIf="!ques.responseOptionOther; else others">
+                            <mat-radio-group [formControlName]="ques.formControlName ?? ''">
+                                <mat-radio-button *ngFor="let item of ques.response;" [value]="item.code">{{item.text}}</mat-radio-button>
+                            </mat-radio-group>
+                        </ng-container>
                 
-                    <!-- Sub encuentas -->
-                    <ng-container class="sub-questions" *ngIf="ques.subquestions">
-                        <ol class="questions-list">
-                            <li class="question" *ngFor="let subq of ques.subquestions; let i = index">
-                                <div class="index">
-                                    <div>{{(i + 1).toString().padStart(2, '0')}}</div>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{subq.question}}</div>
-                                    <mat-radio-group [formControlName]="subq.formControlName ?? ''">
-                                        <mat-radio-button *ngFor="let item of subq.response;" [value]="item.code" >{{item.text}}</mat-radio-button>
-                                    </mat-radio-group>
-                                </div>
-                                <div class="valid">
-                                    <mat-icon [ngClass]="formControlValidClass(subq.formControlName ?? '')">{{formControlValidIcon(subq.formControlName ?? '')}}</mat-icon>
-                                </div>
-                            </li>
-                        </ol>
-                    </ng-container>
-                </div>
-                <div class="valid">
-                    <mat-icon [ngClass]="formControlValidClass(ques.formControlName ?? '')">{{formControlValidIcon(ques.formControlName ?? '')}}</mat-icon>
-                </div>
-            </li>
+                        <ng-template #others>
+                            <app-my-radio [options]="ques.response" (emitValue)="setValue(ques.formControlName ?? '', $event)" [disable]="form.disabled"></app-my-radio>
+                        </ng-template>
+                    
+                        <!-- Sub encuentas -->
+                        <ng-container class="sub-questions" *ngIf="ques.subquestions">
+                            <ol class="questions-list">
+                                <li class="question" *ngFor="let subq of ques.subquestions; let i = index">
+                                    <div class="index">
+                                        <div>{{(i + 1).toString().padStart(2, '0')}}</div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="text">{{subq.question}}</div>
+                                        <mat-radio-group [formControlName]="subq.formControlName ?? ''">
+                                            <mat-radio-button *ngFor="let item of subq.response;" [value]="item.code" >{{item.text}}</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                    <div class="valid">
+                                        <mat-icon [ngClass]="formControlValidClass(subq.formControlName ?? '')">{{formControlValidIcon(subq.formControlName ?? '')}}</mat-icon>
+                                    </div>
+                                </li>
+                            </ol>
+                        </ng-container>
+                    </div>
+                    <div class="valid">
+                        <mat-icon [ngClass]="formControlValidClass(ques.formControlName ?? '')">{{formControlValidIcon(ques.formControlName ?? '')}}</mat-icon>
+                    </div>
+                </li>
+            </ng-container>
         </ol>
         <div class="actions">
             <button [disabled]="form.invalid || salve" mat-stroked-button color="primary">Guardar encuesta</button>
-            <div class="note-error"  [ngClass]="form.valid ? 'hidden' :''">
+            <div class="note-error"  [ngClass]="form.valid || salve ? 'hidden' :''">
                 Falta campos por diligenciar
             </div>
         </div>
     </form>
     <div class="salve" *ngIf="salve">
         <div>
-            Encuesta guardad correctamente.
+            Encuesta guarda correctamente.
         </div>
     </div>
 </main>

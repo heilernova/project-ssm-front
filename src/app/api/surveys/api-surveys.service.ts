@@ -26,7 +26,27 @@ export class ApiSurveysService {
     return this._http.get<{id:number, name:string}[]>(`surveys/ips`);
   }
 
-  postEPS(data:any):Observable<boolean>{
+  salveEPS(data:any):Observable<boolean>{
     return this._http.post<boolean>('surveys/eps', JSON.stringify(data));
+  }
+
+  salveIPS(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/ips', JSON.stringify(data));
+  }
+  salveIpsHospitalization(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/ips/hospitalization', JSON.stringify(data));
+  }
+  
+  salveIpsLaboratory(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/ips/laboratory', JSON.stringify(data));
+  }
+  salveIpsPharmacy(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/ips/pharmacy', JSON.stringify(data));
+  }
+  salveIpsMedicine(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/ips/medicine', JSON.stringify(data));
+  }
+  salveIpsOdontology(data:any):Observable<boolean>{
+    return this._http.post<boolean>('surveys/ips/odontology', JSON.stringify(data));
   }
 }

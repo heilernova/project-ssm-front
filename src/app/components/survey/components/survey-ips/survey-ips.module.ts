@@ -10,6 +10,7 @@ import { SurveysFormQuestionsModule } from '../surveys-form-questions/surveys-fo
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -27,7 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     MatSelectModule,
     MatMenuModule,
-    SurveysFormQuestionsModule
+    SurveysFormQuestionsModule,
+    ReactiveFormsModule
   ],exports:[
     SurveyIpsComponent
     

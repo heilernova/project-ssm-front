@@ -1,5 +1,8 @@
 <main>
     <section>
+        <div>
+            <button mat-stroked-button (click)="resetForms()">Recet</button>
+        </div>
         <div class="title">
             Infomación del encuestado
         </div>
@@ -34,7 +37,7 @@
         <div style="display: flex; align-items: center; column-gap: 10px;">
             <mat-form-field>
                 <mat-label>Encuestador</mat-label>
-                <mat-select>
+                <mat-select [formControl]="inputUser">
                     <mat-option *ngFor="let item of listSurveyors" [value]="item.id">{{item.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -56,7 +59,26 @@
                 <mat-tab label="IPS">
                     <!-- Encuestas de la IPS -->
                     <div class="tab-content">
-                        <app-survey-ips></app-survey-ips>
+                        <app-survey-ips
+                        [formIPS]="surveys.ips.primary.form"
+                        [formIPSSalve]="surveys.ips.primary.salve"
+                        [formHospitalization]="surveys.ips.hospitalization.form"
+                        [formHospitalizationSalve]="surveys.ips.hospitalization.salve"
+                        [formLaboratory]="surveys.ips.laboratory.form"
+                        [formLaboratorySalve]="surveys.ips.laboratory.salve"
+                        [formPharmacy]="surveys.ips.pharmacy.form"
+                        [formPharmacySalve]="surveys.ips.pharmacy.salve"
+                        [formMedicine]="surveys.ips.medicine.form"
+                        [formMedicineSalve]="surveys.ips.medicine.salve"
+                        [formOdontology]="surveys.ips.odontology.form"
+                        [formOdontologySalve]="surveys.ips.odontology.salve"
+                        (formDataIPS)="sendIPS($event)"
+                        (formDataHospitalization)="sendHospitalization($event)"
+                        (formDataLaboratory)="sendLaboratory($event)"
+                        (formDataPharmacy)="sendPharmacy($event)"
+                        (formDataMedicine)="sendMedicine($event)"
+                        (formDataOdontology)="sendOdontology($event)"
+                        ></app-survey-ips>
                     </div>
                 </mat-tab>
                 

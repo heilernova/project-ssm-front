@@ -43,11 +43,11 @@ export const HOSPITALIZATIONS:IQuestion[] = [
       response: RES_BUENO_MALO_REGUAR,
     },
     {
-      question: 'Califique la  atención recibida por su(s) medico, especialista, tratantes',
+      question: 'Califique la  atención recibida por su(s) médico, especialista, tratantes',
       response: RES_BUENO_MALO_REGUAR
     },
     {
-      question:'¿Está conforme con la información recibida por el medico sobre la enfermedad o motivo de  consulta?',
+      question:'¿Está conforme con la información recibida por el médico sobre la enfermedad o motivo de  consulta?',
       response: RES_SI_NO
     },
     {
