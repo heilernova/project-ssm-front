@@ -10,7 +10,7 @@
             <!-- Documento de identioficación -->
             <mat-form-field appearance="standard" style="width: 130px;">
                 <mat-label>Documento</mat-label>
-                <input type="text" matInput autocomplete="off" [(ngModel)]="dni" (keyup)="clearUser()">
+                <input type="text" matInput autocomplete="off" [(ngModel)]="dni" (change)="clearUser()">
                 <button matSuffix mat-icon-button  (click)="validDocument()"><mat-icon>search</mat-icon></button>
             </mat-form-field>
             <!-- Nombre -->
