@@ -130,7 +130,9 @@ export class SurveyComponent implements OnInit {
     this.surveys.ips.odontology.salve = false;
     this.surveys.ips.odontology.form.reset();
     this.surveys.ips.odontology.form.enable();
-
+    
+    this.inputDNI.reset();
+    this.dni = "";
     this.inputUser.setValue(use);
   }
 
@@ -161,7 +163,7 @@ export class SurveyComponent implements OnInit {
     console.log(data);
     this._apiSurveys.salveIPS(data).subscribe({
       next: ()=>{
-        this.surveys.ips.primary.salve;
+        this.surveys.ips.primary.salve = true;
         this.surveys.ips.primary.form.disable();
         this.enableInputsPrimarios();
       }
