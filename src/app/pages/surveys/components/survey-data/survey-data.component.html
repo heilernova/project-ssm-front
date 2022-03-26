@@ -1,5 +1,5 @@
 <div class="introduction">
-
+    {{surveyData.introduction}}
 </div>
 <ul class="questions">
     <li *ngFor="let question of surveyData.questions; let i = index">
@@ -16,13 +16,16 @@
                     <div [ngSwitch]="question.type">
                         <!-- Input text -->
                         <div *ngSwitchCase="0" class="input-text-hn" >
-                            <input style="width: 100%;" [formControl]="question.formControl" placeholder="Respuesta"> 
+                            <input style="width: 100%;" [formControl]="question.formControl" placeholder="Respuesta" 
+                            [ngClass]="question.inputFormat?.textTransform ?? 'heiler'"> 
                             <div class="line-buttom"></div>
                         </div>
 
                         <!-- Radio button -->
                         <div *ngSwitchCase="1">
-                            1
+                            <mat-radio-group class="response-flex" [formControl]="question.formControl">
+                                <mat-radio-button *ngFor="let option of question.options" [value]="option.code">{{option.text}}</mat-radio-button>
+                            </mat-radio-group>
                         </div>
                         
                         <!-- Radio button mas -->
@@ -31,6 +34,48 @@
                         </div>
 
                     </div>
+
+                    <!-- Sub preguntas -->
+                    <div class="sub-questions" *ngIf="question.subQuestions" style="padding-top: 8px;">
+                        <ul class="questions">
+                            <li *ngFor="let subque of question.subQuestions; let ii = index">
+                                <div class="note"></div>
+                                <div class="box">
+                                    <div class="index"><div>{{(ii+1).toString().padStart(2, '0')}}</div></div>
+                                    <div class="content">
+                                        <div class="text">{{subque.question}}</div>
+                                        <div class="response">
+                                            <div [ngSwitch]="subque.type">
+                                                <!-- Input text -->
+                                                <div *ngSwitchCase="0" class="input-text-hn" >
+                                                    <input style="width: 100%;" [formControl]="subque.formControl" placeholder="Respuesta" 
+                                                    [ngClass]="subque.inputFormat?.textTransform ?? 'heiler'"> 
+                                                    <div class="line-buttom"></div>
+                                                </div>
+                        
+                                                <!-- Radio button -->
+                                                <div *ngSwitchCase="1">
+                                                    <mat-radio-group class="response-flex" [formControl]="subque.formControl">
+                                                        <mat-radio-button *ngFor="let option of subque.options" [value]="option.code">{{option.text}}</mat-radio-button>
+                                                    </mat-radio-group>
+                                                </div>
+                                                
+                                                <!-- Radio button mas -->
+                                                <div *ngSwitchCase="2">
+                                                    <survey-radio-button-mas [options]="subque.options" [formControlQuestion]="question.formControl" [disable]="subque.formControl.disabled"></survey-radio-button-mas>
+                                                </div>
+                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="valid" [ngClass]="surveyData.formGroup.disabled ? 'b' : (subque.formControl.valid ?'s' :'n')">
+                                        <mat-icon>{{surveyData.formGroup.disabled ? 'lock' : (subque.formControl.valid ?'check' :'close')}}</mat-icon>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
             <div class="valid" [ngClass]="surveyData.formGroup.disabled ? 'b' : (question.formControl.valid ?'s' :'n')">

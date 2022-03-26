@@ -1,4 +1,4 @@
-import { IQuestion } from "./Iquestions"
+import { IQuestion } from "../../../../assets/surveys/interfaces/Iquestions"
 
 export interface ISurvey{
     introduction?:string

@@ -1,5 +1,5 @@
 import { FormGroup } from "@angular/forms";
-import { IQuestion } from "./Iquestions";
+import { IQuestion } from "../../../../assets/surveys/interfaces/Iquestions";
 
 export interface ISurveyData{
     name:string,

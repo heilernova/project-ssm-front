@@ -5,7 +5,8 @@ import { ApiSurveysService } from 'src/app/api/surveys/api-surveys.service';
 import { PersonService } from 'src/app/components/person/person.service';
 import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
 import { PageService } from 'src/app/services/page.service';
-import { SURVEYS_LIST } from './surveys-list';
+import { ISurveyData } from 'src/assets/surveys/interfaces/Isurvey';
+import { suerveyList } from 'src/assets/surveys/surveys-list';
 
 @Component({
   selector: 'app-surveys',
@@ -17,9 +18,10 @@ export class SurveysComponent implements OnInit {
   inputDocument:FormControl = new FormControl('', [Validators.required, Validators.pattern('[0-9]+')]);
   inputPollster:FormControl = new FormControl('', [Validators.required]);
 
-  surveysMenu:{index:number, text:string, icon:string}[] = SURVEYS_MENU;
-  surveySelect:{index:number, text:string, icon:string} = this.surveysMenu[0];
-  surveys = SURVEYS_LIST;
+
+  surveys = suerveyList;
+  surveyTitle:string = this.surveys[0].nameTitle;
+  surveyIndex:number = 0;
 
   pollsters:{id:number, name:string}[] = [];
 
@@ -97,6 +99,11 @@ export class SurveysComponent implements OnInit {
 
   }
 
+  selectSurvey(index:number, survey:ISurveyData){
+    this.surveyTitle = survey.nameTitle;
+    this.surveyIndex = index;
+  }
+
   getValidClass(formControl:FormControl):string{
     return formControl.disabled ? 'b' : (formControl.valid ? 's' : 'n');
   }
@@ -107,12 +114,12 @@ export class SurveysComponent implements OnInit {
 }
 
 
-const SURVEYS_MENU:{index:number, text:string, icon:string}[] = [
-  {index: 0, text:'EPS', icon:'apartment'},
-  {index: 1, text:'Evaluación a la IPS primaria', icon: 'business'},
-  {index: 2, text:'Hospitalización', icon: 'local_hospital'},
-  {index: 3, text:'Laboratorio', icon: 'vaccines'},
-  {index: 4, text:'Farmacia', icon: 'local_pharmacy'},
-  {index: 5, text:'Medicina', icon: 'medication'},
-  {index: 6, text:'Odontología', icon: 'medication'},
-]
+// const SURVEYS_MENU:{index:number, text:string, icon:string}[] = [
+//   {index: 0, text:'EPS', icon:'apartment'},
+//   {index: 1, text:'Evaluación a la IPS primaria', icon: 'business'},
+//   {index: 2, text:'Hospitalización', icon: 'local_hospital'},
+//   {index: 3, text:'Laboratorio', icon: 'vaccines'},
+//   {index: 4, text:'Farmacia', icon: 'local_pharmacy'},
+//   {index: 5, text:'Medicina', icon: 'medication'},
+//   {index: 6, text:'Odontología', icon: 'medication'},
+// ]

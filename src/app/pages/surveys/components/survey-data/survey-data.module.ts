@@ -4,6 +4,7 @@ import { SurveyDataComponent } from './survey-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RadioButtonMasModule } from './components/radio-button-mas/radio-button-mas.module';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -15,7 +16,8 @@ import { RadioButtonMasModule } from './components/radio-button-mas/radio-button
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    RadioButtonMasModule
+    RadioButtonMasModule,
+    MatRadioModule
   ],exports:[
     SurveyDataComponent
   ]

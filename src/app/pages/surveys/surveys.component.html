@@ -50,22 +50,21 @@
     <!-- <div class="title">Encuestas</div> -->
     <div class="panel-surveys">
         <button mat-stroked-button [mat-menu-trigger-for]="menu"><mat-icon>menu</mat-icon></button>
-        <h2>
-            {{surveySelect.text}}
-        </h2>
+        <h2>{{surveyTitle}}</h2>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item *ngFor="let item of surveysMenu" >
+            <button mat-menu-item *ngFor="let item of surveys; let i = index" (click)="selectSurvey(i, item)">
                 <span><mat-icon>{{item.icon}}</mat-icon></span>
-                <span>{{item.text}}</span>
+                <span>{{item.nameTitle}}</span>
             </button>
         </mat-menu>
     </div>
     <div class="content">
-        <!-- Encuesta de la EPS -->
-        <!-- <div *ngFor="let survey of surveys">
-            <survey-data [surveyData]="survey"></survey-data> 
-            {{survey.name}}
-        </div> -->
-        <survey-data *ngFor="let survey of surveys" [surveyData]="survey"></survey-data>
+        <mat-tab-group class="tab-surveys" [selectedIndex]="surveyIndex">
+            <mat-tab *ngFor="let survey of surveys" [label]="survey.name">
+                <div class="tab-surveys">
+                    <survey-data [surveyData]="survey"></survey-data> 
+                </div>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </section>

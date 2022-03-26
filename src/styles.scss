@@ -158,6 +158,14 @@ body { margin: 0;
   text-transform: capitalize;
 }
 
+.uppercase{
+  text-transform: uppercase;
+}
+
+.lowercase{
+  text-transform: lowercase;
+}
+
 .dlg-case-info{
   .mat-dialog-container{
     background-color: rebeccapurple;

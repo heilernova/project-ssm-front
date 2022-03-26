@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SurveyDataModule } from './components/survey-data/survey-data.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SurveyDataModule } from './components/survey-data/survey-data.module';
     HttpClientModule,
     MatProgressSpinnerModule,
     PipesModule,
-    SurveyDataModule
+    SurveyDataModule,
+    MatTabsModule
   ]
 })
 export class SurveysModule { }

@@ -98,15 +98,25 @@ section{
         
     }
 }
-// ::ng-deep{
-// //     .mat-form-field-wrapper{
-// //         margin: 0;
-// //         background-color: red;
-// //         height: 40px;
-// //     }
-// // }
-
-// .mat-form-field-flex{
-//     // background-color: red;    
-// }
-// }
+.tab-surveys{
+    padding-top: 10px;
+}
+::ng-deep{
+    .tab-surveys{
+        .mat-tab-header{
+            display: none;
+        }
+        .mat-tab-labels{
+            display: none;
+        }
+        .mat-tab-label-container{
+            display: none;
+        }
+        .mat-tab-label-container{
+            .mat-tab-labels{
+                display: none;
+            }
+        }
+        
+    }
+}

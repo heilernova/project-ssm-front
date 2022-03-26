@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ISurvey } from '../../interfaces/Isurvey';
-import { ISurveyData } from '../../interfaces/survey';
+import { ISurveyData } from 'src/assets/surveys/interfaces/Isurvey';
 
 @Component({
   selector: 'survey-data',
@@ -14,9 +13,14 @@ export class SurveyDataComponent implements OnInit {
     questions: [],
     name: '',
     formGroup: new FormGroup({}),
-    salve: false
+    salve: false,
+    nameTitle: '',
+    icon: '',
+    database: '',
+    introduction: ''
   };
 
+  indexQuest:number = 0;
 
   constructor() {
 
@@ -26,8 +30,9 @@ export class SurveyDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-        let i:number = 0;
-    this.surveyData.questions.forEach(item=>{
+      
+      let i:number = 0;
+      this.surveyData.questions.forEach(item=>{
       let name:string = "";
       if (item.formControlName){
         name = item.formControlName;
@@ -35,10 +40,16 @@ export class SurveyDataComponent implements OnInit {
         i++;
         name = `ask${i.toString().padStart(2, '0')}`;
       }
-      item.formControl = new FormControl(undefined, Validators.required);
+      
       this.surveyData.formGroup.addControl(name, item.formControl);
+      
+      let ii:number = 0;
+      item.subQuestions?.forEach(element=>{
+        this.surveyData.formGroup.addControl('', element.formControl);
+      });
     });
   }
+
 
 
   sendForm(){
