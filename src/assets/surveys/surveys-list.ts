@@ -1,4 +1,5 @@
-import { ISurveyData } from "./interfaces/Isurvey";
+
+import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
 import { SurveyEpsData } from "./questions/eps";
 import { SurveyIPSData } from "./questions/ips";
 import { SurveyIPSHospitalizationData } from "./questions/ips-hospitalization";

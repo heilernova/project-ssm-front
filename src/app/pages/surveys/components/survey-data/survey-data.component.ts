@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ISurveyData } from 'src/assets/surveys/interfaces/Isurvey';
+import { ISurveyData } from '../../interfaces/Isurvey';
+
 
 @Component({
   selector: 'survey-data',
@@ -8,6 +9,7 @@ import { ISurveyData } from 'src/assets/surveys/interfaces/Isurvey';
   styleUrls: ['./survey-data.component.scss', './surveys.scss']
 })
 export class SurveyDataComponent implements OnInit {
+  @Output() sendFormData = new EventEmitter<any>();
 
   @Input() surveyData:ISurveyData = {
     questions: [],
@@ -45,7 +47,9 @@ export class SurveyDataComponent implements OnInit {
       
       let ii:number = 0;
       item.subQuestions?.forEach(element=>{
-        this.surveyData.formGroup.addControl('', element.formControl);
+        ii++;
+        let subName:string = `${name}.${ii.toString().padStart(2,'0')}`;
+        this.surveyData.formGroup.addControl(subName, element.formControl);
       });
     });
   }
@@ -53,8 +57,7 @@ export class SurveyDataComponent implements OnInit {
 
 
   sendForm(){
-    console.log(this.surveyData.formGroup.value);
-    this.surveyData.formGroup.disable();
+    this.sendFormData.emit(this.surveyData);
   }
 
 }

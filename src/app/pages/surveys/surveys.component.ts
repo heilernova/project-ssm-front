@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiPersonsService } from 'src/app/api/persons/api-persons.service';
+import { IPersonGet } from 'src/app/api/persons/interfaces/IPersonGet';
 import { ApiSurveysService } from 'src/app/api/surveys/api-surveys.service';
 import { PersonService } from 'src/app/components/person/person.service';
 import { CellphonePipe } from 'src/app/pipes/cellphone.pipe';
 import { PageService } from 'src/app/services/page.service';
-import { ISurveyData } from 'src/assets/surveys/interfaces/Isurvey';
+
 import { suerveyList } from 'src/assets/surveys/surveys-list';
+import { ISurveyData } from './interfaces/Isurvey';
 
 @Component({
   selector: 'app-surveys',
@@ -29,7 +31,20 @@ export class SurveysComponent implements OnInit {
   disableInpustUserData:boolean = false;
   loading:boolean = false;
 
-  userDataView:{name:string, cellphone:string, address:string} = { name: '', cellphone: '', address: '' };
+  userDataView:IPersonGet = {
+    name: '', cellphone: '', address: '',
+    dni: '',
+    dniType: '',
+    date: '',
+    lastName: '',
+    sex: '',
+    birthDate: null,
+    age: null,
+    email: '',
+    eps: 0,
+    sisben: 0,
+    regime: 0
+  };
 
   constructor(
     public page:PageService,
@@ -47,8 +62,10 @@ export class SurveysComponent implements OnInit {
     this.dni.valueChanges.subscribe(res=>{
       this.clearClient();
     })
-
-    console.log(this.surveys);
+    
+    this.surveys[0].formGroup.addControl('user', this.inputPollster);
+    // this.surveys[0].salve = true;
+    this.surveys[0].formGroup.addControl('dni', this.inputDocument);
   }
 
   ngOnInit(): void {
@@ -66,27 +83,50 @@ export class SurveysComponent implements OnInit {
             this.loading = false;
             this.dni.enable();
             this.inputDocument.setValue(person.dni);
-            this.userDataView.name = `${person.name} ${person.lastName}`;
-            this.userDataView.address = person.address;
-            this.userDataView.cellphone = new CellphonePipe().transform(person.cellphone);
-  
+            this.userDataView = person;
+            this.userDataView = person;
           },error: ()=>{
             this.loading = false;
             this.dni.enable();
-            this._person.show();
+            this._person.show(this.dni.value).afterClosed().subscribe(person=>{
+              if (person){
+                this.inputDocument.setValue(person.dni);
+                this.userDataView = person;
+              }
+            });
+          }
+        });
+      }else{
+        console.log(this.inputDocument.value);
+        this._person.show(this.inputDocument.value.toString()).afterClosed().subscribe(person=>{
+          if (person){
+            this.inputDocument.setValue(person.dni);
+            this.userDataView = person;
           }
         });
       }
     }else{
-
+      
     }
   }
 
   clearClient(){
-    this.inputDocument.setValue('');
-    this.userDataView.address = "";
-    this.userDataView.cellphone = "";
-    this.userDataView.name = "";
+    if (this.inputDocument.value){
+
+      this.inputDocument.setValue('');
+      this.userDataView.address = "";
+      this.userDataView.cellphone = "";
+      this.userDataView.name = "";
+    }else{
+    }
+  }
+
+  clientGetName():string{
+    return `${this.userDataView.name} ${this.userDataView.lastName}`; 
+  }
+
+  clientGetCellphone():string{
+    return new CellphonePipe().transform(this.userDataView.cellphone);
   }
 
   dniKeyUp(event:KeyboardEvent ){
@@ -102,6 +142,19 @@ export class SurveysComponent implements OnInit {
   selectSurvey(index:number, survey:ISurveyData){
     this.surveyTitle = survey.nameTitle;
     this.surveyIndex = index;
+    
+    // Borramos los controlles
+    this.surveys.forEach(survey=>{
+      survey.formGroup.removeControl('user');
+      survey.formGroup.removeControl('dni');
+    });
+    
+    if (survey.formGroup.enabled){
+
+      survey.formGroup.addControl('user', this.inputPollster);
+      survey.formGroup.addControl('dni', this.inputDocument);
+    }
+    // this.surveys[index].formGroup.removeControl('user');
   }
 
   getValidClass(formControl:FormControl):string{
@@ -111,15 +164,15 @@ export class SurveysComponent implements OnInit {
     return formControl.disabled ? 'block' : (formControl.valid ? 'check' : 'close');
   }
 
+  sendSurvey(data:ISurveyData){
+    this._apiSurveys.salveSurvey(data).subscribe({
+      next: res =>{
+        data.formGroup.removeControl('user');
+        data.formGroup.removeControl('dni');
+        data.formGroup.disable();
+        data.salve = true;
+      }
+    })
+  }
+
 }
-
-
-// const SURVEYS_MENU:{index:number, text:string, icon:string}[] = [
-//   {index: 0, text:'EPS', icon:'apartment'},
-//   {index: 1, text:'Evaluación a la IPS primaria', icon: 'business'},
-//   {index: 2, text:'Hospitalización', icon: 'local_hospital'},
-//   {index: 3, text:'Laboratorio', icon: 'vaccines'},
-//   {index: 4, text:'Farmacia', icon: 'local_pharmacy'},
-//   {index: 5, text:'Medicina', icon: 'medication'},
-//   {index: 6, text:'Odontología', icon: 'medication'},
-// ]

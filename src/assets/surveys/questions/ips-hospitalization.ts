@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { options_okay_regular_bad, options_score_1_to_5, options_yes_no, QuestinoType } from "../interfaces/Iquestions";
-import { ISurveyData } from "../interfaces/Isurvey";
+import { options_okay_regular_bad, options_score_1_to_5, options_yes_no, QuestinoType } from "../../../app/pages/surveys/interfaces/Iquestions";
+import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
 
 
 
@@ -60,8 +60,8 @@ export const SurveyIPSHospitalizationData:ISurveyData = {
             question: 'Al registrarse le solicitaron la siguiente información',
             type: QuestinoType.radioButtonMas,
             options: [
-                { code:'Documento de identificación', text: 'Documento de identificación'},
-                { code:'Autorización', text: 'Autorización'}
+                { code:1, text: 'Documento de identificación'},
+                { code:2, text: 'Autorización'}
               ],
         },
         /** 06 */

@@ -3,6 +3,10 @@
         <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
 </div>
+<section class="controls">
+    <mat-icon class="logo">poll</mat-icon>
+    <button mat-stroked-button>Limpiar formilario <mat-icon>restart_alt</mat-icon></button>
+</section>
 <section class="pollster">
     <div class="title">Encuestador:</div>
     <div class="select-pollster" style="width: 100%; max-width: 300px; margin-right: 30px;">
@@ -21,19 +25,19 @@
         <mat-form-field appearance="standard" style="width: 130px;">
             <mat-label>Documento</mat-label>
             <input matInput autocomplete="off" [formControl]="dni" (keyup)="dniKeyUp($event)">
-            <button matSuffix mat-icon-button (click)="searchDocument()"><mat-icon>search</mat-icon></button>
+            <button matSuffix mat-icon-button (click)="searchDocument()"><mat-icon>{{inputDocument.invalid ? 'search' : 'edit'}}</mat-icon></button>
         </mat-form-field>
         
         <!-- Nombre del usuario -->
         <mat-form-field appearance="standard" style="width: 250px;">
             <mat-label>Nombre y apellido</mat-label>
-            <input matInput autocomplete="off" class="capitalize" [value]="userDataView.name" readonly [disabled]="dni.disabled">
+            <input matInput autocomplete="off" class="capitalize" [value]="clientGetName()" readonly [disabled]="dni.disabled">
         </mat-form-field>
         
         <!-- Teléfono de contacto -->
         <mat-form-field appearance="standard" style="width: 105px;">
             <mat-label>Teléfono</mat-label>
-            <input matInput autocomplete="off" class="capitalize" [value]="userDataView.cellphone" readonly [disabled]="dni.disabled">
+            <input matInput autocomplete="off" class="capitalize" [value]="clientGetCellphone()" readonly [disabled]="dni.disabled">
         </mat-form-field>
         <!-- Teléfono de contacto -->
         <mat-form-field appearance="standard" style="width: 100%; max-width: 300px;">
@@ -55,6 +59,7 @@
             <button mat-menu-item *ngFor="let item of surveys; let i = index" (click)="selectSurvey(i, item)">
                 <span><mat-icon>{{item.icon}}</mat-icon></span>
                 <span>{{item.nameTitle}}</span>
+                <span *ngIf="item.salve"><mat-icon style="color: blue; margin-bottom: 10px; font-weight: 600;">check</mat-icon></span>
             </button>
         </mat-menu>
     </div>
@@ -62,7 +67,7 @@
         <mat-tab-group class="tab-surveys" [selectedIndex]="surveyIndex">
             <mat-tab *ngFor="let survey of surveys" [label]="survey.name">
                 <div class="tab-surveys">
-                    <survey-data [surveyData]="survey"></survey-data> 
+                    <survey-data [surveyData]="survey" (sendFormData)="sendSurvey($event)"></survey-data> 
                 </div>
             </mat-tab>
         </mat-tab-group>

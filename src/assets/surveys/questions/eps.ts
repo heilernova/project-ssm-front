@@ -1,6 +1,7 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { options_score_1_to_5, options_yes_no, QuestinoType } from "../interfaces/Iquestions";
-import { ISurveyData } from "../interfaces/Isurvey";
+import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
+import { options_score_1_to_5, options_yes_no, QuestinoType } from "../../../app/pages/surveys/interfaces/Iquestions";
+
 
 
 
@@ -13,16 +14,15 @@ export const SurveyEpsData:ISurveyData = {
     formGroup: new FormGroup({}),
     salve: false,
     questions: [
-        /** Campo a diligneciar no */
+        /** 01 */
         {
-            formControlName:'eps',
             formControl: new FormControl('', Validators.required),
             question: 'Nombre de la EPS',
             type: QuestinoType.text,
             inputFormat:{ textTransform:"uppercase"},
             options: []
         },
-        /** 01 */
+        /** 02 */
         {
             formControl: new FormControl('', Validators.required),
             question: '¿Cuáles de las siguientes personas lo recibió?',
@@ -33,14 +33,14 @@ export const SurveyEpsData:ISurveyData = {
                 { code: 3, text: 'Recepcionista' }
             ]
         },
-        /** 02 */
+        /** 03 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'La atención de la persona que lo recibió fue amable y oportuna?',
             type: QuestinoType.radioButton,
             options: options_yes_no
         },
-        /** 03 */
+        /** 04 */
         {
             formControl: new FormControl('', Validators.required),
             note: 'Califique la gestión de la entidad (EAPB) en escala de uno a cinco donde: 1 es muy malo, y 5 es excelente.',
@@ -48,56 +48,56 @@ export const SurveyEpsData:ISurveyData = {
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 04 */
+        /** 05 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Procesos de difusión, canales de atención y capacitación de usuarios y alianzas.',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 05 */
+        /** 06 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Procesos de afiliación, reportes de nacimientos, novedades, portabilidad, movilidad y traslado',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 06 */
+        /** 07 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Procesos de direccionamiento y demanda inducida   (P y P)',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 07 */
+        /** 08 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Procesos de atención para la prestación de servicios en la red',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 08 */
+        /** 09 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Procesos de autorizaciones',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 09 */
+        /** 10 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Proceso de referencia a otro departamento',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 10 */
+        /** 11 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Proceso de quejas, reclamos y solución de inconveniente',
             type: QuestinoType.radioButton,
             options: options_score_1_to_5
         },
-        /** 11 */
+        /** 12 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Como califica la gestión del promotor y el asesor de servicios',
@@ -111,7 +111,7 @@ export const SurveyEpsData:ISurveyData = {
                     type:QuestinoType.radioButton,
                     options: options_score_1_to_5
                 },
-                /** 11.2 */
+                /** 12.2 */
                 {
                     formControl: new FormControl('', Validators.required),
                     question: 'Gestión frente a la comunidad',
@@ -120,7 +120,7 @@ export const SurveyEpsData:ISurveyData = {
                 }
             ]
         },
-        /** 12 */
+        /** 13 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'La gestión que realiza la EAPB en beneficio a los usuarios es',

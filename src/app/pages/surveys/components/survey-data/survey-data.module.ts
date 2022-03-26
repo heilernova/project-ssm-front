@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SurveyDataComponent } from './survey-data.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RadioButtonMasModule } from './components/radio-button-mas/radio-button-mas.module';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { MatRadioModule } from '@angular/material/radio';
     ReactiveFormsModule,
     MatIconModule,
     RadioButtonMasModule,
-    MatRadioModule
+    MatRadioModule,
+    MatButtonModule
   ],exports:[
     SurveyDataComponent
   ]

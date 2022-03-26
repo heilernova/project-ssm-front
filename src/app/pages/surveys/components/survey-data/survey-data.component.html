@@ -1,7 +1,10 @@
+<div *ngIf="surveyData.salve" class="form-salve">
+    Formulario guardado.
+</div>
 <div class="introduction">
     {{surveyData.introduction}}
 </div>
-<ul class="questions">
+<ul class="questions" [ngClass]="surveyData.salve ? 'salve' : ''">
     <li *ngFor="let question of surveyData.questions; let i = index">
         <div class="note"></div>
         <div class="box">
@@ -84,7 +87,6 @@
         </div>
     </li>
 </ul>
-<div>
-    <button [disabled]="surveyData.formGroup.invalid" (click)="sendForm()">Guardar</button>
-    <button (click)="sendForm()">Guardar</button>
+<div class="actions">
+    <button [disabled]="surveyData.formGroup.invalid || surveyData.salve" (click)="sendForm()" mat-stroked-button class="btn-salve">Guardar</button>
 </div>

@@ -1,6 +1,6 @@
 <h2>{{title}}</h2>
 <mat-dialog-content>
-    <div class="content-inputs">
+    <div class="content-inputs" [formGroup]="form">
 
         <div class="flex" >
             <!-- Número de documento -->
@@ -43,7 +43,7 @@
         
         <div class="flex">
             <!-- Sexo -->
-            <mat-form-field class="sex" appearance="standard">
+            <mat-form-field class="sex" appearance="standard" style="width: 60px;">
                 <mat-label>Sexo</mat-label>
                 <mat-select formControlName="sex">
                     <mat-option value="M">M</mat-option>
@@ -51,6 +51,15 @@
                     <mat-option [value]="null">Sin definir</mat-option>
                 </mat-select>
             </mat-form-field>
+
+            <!-- Edad -->
+            <mat-form-field class="cellphone" appearance="standard">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput autocomplete="off" maxlength="10" type="date"
+                formControlName="birthDate">
+            </mat-form-field>
+            
+            <!-- <app-box-date></app-box-date> -->
         </div>
         
         <!-- Teléfono movil -->
@@ -111,9 +120,10 @@
             </mat-form-field>
            
         </div>
+        <!-- <button>s</button> -->
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-stroked-button [mat-dialog-close]="false">Cancelar</button>
-    <button mat-stroked-button>Guardar</button>
+    <button mat-stroked-button (click)="send()">Guardar</button>
 </mat-dialog-actions>

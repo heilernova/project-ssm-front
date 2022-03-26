@@ -1,6 +1,13 @@
-import { IQuestion } from "../../../../assets/surveys/interfaces/Iquestions"
+import { FormGroup } from "@angular/forms"
+import { IQuestion } from "./Iquestions"
 
-export interface ISurvey{
-    introduction?:string
+export interface ISurveyData{ 
+    name:string,
+    nameTitle:string,
+    icon:string
+    database:string,
+    introduction:string|string[],
+    formGroup:FormGroup,
+    salve:boolean,
     questions:IQuestion[]
 }

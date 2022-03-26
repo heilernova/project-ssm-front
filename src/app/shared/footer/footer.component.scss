@@ -1,15 +1,42 @@
 :host{
+    padding: 10px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: var(--color-footer);
+    font-weight: 500;
+    color: gray;
     // :nth-child(1){
     //     // background-color: red;
     // }
     :nth-child(2){
         display: flex;
         justify-content: center;
+       
     }
     :nth-child(3){
-        text-align: right;
+        text-align: right; 
+    }
+}
+.cp{
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+    :host{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        :nth-child(2){
+            display: flex;
+            justify-content: center;
+            div{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        :nth-child(3){
+            text-align: center; 
+        }
     }
 }

@@ -1,13 +1,13 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { options_okay_regular_bad, options_score_1_to_5, options_yes_no, QuestinoType } from "../interfaces/Iquestions";
-import { ISurveyData } from "../interfaces/Isurvey";
+import { options_okay_regular_bad, options_score_1_to_5, options_yes_no, QuestinoType } from "../../../app/pages/surveys/interfaces/Iquestions";
+import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
 
 
 
 export const SurveyIPSData:ISurveyData = {
     name: 'ips',
     nameTitle:'Evaluación a la IPS primaria',
-    database: 'tb_surveys_ips',
+    database: 'tb_surveys_ips_hospitalization',
     icon: 'business',
     introduction: '',
     formGroup: new FormGroup({}),
@@ -15,7 +15,6 @@ export const SurveyIPSData:ISurveyData = {
     questions: [
         /** 01 */
         {
-            formControlName:'ips',
             formControl: new FormControl('', Validators.required),
             question: 'Nombre de la IPS',
             type: QuestinoType.text,

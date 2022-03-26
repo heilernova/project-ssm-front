@@ -1,13 +1,13 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { options_okay_regular_bad, options_score_1_to_5, options_yes_no, QuestinoType } from "../interfaces/Iquestions";
-import { ISurveyData } from "../interfaces/Isurvey";
+import { options_okay_regular_bad, options_score_1_to_5, options_yes_no, QuestinoType } from "../../../app/pages/surveys/interfaces/Iquestions";
+import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
 
 
 
 export const SurveyIPSOdontologyData:ISurveyData = {
     name: 'ipsHospitalization',
     nameTitle:'Odontología',
-    database: 'tb_surveys_ips',
+    database: 'tb_surveys_ips_odontology',
     icon: 'biotech',
     introduction: '',
     formGroup: new FormGroup({}),
