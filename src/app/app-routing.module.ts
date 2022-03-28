@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '', component:BodyComponent,
     children: [
+      { path: '', loadChildren:()=>import('./pages/panel-users/panel-users.module').then(m=>m.PanelUsersModule) },
       { path: 'encuesta-de-satisfaccion', loadChildren:()=>import('./pages/surveys/surveys.module').then(c=>c.SurveysModule)}
     ]
   }

@@ -1,0 +1,40 @@
+:host{
+    mat-form-field{
+        height: 52px;
+    }
+}
+
+mat-dialog-content{
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+    padding-bottom: 20px;
+
+    section{
+        &.info-user{
+            display: flex;
+            column-gap: 20px;
+            flex-wrap: wrap;
+            .document{
+                width: 120px;
+            }
+            .name{
+                width: 100%;
+                max-width: 300px;
+            }
+            .sex{
+                width: 40px;
+                input{ padding-left: 5px; }
+            }
+            .cellphone{
+                width: 105px;
+            }
+        }
+        &.checkends{
+            display: flex;
+            column-gap: 20px;
+            row-gap: 7px;
+            flex-wrap: wrap;
+        }
+    }
+}

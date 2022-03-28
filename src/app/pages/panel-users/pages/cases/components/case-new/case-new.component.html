@@ -1,0 +1,65 @@
+<h2>Registro de nuevo caso</h2>
+<mat-dialog-content>
+    <section class="info-user">
+        <mat-form-field appearance="standard" class="document">
+            <mat-label>Documento</mat-label>
+            <input matInput autocomplete="off" [formControl]="inputDocument">
+            <button matSuffix mat-icon-button><mat-icon>search</mat-icon></button>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="name">
+            <mat-label>Nombre y apellido</mat-label>
+            <input matInput autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="sex">
+            <mat-label>Sexo</mat-label>
+            <input matInput autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="cellphone">
+            <mat-label>Teléfono</mat-label>
+            <input matInput autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="address">
+            <mat-label>Dirección</mat-label>
+            <input matInput autocomplete="off">
+        </mat-form-field>
+    </section>
+    <section style="display: flex; column-gap: 20px; flex-wrap: wrap;">
+        <mat-form-field appearance="standard">
+            <mat-label>EPS</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let eps of _casesData.getEPS()" [value]="eps.id">{{eps.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Servicio requerido</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let attention of _casesData.getRequiredAttentions()" [value]="attention.id">{{attention.attention}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+    <section class="checkends">
+        <!-- <mat-checkbox color="primary" formControlName="olderAdult">Adulto mayor</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="disabled">Discapacitado</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="pregnant">Gestante</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="womenHeadHousehold">Mujer cabeza de familia</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="afrodescendent">Afrodecendiente</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="lgtbi">LGTBI</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="victim">Victima</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="displaced">Desplazado</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="demobilized">Desmovilizado</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="reinserted">Reinsertado</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="palenRaizal">Palen raizal</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="roomGintano">Room gitano</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="nnaNunaccompaniedAdult">NNA sin acompañamiento</mat-checkbox> -->
+    </section>
+    <section style="margin-bottom: 10px;">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Nota</mat-label>
+            <textarea matInput rows="5"></textarea>
+        </mat-form-field>
+    </section>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button>Cancelar</button>
+    <button mat-stroked-button>Guardar</button>
+</mat-dialog-actions>

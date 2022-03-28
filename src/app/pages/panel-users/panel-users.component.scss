@@ -1,0 +1,28 @@
+:host{
+    width: 100%;
+    max-width: 900px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+nav{
+    display: flex;
+    .menu{
+        display: flex;
+        column-gap: 50px;
+        list-style: none;
+        li{
+            display: flex;
+            column-gap: 10px;
+            align-items: center;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.10);
+                transition: all 0.3s;
+            }
+        }
+    }
+}
+section{
+    // background-color: red;
+}

@@ -1,0 +1,27 @@
+<div class="panel-head">
+    Registros  de casos
+</div>
+
+<div class="panel-controls">
+    <mat-form-field appearance="standard">
+        <mat-label>Buscar (Documento o nombre)</mat-label>
+        <input matInput type="text" autocomplete="off">
+    </mat-form-field>
+    <div class="buttons">
+        <button mat-stroked-button (click)="newCase()">
+            Nuevo caso
+            <mat-icon>post_add</mat-icon>
+        </button>
+        <button mat-stroked-button>
+            Descargar
+            <mat-icon>download</mat-icon>
+        </button>
+        <button mat-stroked-button>
+            Filtrar
+            <mat-icon>filter_alt</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="panel-results">
+
+</div>
