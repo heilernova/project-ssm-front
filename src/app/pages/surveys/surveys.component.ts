@@ -71,6 +71,16 @@ export class SurveysComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  resetForm(){
+    let pollster = this.inputPollster.value;
+    
+    this.surveys.forEach(survey=>{
+      survey.formGroup.reset();
+      survey.salve = false;
+    });
+
+    this.inputPollster.setValue(pollster);
+  }
   searchDocument(){
     if (this.dni.valid){
       
