@@ -1,11 +1,13 @@
 <h2>Registro de nuevo caso</h2>
 <mat-dialog-content [formGroup]="form">
     <section class="info-user">
+        
         <mat-form-field appearance="standard" class="document">
             <mat-label>Documento</mat-label>
             <input matInput autocomplete="off" [formControl]="inputDocument">
-            <button matSuffix mat-icon-button [disabled]="inputDocument.invalid" (click)="searchDni()"><mat-icon>search</mat-icon></button>
+            <button matSuffix mat-icon-button [disabled]="inputDocument.invalid" (click)="searchDni()"><mat-icon>{{user ? 'edit' : 'search'}}</mat-icon></button>
         </mat-form-field>
+
         <mat-form-field appearance="standard" class="name">
             <mat-label>Nombre y apellido</mat-label>
             <input matInput class="capitalize" autocomplete="off" [value]="(user?.name ?? '') + ' ' + (user?.lastName ?? '')">

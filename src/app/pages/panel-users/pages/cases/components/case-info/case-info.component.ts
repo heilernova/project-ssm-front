@@ -92,9 +92,9 @@ export class CaseInfoComponent implements OnInit {
     // this._dlgPeron.edit(this.caseInfo.dni);
     this._person.show(this.caseInfo?.dni).afterClosed().subscribe(res=>{
       if (res){
+        console.log(res);
         if (this.caseInfo){
-          this.caseInfo.name = res.name;
-          this.caseInfo.lastName = res.lastName;
+          this.caseInfo.name = `${res.name} ${res.lastName}`;
           this.caseInfo.age = res.age;
           this.caseInfo.sex = res.sex;
           this.caseInfo.siben = res.siben;

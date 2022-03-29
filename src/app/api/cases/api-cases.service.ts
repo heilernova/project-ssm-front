@@ -21,6 +21,9 @@ export class ApiCasesService {
   getPerson(dni:string):Observable<{person:any, lastCase?:any}>{
     return this._http.get<{person:any, lastCase?:any}>(`attention-community/users/${dni}`);
   }
+  getRequiredAttentions():Observable<any[]>{
+    return this._http.get<any[]>(`attention-community/required-attentions`);
+  }
 
   insert(data:any):Observable<any>{
     return this._http.post(`attention-community/cases`, JSON.stringify(data));

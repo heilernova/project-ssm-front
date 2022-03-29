@@ -51,6 +51,8 @@ export class CaseNewComponent implements OnInit {
         this.user = undefined;
       }
     })
+
+    this._casesData.load();
   }
   
   ngOnInit(): void {
@@ -59,17 +61,60 @@ export class CaseNewComponent implements OnInit {
 
 
   searchDni(){
-    this._cases.getInforUser(this.inputDocument.value).subscribe({
-      next: data=>{
-        if (data.person){
-          
-          this.user = data.person;
-          this.form.get('dni')?.setValue(this.inputDocument.value);
-        }else{
-          this._person.show(this.inputDocument.value);
+    if (this.inputDocument.value != this.form.get('dni')?.value){
+
+      this._cases.getInforUser(this.inputDocument.value).subscribe({
+        next: data=>{
+          if (data.person){
+            
+            this.user = data.person;
+
+            let dataVues = {
+              dni: data.person.dni ,
+              eps:  data.person.eps,
+              requiredAttention: null,
+              note: '',
+              olderAdult: false,
+              disabled: false,
+              pregnant: false,
+              womenHeadHousehold: false,
+              afrodescendent: false,
+              lgtbi: false,
+              victim: false,
+              displaced: false,
+              demobilized: false,
+              reinserted: false,
+              palenRaizal: false,
+              roomGintano: false,
+              nnaNunaccompaniedAdult: false
+            }
+            // this.form.get('dni')?.setValue(this.inputDocument.value);
+
+            if (data.lastCase){
+              let d = data.lastCase;
+              dataVues.olderAdult = d.olderAdult;
+              dataVues.disabled = d.disabled;
+              dataVues.womenHeadHousehold = d.womenHeadHousehold;
+              dataVues.afrodescendent = d.afrodescendent;
+              dataVues.lgtbi = d.lgtbi;
+              dataVues.victim = d.victim;
+              dataVues.disabled = d.disabled;
+              dataVues.demobilized = d.demobilized;
+              dataVues.reinserted = d.reinserted;
+              dataVues.palenRaizal = d.palenRaizal;
+              dataVues.roomGintano = d.roomGintano;
+              dataVues.nnaNunaccompaniedAdult = d.nnaNunaccompaniedAdult;
+            }
+
+            this.form.setValue(dataVues);
+          }else{
+            this._person.show(this.inputDocument.value);
+          }
         }
-      }
-    });
+      });
+    }else{
+      this._person.show(this.inputDocument.value);
+    }
   }
 
   send(){
@@ -78,6 +123,6 @@ export class CaseNewComponent implements OnInit {
       next: data =>{
         this._matDialogRef.close(data);
       }
-    })
+    });
   }
 }
