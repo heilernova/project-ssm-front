@@ -1,6 +1,4 @@
-import { IRequestGet } from "./IRequestGet";
-
-export interface ICaseUserGet{
+export interface ICaseData {
     id:number,
     date:string,
     dni:string,
@@ -9,6 +7,7 @@ export interface ICaseUserGet{
     lastName:string,
     sex:string|null,
     birthDate:string|null,
+    age:string|null,
     cellphone:string|null,
     email:string|null,
     address:string,
@@ -17,5 +16,6 @@ export interface ICaseUserGet{
     eps:string,
     requiredAttention:string,
     note:string,
-    status:boolean
+    status:boolean,
+    observations:any[]
 }

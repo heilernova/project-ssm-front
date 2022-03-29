@@ -1,29 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CasesComponent } from './cases.component';
+import { AuthComponent } from './auth.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { CaseNewModule } from './components/case-new/case-new.module';
-import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CaseInfoModule } from './components/case-info/case-info.module';
 
 
 
 @NgModule({
   declarations: [
-    CasesComponent
+    AuthComponent
   ],
   imports: [
     CommonModule,
+    MatDialogModule,
     MatButtonModule,
     MatInputModule,
     MatIconModule,
-    CaseNewModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    CaseInfoModule
+    ReactiveFormsModule
   ]
 })
-export class CasesModule { }
+export class AuthModule { }

@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { NvMessageBoxService } from 'ng-nova';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -20,7 +21,8 @@ export class ApiInterceptor implements HttpInterceptor {
   constructor(
     private _message:NvMessageBoxService,
     private _login:LoginService,
-    private _router:Router
+    private _router:Router,
+    private _user:UserService
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -67,7 +69,7 @@ export class ApiInterceptor implements HttpInterceptor {
         if (e.status == 401){
           this._message.alert("Por favor inicie sesión nuevamente", "Credenciales invalidas",{ disableClose:true }).afterClosed().subscribe(
             res=>{
-              this._router.navigate(['/login']);
+              this._user.auth();
             }
           );
         }

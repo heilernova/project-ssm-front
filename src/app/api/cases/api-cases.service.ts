@@ -14,16 +14,20 @@ export class ApiCasesService {
     private _http:HttpClient
   ) { }
 
-  getAll():Observable<ICaseGet[]>{
-    return this._http.get<ICaseGet[]>(`attention-community/cases`)
+  getAll():Observable<any[]>{
+    return this._http.get<any[]>(`attention-community/cases`)
   }
 
-  getPerson(dni:string):Observable<ICaseUserGet>{
-    return this._http.get<ICaseUserGet>(`attention-community/users/${dni}`);
+  getPerson(dni:string):Observable<{person:any, lastCase?:any}>{
+    return this._http.get<{person:any, lastCase?:any}>(`attention-community/users/${dni}`);
   }
 
   insert(data:any):Observable<any>{
     return this._http.post(`attention-community/cases`, JSON.stringify(data));
+  }
+
+  closeCase(id:number):Observable<boolean>{
+    return this._http.patch<boolean>(`attention-community/cases/${id}/close`, undefined);
   }
 
   insertObservation(idCase:number, text:string):Observable<any>{

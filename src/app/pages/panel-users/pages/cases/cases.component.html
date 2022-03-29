@@ -1,27 +1,82 @@
 <div class="panel-head">
-    Registros  de casos
+    <span (click)="closeInfo()" style="cursor: pointer;">Registros  de casos</span> {{infoCase ? ( '/Caso No.:' + infoCase.id.toString().padStart(6, '0')) : ''}}
+</div>
+<div class="info-case" *ngIf="infoCase">
+    <app-case-info [caseInfo]="infoCase" (_close)="closeInfo()"></app-case-info>
 </div>
 
-<div class="panel-controls">
-    <mat-form-field appearance="standard">
-        <mat-label>Buscar (Documento o nombre)</mat-label>
-        <input matInput type="text" autocomplete="off">
-    </mat-form-field>
-    <div class="buttons">
-        <button mat-stroked-button (click)="newCase()">
-            Nuevo caso
-            <mat-icon>post_add</mat-icon>
-        </button>
-        <button mat-stroked-button>
-            Descargar
-            <mat-icon>download</mat-icon>
-        </button>
-        <button mat-stroked-button>
-            Filtrar
-            <mat-icon>filter_alt</mat-icon>
-        </button>
+<div class="registros" *ngIf="!infoCase">
+    <div class="panel-controls">
+        <mat-form-field appearance="standard">
+            <mat-label>Buscar (Documento o nombre)</mat-label>
+            <input matInput type="text" autocomplete="off" [formControl]="inputSearch">
+        </mat-form-field>
+        <div class="buttons">
+            <button mat-stroked-button (click)="newCase()">
+                Nuevo caso
+                <mat-icon>post_add</mat-icon>
+            </button>
+            <button mat-stroked-button>
+                Descargar
+                <mat-icon>download</mat-icon>
+            </button>
+            <button mat-stroked-button>
+                Filtrar
+                <mat-icon>filter_alt</mat-icon>
+            </button>
+        </div>
     </div>
-</div>
-<div class="panel-results">
-
+    <div class="panel-results">
+        <ng-container>
+            <div class="tabla-result">
+                <table mat-table [dataSource]="dataSource">
+                    <!-- Fecha -->
+                    <ng-container matColumnDef="date">
+                        <th class="date" mat-header-cell *matHeaderCellDef> Fecha </th>
+                        <td class="date" mat-cell *matCellDef="let element"> <div>{{element.date | date: 'EEE dd/MMM/yyyy hh:mm aa'}}</div> </td>
+                    </ng-container>
+                    
+                    <!-- Número de documento -->
+                    <ng-container matColumnDef="dni">
+                        <th class="dni" mat-header-cell *matHeaderCellDef> Documento </th>
+                        <td class="dni" mat-cell *matCellDef="let element"> 
+                            <div>{{element.dni}}</div>
+                        </td>
+                    </ng-container>
+                    
+                    <!-- Nombre -->
+                    <ng-container matColumnDef="name">
+                        <th class="name" mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td class="name" mat-cell *matCellDef="let element"> {{element.name.toLowerCase() }} </td>
+                    </ng-container>
+                    
+                    <!-- estado -->
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                    </ng-container>
+                
+                    <!-- Controles de botones -->
+                    <ng-container matColumnDef="controls">
+                        <th mat-header-cell *matHeaderCellDef> Controles </th>
+                        <td class="controls" mat-cell *matCellDef="let element">
+                            <div>
+                                <button mat-icon-button (click)="showInfo(element)"> <mat-icon>zoom_in</mat-icon> </button>
+                                <!-- <button mat-icon-button (click)="caseDelete(element)"> <mat-icon>delete</mat-icon> </button> -->
+                            </div>
+                        </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                </table>
+            </div>
+        </ng-container>
+        <ng-template>
+            <div class="result-empy">
+                Sin resultados
+            </div>
+        </ng-template>
+    </div>
 </div>

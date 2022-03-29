@@ -1,0 +1,23 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    .form{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        mat-form-field{
+            height: 52px;
+            &:last-child{
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+::ng-deep{
+    .backdrop-login{
+        background-color: rgb(90, 83, 83, 0.95);
+        opacity: 80%;
+    }
+}

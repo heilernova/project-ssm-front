@@ -14,6 +14,7 @@ import { registerLocaleData } from '@angular/common';
 import { BodyModule } from './shared/body/body.module';
 import { NovaModule } from 'ng-nova';
 import { PersonModule } from './components/person/person.module';
+import { AuthModule } from './components/auth/auth.module';
 registerLocaleData(es_CO, 'es')
 
 @NgModule({
@@ -27,7 +28,8 @@ registerLocaleData(es_CO, 'es')
     BodyModule,
     HttpClientModule,
     NovaModule,
-    PersonModule
+    PersonModule,
+    AuthModule
   ],
   providers: [
     { provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true },

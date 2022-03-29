@@ -34,6 +34,10 @@ export class LoginService {
     return this._http.post('auth', data);
   }
 
+  onVerify():Observable<any>{
+    return this._http.get('auth');
+  }
+
   logout(){
     localStorage.removeItem('ssm-token');
   }

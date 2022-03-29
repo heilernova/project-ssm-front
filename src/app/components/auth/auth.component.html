@@ -1,0 +1,18 @@
+<h2>Inico de sesión</h2>
+<mat-dialog-content>
+    <div [formGroup]="form" class="form">
+        <mat-form-field appearance="standard">
+            <mat-label>Usuario</mat-label>
+            <input matInput autocomplete="off" formControlName="username">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Contraseña</mat-label>
+            <input matInput autocomplete="off" [type]="hiddenPassword ? 'password' : 'text'" formControlName="password">
+            <button type="button" matSuffix mat-icon-button (click)="hiddenPassword = !hiddenPassword"><mat-icon>{{hiddenPassword ? 'visibility' : 'visibility_off'}}</mat-icon></button>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-stroked-button disabled [mat-dialog-close]="false">Regresar</button>
+    <button mat-stroked-button [disabled]="form.invalid" (click)="send()">Iniciar</button>
+</mat-dialog-actions>
