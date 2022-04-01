@@ -72,14 +72,14 @@ export const SurveyIPSOdontologyData:ISurveyData = {
             formControl: new FormControl('', Validators.required),
             question: 'Califique la privacidad y comodidad del consultorio.',
             type: QuestinoType.radioButton,
-            options: options_yes_no
+            options: options_okay_regular_bad
         },
         /** 09 */
         {
             formControl: new FormControl('', Validators.required),
             question: 'Califique su satisfacción con  la atención recibida por el profesional en consultorio',
             type: QuestinoType.radioButton,
-            options: options_yes_no
+            options: options_okay_regular_bad
         },
         /** 10 */
         {
