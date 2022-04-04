@@ -7,7 +7,7 @@ import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
 export const SurveyIPSHospitalizationData:ISurveyData = {
     name: 'ipsHospitalization',
     nameTitle:'Hospitalización',
-    database: 'tb_surveys_ips',
+    database: 'tb_surveys_ips_hospitalization',
     icon: 'local_hospital',
     introduction: '',
     formGroup: new FormGroup({}),
