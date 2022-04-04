@@ -7,7 +7,7 @@ import { ISurveyData } from "src/app/pages/surveys/interfaces/Isurvey";
 export const SurveyIPSData:ISurveyData = {
     name: 'ips',
     nameTitle:'Evaluación a la IPS primaria',
-    database: 'tb_surveys_ips_hospitalization',
+    database: 'tb_surveys_ips',
     icon: 'business',
     introduction: '',
     formGroup: new FormGroup({}),
@@ -45,8 +45,7 @@ export const SurveyIPSData:ISurveyData = {
                 {code: 2, text: '2 a 3 días despues'},
                 {code: 3, text: '4 a 5 días despues'},
                 {code: 4, text: '8 días despues'},
-                {code: 5, text: 'Mas de 10 días despues'},
-                {code: 6, text: 'Se murio y no le respondieron'},
+                {code: 5, text: 'Mas de 10 días despues'}
             ]
         },
         /** 05 */
