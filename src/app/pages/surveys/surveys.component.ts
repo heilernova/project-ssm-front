@@ -73,7 +73,7 @@ export class SurveysComponent implements OnInit {
 
   resetForm(){
     let pollster = this.inputPollster.value;
-    
+    this.dni.setValue('');
     this.surveys.forEach(survey=>{
       survey.formGroup.reset();
       survey.salve = false;
