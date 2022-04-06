@@ -58,11 +58,7 @@ export const SurveyIPSPharmacyData:ISurveyData = {
             formControl: new FormControl('', Validators.required),
             question: '¿Fue entregado la totalidad de los medicamentos?',
             type: QuestinoType.radioButton,
-            options: [
-                {code:1, text: 'Inmediato'},
-                {code:2, text: 'A las 24 horas'},
-                {code:3, text: 'Más de 24 horas'}
-            ]
+            options: options_yes_no
         },
         /** 07 */
         {

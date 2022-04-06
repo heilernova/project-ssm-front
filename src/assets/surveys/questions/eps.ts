@@ -104,7 +104,7 @@ export const SurveyEpsData:ISurveyData = {
             type: QuestinoType.radioButton,
             options: options_score_1_to_5,
             subQuestions:[
-                /** 11.1 */
+                /** 12.1 */
                 {
                     formControl: new FormControl('', Validators.required),
                     question: 'Relaciones interpersonales',
