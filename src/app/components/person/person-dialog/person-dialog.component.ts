@@ -53,6 +53,7 @@ export class PersonDialogComponent implements OnInit {
             let pv:any = p;
             delete pv.date;
             delete pv.age;
+            console.log(p);
             this.form.setValue(p);
             this.edit = true;
           }

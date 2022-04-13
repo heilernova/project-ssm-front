@@ -95,8 +95,8 @@
              <mat-form-field appearance="standard" style="width: 70px;">
                 <mat-label>Sisben</mat-label>
                 <mat-select formControlName="sisben">
-                    <mat-option value="1">Si</mat-option>
-                    <mat-option value="0">No</mat-option>
+                    <mat-option [value]="1">Si</mat-option>
+                    <mat-option [value]="0">No</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -114,8 +114,8 @@
             <mat-form-field appearance="standard" style="width: 150px;">
                 <mat-label>Regimen de salud</mat-label>
                 <mat-select formControlName="regime">
-                    <mat-option value="0">Subsidiado</mat-option>
-                    <mat-option value="1">Contibutivo</mat-option>
+                    <mat-option [value]="0">Subsidiado</mat-option>
+                    <mat-option [value]="1">Contibutivo</mat-option>
                 </mat-select>
             </mat-form-field>
            

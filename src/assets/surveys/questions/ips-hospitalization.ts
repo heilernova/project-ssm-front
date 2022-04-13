@@ -44,7 +44,8 @@ export const SurveyIPSHospitalizationData:ISurveyData = {
                 { code:2, text:'Auxiliar'},
                 { code:3, text:'Recepcionista'},
                 { code:4, text:'Médico'},
-                { code:5, text:'Enfermero'}
+                { code:5, text:'Enfermero'},
+                { code:6, text:'Nadie me recibio'}
             ]
         },
         /** 04 */

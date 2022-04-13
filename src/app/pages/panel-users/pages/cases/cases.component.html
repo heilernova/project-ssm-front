@@ -9,7 +9,7 @@
     <div class="panel-controls">
         <mat-form-field appearance="standard">
             <mat-label>Buscar (Documento o nombre)</mat-label>
-            <input matInput type="text" autocomplete="off" [formControl]="inputSearch">
+            <input matInput type="text" class="capitalize" autocomplete="off" [formControl]="inputSearch">
         </mat-form-field>
         <div class="buttons">
             <button mat-stroked-button (click)="newCase()">
@@ -19,6 +19,10 @@
             <button mat-stroked-button>
                 Descargar
                 <mat-icon>download</mat-icon>
+            </button>
+            <button mat-stroked-button>
+                Actualizar
+                <mat-icon>autorenew</mat-icon>
             </button>
             <button mat-stroked-button>
                 Filtrar

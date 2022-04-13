@@ -25,6 +25,7 @@ export class CasesComponent implements OnInit {
     this._cases.getCases().subscribe({
       next: (data) =>{
         this.dataSource.data = data;
+        console.log(data);
         this.table.renderRows();
       }
     })

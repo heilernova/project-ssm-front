@@ -38,28 +38,27 @@ export class ApiInterceptor implements HttpInterceptor {
     let headers = new HttpHeaders({
       "ssm-access-token" : this._login.getToken()
     })
+
+    
     
     let requestClone:HttpRequest<unknown> = request.clone({url, headers});
+
     return next.handle(requestClone).pipe(
       map((event:HttpEvent<any>)=>{
 
         if (event instanceof HttpResponse){
-          let body = this.getBodyResponse(event.body);
-          if (body){
-            if (body.status){
-              if (body.message.content.length > 0){
-                this._message.show(body.message.content, body.message.title);
-              }
-              event = event.clone({body: body.data});
-            }else{
-              
-              this._message.error(body.message.content, body.message.title);
-
-              throw "Mensaje de la api " + url;
-              // throw new HttpErrorResponse({error: body.message, url: event.url ?? '', status: event.status});
+          let body = event.body;
+          
+          let data:any = JSON.parse(event.headers.get('nv-data') ?? "{}");
+          console.log(data);
+          if (data.systemMessage){
+            if (data.systemMessage.content){
+              this._message.alert(data.systemMessage.content, "");
             }
-          }else{
-            if (event.body == null) throw "Api NULL";
+          }
+          
+          if (body == null){
+            throw "Api NULL";
           }
         }
 
@@ -81,6 +80,7 @@ export class ApiInterceptor implements HttpInterceptor {
             
           }else if (typeof e.error == "string"){
             text = e.error;
+            console.log(e.error);
             this._message.errorServer(text, "Error con la petición HTTP");
           }
         }
@@ -90,27 +90,4 @@ export class ApiInterceptor implements HttpInterceptor {
     );
   }
 
-  private getMessage(data:any):{title:string, content:(string|string[])[], type:number}|null{
-    try {
-      if ('title' in data && 'content' in data && 'type' in data){
-        return data;
-      }else{
-        return null;
-      }
-    } catch (error) {
-      return null;
-    }
-  }
-
-  private getBodyResponse(data:any):{status:string, statusCode:number, message:{title:string, content:(string|string[])[], type:number}, data:any}|null{
-    try {
-      if ('status' in data && 'statusCode' in data && 'message' in data && 'data' in data){
-        return data;
-      }else{
-        return null;
-      }
-    } catch (error) {
-      return null;
-    }
-  }
 }

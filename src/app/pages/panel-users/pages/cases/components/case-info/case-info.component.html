@@ -1,19 +1,22 @@
-<section class="section">
+<section class="section" style="display: flex; align-items: center; justify-content: space-between;">
     <h2>Número de caso: {{getNoCase()}}</h2>
+    <div>
+        Ingresado por: {{caseInfo?.userName}}
+    </div>
 </section>
 <section class="section">
     <!-- Información de usuario -->
     <div class="grip-2">
         <div class="colum-gap-3px">
-            <app-case-info-item [lable]="caseInfo?.dniType ?? ''" class="test">{{caseInfo?.dni}}</app-case-info-item>
-            <app-case-info-item lable="Nombre" class="capitalize">{{caseInfo?.name}}</app-case-info-item>
+            <app-case-info-item width="55px" [lable]="caseInfo?.dniType ?? ''" class="test">{{caseInfo?.dni | number:'3.0'}}</app-case-info-item>
+            <app-case-info-item width="55px" lable="Nombre" class="capitalize">{{caseInfo?.name}}</app-case-info-item>
             <div class="flex">
-                <app-case-info-item lable="Edad" class="capitalize">{{caseInfo?.age ?? ''}}</app-case-info-item>
+                <app-case-info-item width="55px" lable="Edad" class="capitalize">{{caseInfo?.age ?? ''}}</app-case-info-item>
             </div>
             <div class="flex">
                 <!-- <app-case-info-item lable="Sisben">{{(caseInfo?.siben ?? 0) == 1 ? 'Si': 'No'}}</app-case-info-item> -->
                 <!-- <app-case-info-item lable="Regimen">{{caseInfo?.regime ?? 0 == 1 ? 'Contributivo' : 'Subsidiado'}}</app-case-info-item> -->
-                <app-case-info-item lable="EPS">{{caseInfo?.eps}}</app-case-info-item>
+                <app-case-info-item width="55px" lable="EPS">{{caseInfo?.eps}}</app-case-info-item>
             </div>
         </div>
         <div>

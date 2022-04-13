@@ -7,7 +7,7 @@ import { ApiSurveysService } from 'src/app/api/surveys/api-surveys.service';
 })
 export class CasesDataService {
 
-  private _eps:{id:number, name:string}[] = [{id:1, name:'NUEVA EPS'}];
+  private _eps:{id:number, name:string}[] = []; // [{id:1, name:'NUEVA EPS'}];
   private _requredAttentions:{id:number, attention:string}[] = [{id:1, attention:'MOVILIDAD'}];
   constructor(
     private _apiCases:ApiCasesService
@@ -21,6 +21,12 @@ export class CasesDataService {
     this._apiCases.getRequiredAttentions().subscribe({
       next: da =>{
         this._requredAttentions = da;
+      }
+    });
+
+    this._apiCases.getEps().subscribe({
+      next: data=>{
+        this._eps = data;
       }
     })
   }

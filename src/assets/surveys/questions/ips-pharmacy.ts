@@ -50,7 +50,7 @@ export const SurveyIPSPharmacyData:ISurveyData = {
         {
             formControl: new FormControl('', Validators.required),
             question: '¿Entregaron el medicamento según lo formulado?',
-            type: QuestinoType.radioButtonMas,
+            type: QuestinoType.radioButton,
             options: options_yes_no
         },
         /** 06 */

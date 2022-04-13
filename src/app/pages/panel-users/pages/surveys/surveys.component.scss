@@ -1,0 +1,12 @@
+.item{
+    display: flex;
+    column-gap: 10px;
+    div:first-child{
+        color: gray;
+        width: 100px;
+    }
+    div:last-child{
+        color: black;
+        font-weight: 500;
+    }
+}

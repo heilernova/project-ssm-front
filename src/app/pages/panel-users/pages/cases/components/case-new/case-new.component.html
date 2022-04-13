@@ -1,28 +1,37 @@
-<h2>Registro de nuevo caso</h2>
+<div style="display: flex; justify-content: space-between;">
+    <h2>Registro de nuevo caso</h2>
+    <button mat-button [matMenuTriggerFor]="menu" mat-icon-button >
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</div>
+<mat-menu #menu="matMenu" xPosition="before">
+  <button mat-menu-item>Agregar EPS</button>
+  <button mat-menu-item>Agregar servicio</button>
+</mat-menu>
 <mat-dialog-content [formGroup]="form">
     <section class="info-user">
         
         <mat-form-field appearance="standard" class="document">
             <mat-label>Documento</mat-label>
-            <input matInput autocomplete="off" [formControl]="inputDocument">
+            <input name="dni" matInput autocomplete="off" [formControl]="inputDocument">
             <button matSuffix mat-icon-button [disabled]="inputDocument.invalid" (click)="searchDni()"><mat-icon>{{user ? 'edit' : 'search'}}</mat-icon></button>
         </mat-form-field>
 
         <mat-form-field appearance="standard" class="name">
             <mat-label>Nombre y apellido</mat-label>
-            <input matInput class="capitalize" autocomplete="off" [value]="(user?.name ?? '') + ' ' + (user?.lastName ?? '')">
+            <input readonly="" matInput class="capitalize" autocomplete="off" [value]="(user?.name ?? '') + ' ' + (user?.lastName ?? '')">
         </mat-form-field>
         <mat-form-field appearance="standard" class="sex">
             <mat-label>Sexo</mat-label>
-            <input matInput autocomplete="off" [value]="user?.sex ?? ''">
+            <input readonly="" matInput autocomplete="off" [value]="user?.sex ?? ''">
         </mat-form-field>
         <mat-form-field appearance="standard" class="cellphone">
             <mat-label>Teléfono</mat-label>
-            <input matInput autocomplete="off" [value]="user?.cellphone | cellphone">
+            <input readonly="" matInput autocomplete="off" [value]="user?.cellphone | cellphone">
         </mat-form-field>
         <mat-form-field appearance="standard" class="address">
             <mat-label>Dirección</mat-label>
-            <input matInput autocomplete="off" [value]="user?.address ?? ''">
+            <input readonly="" matInput autocomplete="off" [value]="user?.address ?? ''">
         </mat-form-field>
     </section>
     <section style="display: flex; column-gap: 20px; flex-wrap: wrap;">
@@ -31,6 +40,7 @@
             <mat-select formControlName="eps">
                 <mat-option *ngFor="let eps of _casesData.getEPS()" [value]="eps.id">{{eps.name}}</mat-option>
             </mat-select>
+            <!-- <button matSuffix mat-icon-button><mat-icon>domain_add</mat-icon></button> -->
         </mat-form-field>
         <mat-form-field appearance="standard">
             <mat-label>Servicio requerido</mat-label>
@@ -45,6 +55,7 @@
         <mat-checkbox color="primary" formControlName="pregnant">Gestante</mat-checkbox>
         <mat-checkbox color="primary" formControlName="womenHeadHousehold">Mujer cabeza de familia</mat-checkbox>
         <mat-checkbox color="primary" formControlName="afrodescendent">Afrodecendiente</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="indigenous">Indigena</mat-checkbox>
         <mat-checkbox color="primary" formControlName="lgtbi">LGTBI</mat-checkbox>
         <mat-checkbox color="primary" formControlName="victim">Victima</mat-checkbox>
         <mat-checkbox color="primary" formControlName="displaced">Desplazado</mat-checkbox>

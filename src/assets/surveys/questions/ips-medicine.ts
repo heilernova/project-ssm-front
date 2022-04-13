@@ -50,7 +50,7 @@ export const SurveyIPSMedicineData:ISurveyData = {
         {
             formControl: new FormControl('', Validators.required),
             question: '¿El profesional tenia buena disposición para atenderlo?',
-            type: QuestinoType.radioButtonMas,
+            type: QuestinoType.radioButton,
             options: options_yes_no
         },
         /** 06 */

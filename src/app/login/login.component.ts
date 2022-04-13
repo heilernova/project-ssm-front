@@ -27,9 +27,12 @@ export class LoginComponent implements OnInit {
 
   sendForm(){
     this._login.onAuthenticate(this.form.value).subscribe({
-      next:data =>{
-        this._login.login(data);
-        this._router.navigate(['']);
+      next:(data) =>{
+        console.log(data);
+        // this._login.login(data);
+        // this._router.navigate(['']);
+      }, error: e=>{
+        console.log(e);
       }
     });
   }

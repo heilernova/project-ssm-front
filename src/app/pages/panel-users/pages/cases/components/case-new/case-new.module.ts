@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -25,6 +26,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     MatSelectModule,
     MatCheckboxModule,
     ReactiveFormsModule,
+    MatMenuModule,
     PipesModule
   ]
 })

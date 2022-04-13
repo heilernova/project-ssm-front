@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { map, startWith } from 'rxjs';
 import { IPersonGet } from 'src/app/api/persons/interfaces/IPersonGet';
 import { PersonService } from 'src/app/components/person/person.service';
+import { UserService } from 'src/app/services/user.service';
 import { CasesDataService } from '../../services/cases-data.service';
 import { CasesService } from '../../services/cases.service';
 
@@ -12,10 +13,12 @@ import { CasesService } from '../../services/cases.service';
   templateUrl: './case-new.component.html',
   styleUrls: ['./case-new.component.scss']
 })
-export class CaseNewComponent implements OnInit {
+export class CaseNewComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
   inputDocument:FormControl = new FormControl('', Validators.required);
   user:IPersonGet | undefined;
+  @ViewChild('usernameField') input! : ElementRef;
+
 
   form:FormGroup;
   constructor(
@@ -35,6 +38,7 @@ export class CaseNewComponent implements OnInit {
       pregnant: new FormControl(false),
       womenHeadHousehold: new FormControl(false),
       afrodescendent: new FormControl(false),
+      indigenous: new FormControl(false),
       lgtbi: new FormControl(false),
       victim: new FormControl(false),
       displaced: new FormControl(false),
@@ -54,6 +58,14 @@ export class CaseNewComponent implements OnInit {
 
     this._casesData.load();
   }
+  ngAfterViewInit(): void {
+    
+    // this.input.nativeElement.focus();
+    
+  }
+  ngAfterViewChecked(): void {
+    
+  }
   
   ngOnInit(): void {
 
@@ -70,7 +82,7 @@ export class CaseNewComponent implements OnInit {
             this.user = data.person;
 
             let dataVues = {
-              dni: data.person.dni ,
+              dni: data.person.dni,
               eps:  data.person.eps,
               requiredAttention: null,
               note: '',
@@ -79,6 +91,7 @@ export class CaseNewComponent implements OnInit {
               pregnant: false,
               womenHeadHousehold: false,
               afrodescendent: false,
+              indigenous: false,
               lgtbi: false,
               victim: false,
               displaced: false,
@@ -96,6 +109,7 @@ export class CaseNewComponent implements OnInit {
               dataVues.disabled = d.disabled;
               dataVues.womenHeadHousehold = d.womenHeadHousehold;
               dataVues.afrodescendent = d.afrodescendent;
+              dataVues.indigenous = d.indigenous;
               dataVues.lgtbi = d.lgtbi;
               dataVues.victim = d.victim;
               dataVues.disabled = d.disabled;
@@ -121,6 +135,7 @@ export class CaseNewComponent implements OnInit {
     console.log(this.form.value);
     this._cases.insert(this.form.value).subscribe({
       next: data =>{
+        // console.log(data);
         this._matDialogRef.close(data);
       }
     });

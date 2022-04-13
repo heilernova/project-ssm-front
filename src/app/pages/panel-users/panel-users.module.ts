@@ -5,6 +5,7 @@ import { PanelUsersRoutingModule } from './panel-users-routing.module';
 import { PanelUsersComponent } from './panel-users.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CasesModule } from './pages/cases/cases.module';
+import { SurveysModule } from './pages/surveys/surveys.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CasesModule } from './pages/cases/cases.module';
     CommonModule,
     PanelUsersRoutingModule,
     MatIconModule,
-    CasesModule
+    CasesModule,
+    SurveysModule
   ]
 })
 export class PanelUsersModule { }

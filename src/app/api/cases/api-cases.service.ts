@@ -18,6 +18,10 @@ export class ApiCasesService {
     return this._http.get<any[]>(`attention-community/cases`)
   }
 
+  getEps():Observable<any[]>{
+    return this._http.get<any[]>(`eps/actives`);
+  }
+
   getPerson(dni:string):Observable<{person:any, lastCase?:any}>{
     return this._http.get<{person:any, lastCase?:any}>(`attention-community/users/${dni}`);
   }
@@ -34,11 +38,11 @@ export class ApiCasesService {
   }
 
   insertObservation(idCase:number, text:string):Observable<any>{
-    return this._http.post(`attention-community/cases/${idCase}/observations`, JSON.stringify(text));
+    return this._http.post(`attention-community/cases/comments`, JSON.stringify({case: idCase, content:text}));
   }
 
   observationUpdate(id:number, text:string):Observable<any>{
-    return this._http.put(`attention-community/cases/observations/${id}`, JSON.stringify(text));
+    return this._http.put(`attention-community/cases/comments/${id}`, JSON.stringify(text));
   }
 
   observationDelete(id:number):Observable<any>{

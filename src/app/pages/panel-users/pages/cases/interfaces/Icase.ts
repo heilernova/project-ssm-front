@@ -1,6 +1,8 @@
 export interface ICaseData {
     id:number,
     date:string,
+    userId:number,
+    userName:string,
     dni:string,
     dniType:string,
     name:string,

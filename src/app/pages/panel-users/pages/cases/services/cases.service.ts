@@ -18,7 +18,7 @@ export class CasesService {
   ) { }
 
   new():MatDialogRef<CaseNewComponent>{
-    return this._matDialog.open(CaseNewComponent, { width: '100%', maxWidth:'900px'});
+    return this._matDialog.open(CaseNewComponent, { width: '100%', maxWidth:'900px', autoFocus: false});
   }
 
   getCases():Observable<ICaseData[]>{
