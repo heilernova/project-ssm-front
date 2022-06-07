@@ -6,7 +6,8 @@
             <!-- Número de documento -->
             <mat-form-field class="number" appearance="standard">
                 <mat-label>Número de documento</mat-label>
-                <input matInput autocomplete="off" maxlength="15" formControlName="dni">
+                <input matInput autocomplete="off" maxlength="15" formControlName="dni"
+                inputmode="numeric">
             </mat-form-field>
         
             <!-- Tipo de documento -->
@@ -17,7 +18,7 @@
                     <mat-option value="TI">Tarjeta de identidad</mat-option>
                     <mat-option value="RC">Registro civil</mat-option>
                     <mat-option value="CE">Cédula de extranjería</mat-option>
-                    <mat-option value="PEP">PEP</mat-option>
+                    <mat-option value="PPT">PPT</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -56,6 +57,7 @@
             <mat-form-field class="cellphone" appearance="standard">
                 <mat-label>Fecha de nacimiento</mat-label>
                 <input matInput autocomplete="off" maxlength="10" type="date"
+                inputmode="numeric"
                 formControlName="birthDate">
             </mat-form-field>
             
@@ -66,6 +68,7 @@
         <mat-form-field class="cellphone" appearance="standard">
             <mat-label>Teléfono movil</mat-label>
             <input matInput autocomplete="off" maxlength="10"
+            inputmode="numeric"
             formControlName="cellphone">
         </mat-form-field>
         
